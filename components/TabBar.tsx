@@ -5,10 +5,6 @@ interface iconProps {
   url: string;
 }
 
-interface textProps {
-  text: string;
-}
-
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
@@ -41,21 +37,20 @@ const Icon = styled.div<iconProps>`
   height: 2.5rem;
 `;
 
-const Text = styled.span``;
-
 const items = [
   { url: "image/icon_home.svg", text: "홈", href: "/" },
   { url: "image/icon_search.svg", text: "검색", href: "/" },
   { url: "image/icon_cart.svg", text: "장바구니", href: "/" },
   { url: "image/icon_account.svg", text: "마이페이지", href: "/" },
 ];
+
 const TabBar = () => (
   <Container>
     {items.map(({ url, text, href }, i) => (
       <Link key={i} href={href} passHref>
         <Item>
           <Icon url={url} />
-          <Text>{text}</Text>
+          <p>{text}</p>
         </Item>
       </Link>
     ))}
