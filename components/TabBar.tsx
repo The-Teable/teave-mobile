@@ -5,7 +5,7 @@ interface iconProps {
   url: string;
 }
 
-const Container = styled.div`
+const Container = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
