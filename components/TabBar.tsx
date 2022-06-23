@@ -8,6 +8,7 @@ interface iconProps {
 const Container = styled.nav`
   display: flex;
   justify-content: space-around;
+  background-color: #ffffff;
   align-items: center;
   max-width: 76.8rem;
   margin: 0 auto;
@@ -37,6 +38,10 @@ const Icon = styled.div<iconProps>`
   height: 2.5rem;
 `;
 
+const Padding = styled.div`
+  height: 5rem;
+`
+
 const items = [
   { url: "image/icon_home.svg", text: "홈", href: "/" },
   { url: "image/icon_search.svg", text: "검색", href: "/" },
@@ -45,16 +50,19 @@ const items = [
 ];
 
 const TabBar = () => (
-  <Container>
-    {items.map(({ url, text, href }, i) => (
-      <Link key={i} href={href} passHref>
-        <Item>
-          <Icon url={url} />
-          <p>{text}</p>
-        </Item>
-      </Link>
-    ))}
-  </Container>
+  <>
+    <Padding />
+    <Container>
+      {items.map(({ url, text, href }, i) => (
+        <Link key={i} href={href} passHref>
+          <Item>
+            <Icon url={url} />
+            <p>{text}</p>
+          </Item>
+        </Link>
+      ))}
+    </Container>
+  </>
 );
 
 export default TabBar;

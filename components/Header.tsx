@@ -8,6 +8,12 @@ const Container = styled.header`
   max-width: 76.8rem;
   margin: 0 auto;
   padding: 0 1.3rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  z-index: 1;
 `;
 
 const Logo = styled.div`
@@ -28,15 +34,22 @@ const Menu = styled.div`
   }
 `;
 
+const Padding = styled.div`
+  height: 5rem;
+`
+
 const Header = () => (
-  <Container>
-    <Link href="/" passHref>
-      <Logo />
-    </Link>
-    <Link href="/menu" passHref>
-      <Menu />
-    </Link>
-  </Container>
+  <>
+    <Container>
+      <Link href="/" passHref>
+        <Logo />
+      </Link>
+      <Link href="/menu" passHref>
+        <Menu />
+      </Link>
+    </Container>
+    <Padding />
+  </>
 );
 
 export default Header;
