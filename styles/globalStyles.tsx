@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   html {
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR, Apple SD Gothic Neo, Roboto;
     font-size: 62.5%;
   }
 `;

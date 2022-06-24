@@ -14,6 +14,7 @@ const Container = styled.header`
   left: 0;
   background-color: #ffffff;
   z-index: 1;
+  box-sizing: border-box;
 `;
 
 const Logo = styled.div`
