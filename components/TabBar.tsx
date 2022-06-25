@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import Link from "next/link";
+import CenteredContainer from "./common/CenteredContainer";
 
 interface iconProps {
   url: string;
 }
 
-const Container = styled.nav`
+const Container = styled(CenteredContainer).attrs({ as: "nav" })`
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  background-color: #ffffff;
-  align-items: center;
-  max-width: 76.8rem;
-  margin: 0 auto;
   height: 4.8rem;
   position: fixed;
   right: 0;
@@ -40,7 +38,7 @@ const Icon = styled.div<iconProps>`
 
 const Padding = styled.div`
   height: 5rem;
-`
+`;
 
 const items = [
   { url: "image/icon_home.svg", text: "홈", href: "/" },

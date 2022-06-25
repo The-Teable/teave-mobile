@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
+import CenteredContainer from "./common/CenteredContainer";
 
 interface itemProps {
   url: string;
@@ -11,14 +12,11 @@ interface bannnerProps {
   banners: { url: string; href: string }[];
 }
 
-const Container = styled.section`
-  max-width: 76.8rem;
-  margin: 0 auto;
-`;
+const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
 const Wrapper = styled.div`
   display: flex;
-  margin: 10px;
+  width: 100%;
   border-radius: 0.5rem;
   overflow-x: scroll;
   &::-webkit-scrollbar {
@@ -40,7 +38,12 @@ const Item = styled.div<itemProps>`
 
 const PromotionBanner = ({ banners }: bannnerProps) => {
   const [move, setMove] = useState(0);
-  const next = () => move < 500 ? move === -600 ? setMove(100) : setMove(move + 100) : setMove(-600);
+  const next = () =>
+    move < 500
+      ? move === -600
+        ? setMove(100)
+        : setMove(move + 100)
+      : setMove(-600);
   return (
     <Container>
       <Wrapper>
@@ -52,6 +55,6 @@ const PromotionBanner = ({ banners }: bannnerProps) => {
       </Wrapper>
     </Container>
   );
-}
+};
 
 export default PromotionBanner;

@@ -1,26 +1,22 @@
 import styled from "styled-components";
 import Link from "next/link";
+import CenteredContainer from "./common/CenteredContainer";
 
-const Container = styled.header`
+const Container = styled(CenteredContainer).attrs({ as: "header" })`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  max-width: 76.8rem;
-  margin: 0 auto;
-  padding: 0 1.3rem;
   position: fixed;
   right: 0;
   top: 0;
   left: 0;
-  background-color: #ffffff;
   z-index: 1;
-  box-sizing: border-box;
+  height: 5rem;
 `;
 
 const Logo = styled.div`
   background: url("/image/logo_text.png") no-repeat center/contain;
-  width: 7.6rem;
-  height: 4.8rem;
+  width: 6.3rem;
+  height: 1.7rem;
   &:hover {
     cursor: pointer;
   }
@@ -30,6 +26,7 @@ const Menu = styled.div`
   background: url("/image/icon_menu.svg") no-repeat center/contain;
   width: 3.2rem;
   height: 3.2rem;
+  margin-right: 2rem;
   &:hover {
     cursor: pointer;
   }
@@ -37,7 +34,7 @@ const Menu = styled.div`
 
 const Padding = styled.div`
   height: 5rem;
-`
+`;
 
 const Header = () => (
   <>
