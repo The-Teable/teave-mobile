@@ -13,7 +13,8 @@ interface itemProps {
 }
 
 const Container = styled(CenteredContainer).attrs({ as: "section" })`
-  margin: 4rem 0;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 `;
 
 const Title = styled.p`

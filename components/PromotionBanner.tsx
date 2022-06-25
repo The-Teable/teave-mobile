@@ -16,7 +16,7 @@ const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+
   border-radius: 0.5rem;
   overflow-x: scroll;
   &::-webkit-scrollbar {
