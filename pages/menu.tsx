@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { CenteredContainer } from "../components/Layout";
+import CenteredContainer from "../components/common/CenteredContainer";
 
 const Container = styled(CenteredContainer)`
   padding: 6rem;
