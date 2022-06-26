@@ -41,12 +41,18 @@ const LoginLogOutButton = styled.button`
   color: #424242;
   height: 2rem;
   font-size: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NavItemContainer = styled.div`
   display: flex;
   align-items: center;
   height: 85%;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Selected = styled(NavItemContainer)`
