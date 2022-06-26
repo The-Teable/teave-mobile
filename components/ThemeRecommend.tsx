@@ -5,66 +5,81 @@ import CenteredContainer from "./common/CenteredContainer";
 
 interface props {
   title: string;
-  items: { url: string; href: string }[];
+  items: {
+    url: string;
+    href: string;
+    brand: string;
+    name: string;
+    price: number;
+  }[];
 }
 
 interface itemProps {
   url: string;
 }
 
-const Container = styled(CenteredContainer).attrs({ as: "section" })`
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-`;
+const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
 const Title = styled.p`
-  font-size: 1.4rem;
-  padding: 1rem 0;
+  font-size: 2rem;
+  padding: 1.5rem 0;
 `;
 
 const ItemsContainer = styled.div`
   display: flex;
   overflow-x: scroll;
+  padding: 1.5rem 0;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const Item = styled.div<itemProps>`
+const ItemWrapper = styled.div`
   flex: none;
-  background: url(${({ url }: itemProps) => url}) no-repeat center/cover;
-  width: 14rem;
-  height: 13rem;
-  margin: 0.5rem;
-  border-radius: 0.5rem;
+  margin-left: 1rem;
   &:hover {
     cursor: pointer;
   }
   &:nth-child(1) {
     margin-left: 0;
   }
-  &:nth-last-child(1) {
-    margin-right: 0;
-  }
-  transform: translate(-${({ move }: itemProps) => move}%);
-  transition: transform 1s;
+`;
+
+const ItemThumbnail = styled.div<itemProps>`
+  background: url(${({ url }: itemProps) => url}) no-repeat center/cover;
+  width: 14rem;
+  height: 18.6rem;
+  border-radius: 0.5rem;
+`;
+
+const ItemDescribeContainer = styled.div`
+  padding-top: 1.5rem;
+  font-size: 12px;
+`;
+
+const ItemBrand = styled.p``;
+
+const ItemName = styled.p``;
+
+const ItemPrice = styled.span`
+  color: #808080;
 `;
 
 const ThemeRecommend = ({ title, items }: props) => {
-  const [move, setMove] = useState(0);
-  const next = () =>
-    move < 500
-      ? move === -600
-        ? setMove(100)
-        : setMove(move + 100)
-      : setMove(-600);
   return (
     <Container>
       <Title>{title}</Title>
-      <ItemsContainer onClick={next}>
-        {items.map(({ url, href }, i) => (
+      <ItemsContainer>
+        {items.map(({ url, href, brand, name, price }, i) => (
           <Link key={i} href={href} passHref>
-            <Item url={url} />
+            <ItemWrapper>
+              <ItemThumbnail url={url} />
+              <ItemDescribeContainer>
+                <ItemBrand>{brand}</ItemBrand>
+                <ItemName>{name}</ItemName>
+                <ItemPrice>{price.toLocaleString()}원</ItemPrice>
+              </ItemDescribeContainer>
+            </ItemWrapper>
           </Link>
         ))}
       </ItemsContainer>
