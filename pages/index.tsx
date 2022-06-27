@@ -18,6 +18,7 @@ const themeRecommends = [
     title: "민초단을 위한",
     goods: [
       {
+        id: 0,
         url: "image/goods1.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -25,6 +26,7 @@ const themeRecommends = [
         price: 15000,
       },
       {
+        id: 1,
         url: "image/goods2.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -32,6 +34,7 @@ const themeRecommends = [
         price: 15000,
       },
       {
+        id: 2,
         url: "image/goods3.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -39,6 +42,7 @@ const themeRecommends = [
         price: 15000,
       },
       {
+        id: 3,
         url: "image/goods1.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -46,6 +50,7 @@ const themeRecommends = [
         price: 15000,
       },
       {
+        id: 4,
         url: "image/goods2.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -53,53 +58,7 @@ const themeRecommends = [
         price: 15000,
       },
       {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-    ],
-  },
-  {
-    title: "고기와 잘 어울리는 티",
-    goods: [
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
+        id: 5,
         url: "image/goods3.png",
         href: "/",
         brand: "[큐앤리브리즈]",
@@ -108,194 +67,7 @@ const themeRecommends = [
       },
     ],
   },
-  {
-    title: "아이스 전용",
-    goods: [
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-    ],
-  },
-  {
-    title: "민초단을 위한",
-    goods: [
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-    ],
-  },
-  {
-    title: "고기와 잘 어울리는 티",
-    goods: [
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-    ],
-  },
-  {
-    title: "아이스 전용",
-    goods: [
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods1.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods2.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-      {
-        url: "image/goods3.png",
-        href: "/",
-        brand: "[큐앤리브리즈]",
-        name: "카라멜 티메리카노",
-        price: 15000,
-      },
-    ],
-  },
+
 ];
 
 const Home: NextPage = () => {
