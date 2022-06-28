@@ -30,7 +30,7 @@ const MoveButton = styled.button`
   top: 30px;
   width: 30px;
   height: 100px;
-`
+`;
 
 const NextButton = styled(MoveButton)`
   right: 10px;
@@ -61,11 +61,7 @@ const PromotionBanner = ({ banners }: bannnerProps) => {
         : setMove(move + 100)
       : setMove(-600);
   const prev = () =>
-    move > 0
-      ? move === 600
-        ? setMove(0)
-        : setMove(move - 100)
-      : setMove(500);
+    move > 0 ? (move === 600 ? setMove(0) : setMove(move - 100)) : setMove(500);
   return (
     <Container>
       <Wrapper>

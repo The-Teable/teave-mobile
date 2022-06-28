@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import CenteredContainer from "./common/CenteredContainer";
+import axios from "axios";
 
 interface props {
   title: string;
@@ -46,7 +47,7 @@ const MoveButton = styled.button`
   top: 30px;
   width: 30px;
   height: 100px;
-`
+`;
 
 const PrevButton = styled(MoveButton)`
   left: 10px;
@@ -55,7 +56,6 @@ const PrevButton = styled(MoveButton)`
 const NextButton = styled(MoveButton)`
   right: 10px;
 `;
-
 
 const ItemWrapper = styled.div<itemProps>`
   flex: none;
@@ -101,6 +101,9 @@ const ItemPrice = styled.span`
 `;
 
 const ThemeRecommend = ({ title, items }: props) => {
+  const tempUserId = "tempUserId";
+  const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
+
   const [move, setMove] = useState(0);
   const next = () =>
     move < 100
@@ -109,11 +112,7 @@ const ThemeRecommend = ({ title, items }: props) => {
         : setMove(move + 100)
       : setMove(-100);
   const prev = () =>
-    move > 0
-      ? move === 100
-        ? setMove(0)
-        : setMove(move - 100)
-      : setMove(100);
+    move > 0 ? (move === 100 ? setMove(0) : setMove(move - 100)) : setMove(100);
   return (
     <Container>
       <Title>{title}</Title>
@@ -121,9 +120,22 @@ const ThemeRecommend = ({ title, items }: props) => {
         <PrevButton onClick={prev}>&lt;</PrevButton>
         {items.map(({ id, url, href, brand, name, price }) => (
           <Link key={id} href={href} passHref>
-            <ItemWrapper move={move}>
+            <ItemWrapper
+              move={move}
+              onClick={() => {
+                console.log("posted");
+                instance.post("user-click-product", {
+                  userId: tempUserId,
+                  teaId: id,
+                });
+              }}
+            >
               <ItemThumbnail url={url}>
-                <ItemFavorite onClick={() => { console.log(id, name) }} />
+                <ItemFavorite
+                  onClick={() => {
+                    console.log(id, name);
+                  }}
+                />
               </ItemThumbnail>
               <ItemDescribeContainer>
                 <ItemBrand>{brand}</ItemBrand>
