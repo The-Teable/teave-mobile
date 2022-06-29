@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useState, useCallback } from "react";
 import CenteredContainer from "./common/CenteredContainer";
 import axios from "axios";
+import Slider from "./common/Slider";
 
 interface props {
   title: string;
@@ -16,10 +16,6 @@ interface props {
   }[];
 }
 
-interface itemProps {
-  move: number;
-}
-
 interface itemThumbProps {
   url: string;
 }
@@ -31,43 +27,19 @@ const Title = styled.p`
   padding: 1.5rem 0;
 `;
 
-const ItemsContainer = styled.div`
-  display: flex;
-  position: relative;
-  overflow-x: scroll;
+const ItemsContainer = styled(Slider)`
   padding: 1.5rem 0;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
-const MoveButton = styled.button`
-  position: absolute;
-  z-index: 1;
-  top: 30px;
-  width: 30px;
-  height: 100px;
-`;
-
-const PrevButton = styled(MoveButton)`
-  left: 10px;
-`;
-
-const NextButton = styled(MoveButton)`
-  right: 10px;
-`;
-
-const ItemWrapper = styled.div<itemProps>`
-  flex: none;
+const ItemWrapper = styled.div`
   margin-left: 1rem;
+  width: 300px;
   &:hover {
     cursor: pointer;
   }
   &:nth-child(1) {
     margin-left: 0;
   }
-  transform: translate(-${({ move }: itemProps) => move}%);
-  transition: transform 1s;
 `;
 
 const ItemThumbnail = styled.div<itemThumbProps>`
@@ -101,27 +73,17 @@ const ItemPrice = styled.span`
 `;
 
 const ThemeRecommend = ({ title, items }: props) => {
-  const tempUserId = "tempUserId";
+  const tempUserId = 123;
   const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
 
-  const [move, setMove] = useState(0);
-  const next = () =>
-    move < 100
-      ? move === -100
-        ? setMove(100)
-        : setMove(move + 100)
-      : setMove(-100);
-  const prev = () =>
-    move > 0 ? (move === 100 ? setMove(0) : setMove(move - 100)) : setMove(100);
   return (
     <Container>
       <Title>{title}</Title>
-      <ItemsContainer>
-        <PrevButton onClick={prev}>&lt;</PrevButton>
-        {items.map(({ id, url, href, brand, name, price }) => (
+      <ItemsContainer
+        moveWidth={150}
+        items={items.map(({ id, url, href, brand, name, price }) => (
           <Link key={id} href={href} passHref>
             <ItemWrapper
-              move={move}
               onClick={() => {
                 console.log("posted");
                 instance.post("user-click-product", {
@@ -145,8 +107,7 @@ const ThemeRecommend = ({ title, items }: props) => {
             </ItemWrapper>
           </Link>
         ))}
-        <NextButton onClick={next}>&gt;</NextButton>
-      </ItemsContainer>
+      ></ItemsContainer>
     </Container>
   );
 };
