@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 interface itemProps {
   moveWidth: number;
-  index: number;
   ref: any;
 }
 
@@ -28,7 +27,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div<itemProps>`
   display: flex;
-  transform: translate(-${({ moveWidth, index }: any) => moveWidth * index}px);
+  transform: translate(-${({ moveWidth }: any) => moveWidth}px);
   transition: transform 0.5s;
 `;
 
@@ -40,19 +39,17 @@ const NextButton = styled(MoveButton)`
   right: 10px;
 `;
 
-const Slider = ({ items, moveWidth }: any) => {
+const Slider = ({ items, itemWidth }: any) => {
   const [index, setIndex] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [moveWidth, setMoveWidth] = useState(0);
   const temp = useRef();
-  const scroll = (scrollOffset: any) => {
-    temp.current.scrollLeft += scrollOffset;
-  };
-  useEffect(() => {
-    // setWindowWidth(window.getComputedStyle())
-  }, []);
+  const totalWidth = temp?.current?.scrollWidth;
+  // useEffect(() => {
+  //   setWindowWidth(window.getComputedStyle())
+  // }, []);
   return (
     <Container>
-      <Wrapper ref={temp} moveWidth={moveWidth} index={index}>
+      <Wrapper ref={temp} moveWidth={moveWidth}>
         {items.map((e: any) => e)}
       </Wrapper>
       <PrevButton
@@ -60,16 +57,15 @@ const Slider = ({ items, moveWidth }: any) => {
           () => {
             // console.log(temp?.current?.clientWidth);
             // console.log(temp?.current?.scrollWidth);
-            // console.log(temp?.current?.scrollLeft);
-            scroll(150);
           }
           // index > 0 ? setIndex(index - 1) : setIndex(items.length - 1)
         }
       />
       <NextButton
-        onClick={() =>
-          index < items.length - 1 ? setIndex(index + 1) : setIndex(0)
-        }
+        onClick={() => {
+          setMoveWidth();
+          setIndex(index < items.length - 1 ? index + 1 : 0);
+        }}
       />
     </Container>
   );
