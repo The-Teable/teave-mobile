@@ -1,12 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CenteredContainer from "./common/CenteredContainer";
 import Slider from "./common/Slider";
 
 interface itemProps {
   url: string;
-  width: number;
 }
 
 interface bannnerProps {
@@ -17,32 +16,35 @@ const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
 const Wrapper = styled(Slider)``;
 
-// overflow-x: scroll;
-//   &::-webkit-scrollbar {
-//     display: none;
-//   }
-
 const Item = styled.div<itemProps>`
   background: url(${({ url }: itemProps) => url}) no-repeat center/cover;
-  width: ${({ width }: itemProps) => width}px;
   height: 18rem;
-  border-radius: 0.5rem;
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 0.55rem;
   &:hover {
     cursor: pointer;
   }
 `;
 
 const PromotionBanner = ({ banners }: bannnerProps) => {
-  const width = window.innerWidth < 768 ? window.innerWidth : 768;
-  console.log(width);
+  const [width, setWidth] = useState(0);
+  const ref = useRef();
+  useEffect(() => {
+    setWidth(window.innerWidth < 768 ? window.innerWidth : 768);
+    console.log(width);
+  });
   return (
     <Container>
       <Wrapper
+        ref={ref}
         moveWidth={width}
         items={banners.map(({ url, href }, i) => (
-          <Link key={i} href={href} passHref>
-            <Item url={url} width={width} />
-          </Link>
+          <>
+            <Link key={i} href={href} passHref>
+              <Item url={url} />
+            </Link>
+          </>
         ))}
       ></Wrapper>
     </Container>

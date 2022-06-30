@@ -33,7 +33,6 @@ const ItemsContainer = styled(Slider)`
 
 const ItemWrapper = styled.div`
   margin-left: 1rem;
-  width: 300px;
   &:hover {
     cursor: pointer;
   }

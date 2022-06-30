@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 interface itemProps {
   moveWidth: number;
   index: number;
+  ref: any;
 }
 
 const MoveButton = styled.button`
@@ -16,17 +17,17 @@ const MoveButton = styled.button`
 
 const Container = styled.div`
   position: relative;
-  overflow: hidden;
+  overflow: scroll;
   &:hover ${MoveButton} {
     display: block;
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
 const Wrapper = styled.div<itemProps>`
   display: flex;
-  &::-webkit-scrollbar {
-    display: none;
-  }
   transform: translate(-${({ moveWidth, index }: any) => moveWidth * index}px);
   transition: transform 0.5s;
 `;
@@ -41,14 +42,28 @@ const NextButton = styled(MoveButton)`
 
 const Slider = ({ items, moveWidth }: any) => {
   const [index, setIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+  const temp = useRef();
+  const scroll = (scrollOffset: any) => {
+    temp.current.scrollLeft += scrollOffset;
+  };
+  useEffect(() => {
+    // setWindowWidth(window.getComputedStyle())
+  }, []);
   return (
     <Container>
-      <Wrapper moveWidth={moveWidth} index={index}>
+      <Wrapper ref={temp} moveWidth={moveWidth} index={index}>
         {items.map((e: any) => e)}
       </Wrapper>
       <PrevButton
-        onClick={() =>
-          index > 0 ? setIndex(index - 1) : setIndex(items.length - 1)
+        onClick={
+          () => {
+            // console.log(temp?.current?.clientWidth);
+            // console.log(temp?.current?.scrollWidth);
+            // console.log(temp?.current?.scrollLeft);
+            scroll(150);
+          }
+          // index > 0 ? setIndex(index - 1) : setIndex(items.length - 1)
         }
       />
       <NextButton
