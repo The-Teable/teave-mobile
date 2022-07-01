@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import CenteredContainer from "./common/CenteredContainer";
-import Slider from "./common/Slider";
+import SliderContainer from "../container/common/SliderContainer";
 
 interface itemProps {
   url: string;
@@ -16,7 +16,7 @@ const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
 const BoxSize = styled.div``;
 
-const Wrapper = styled(Slider)``;
+const Wrapper = styled(SliderContainer)``;
 
 const Item = styled.div<itemProps>`
   background: url(${({ url }: itemProps) => url}) no-repeat center/cover;

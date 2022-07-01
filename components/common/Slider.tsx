@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 interface itemProps {
   moveWidth: number;
-  ref: any;
 }
 
 const MoveButton = styled.button`
@@ -39,44 +37,22 @@ const NextButton = styled(MoveButton)`
   right: 10px;
 `;
 
-const Slider = ({ items, itemWidth }: any) => {
-  const [index, setIndex] = useState(0);
-  const [moveWidth, setMoveWidth] = useState(0);
-  const [prevBtnDisable, setPrevBtnDisable] = useState(false);
-  const [nextBtnDisable, setNextBtnDisable] = useState(false);
-  const temp = useRef();
-
-  useEffect(() => {
-    const totalWidth = temp?.current?.scrollWidth;
-    const viewWidth = temp?.current?.clientWidth;
-    setPrevBtnDisable(moveWidth <= 0);
-    setNextBtnDisable(moveWidth + viewWidth >= totalWidth);
-  }, [moveWidth]);
-
+const Slider = ({
+  items,
+  moveWidth,
+  prevOnClick,
+  nextOnClick,
+  prevDisable,
+  nextDisable,
+  $wrapperRef,
+}: any) => {
   return (
     <Container>
-      <Wrapper ref={temp} moveWidth={moveWidth}>
+      <Wrapper ref={$wrapperRef} moveWidth={moveWidth}>
         {items.map((e: any) => e)}
       </Wrapper>
-      <PrevButton
-        onClick={() => {
-          const moved = moveWidth - itemWidth;
-          if (moved > 0) setMoveWidth(moved);
-          else setMoveWidth(0);
-        }}
-        disabled={prevBtnDisable}
-      />
-      <NextButton
-        onClick={() => {
-          const totalWidth = temp?.current?.scrollWidth;
-          const viewWidth = temp?.current?.clientWidth;
-          const moved = moveWidth + itemWidth;
-          console.log(totalWidth, viewWidth, moved);
-          if (viewWidth + moved < totalWidth) setMoveWidth(moved);
-          else setMoveWidth(totalWidth - viewWidth);
-        }}
-        disabled={nextBtnDisable}
-      />
+      <PrevButton onClick={prevOnClick} disabled={prevDisable} />
+      <NextButton onClick={nextOnClick} disabled={nextDisable} />
     </Container>
   );
 };

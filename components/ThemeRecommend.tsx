@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import CenteredContainer from "./common/CenteredContainer";
 import axios from "axios";
-import Slider from "./common/Slider";
+import SliderContainer from "../container/common/SliderContainer";
 
 interface props {
   title: string;
@@ -27,7 +27,7 @@ const Title = styled.p`
   padding: 1.5rem 0;
 `;
 
-const ItemsContainer = styled(Slider)`
+const ItemsContainer = styled(SliderContainer)`
   padding: 1.5rem 0;
 `;
 
