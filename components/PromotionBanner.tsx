@@ -14,6 +14,8 @@ interface bannnerProps {
 
 const Container = styled(CenteredContainer).attrs({ as: "section" })``;
 
+const BoxSize = styled.div``;
+
 const Wrapper = styled(Slider)``;
 
 const Item = styled.div<itemProps>`
@@ -29,24 +31,25 @@ const Item = styled.div<itemProps>`
 
 const PromotionBanner = ({ banners }: bannnerProps) => {
   const [width, setWidth] = useState(0);
-  const ref = useRef();
+  const $banner = useRef(null);
   useEffect(() => {
-    setWidth(window.innerWidth < 768 ? window.innerWidth : 768);
-    console.log(width);
-  });
+    console.log($banner?.current?.clientWidth);
+    setWidth($banner?.current?.clientWidth);
+  }, []);
   return (
     <Container>
-      <Wrapper
-        ref={ref}
-        moveWidth={width}
-        items={banners.map(({ url, href }, i) => (
-          <>
-            <Link key={i} href={href} passHref>
-              <Item url={url} />
-            </Link>
-          </>
-        ))}
-      ></Wrapper>
+      <BoxSize ref={$banner}>
+        <Wrapper
+          itemWidth={width}
+          items={banners.map(({ url, href }, i) => (
+            <>
+              <Link key={i} href={href} passHref>
+                <Item url={url} />
+              </Link>
+            </>
+          ))}
+        />
+      </BoxSize>
     </Container>
   );
 };

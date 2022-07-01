@@ -79,7 +79,7 @@ const ThemeRecommend = ({ title, items }: props) => {
     <Container>
       <Title>{title}</Title>
       <ItemsContainer
-        moveWidth={150}
+        itemWidth={150}
         items={items.map(({ id, url, href, brand, name, price }) => (
           <Link key={id} href={href} passHref>
             <ItemWrapper
