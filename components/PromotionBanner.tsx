@@ -1,18 +1,13 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useEffect, useRef, useState } from "react";
-import CenteredContainer from "./common/CenteredContainer";
+import CenteredBox from "./common/CenteredBox";
 import SliderContainer from "../container/common/SliderContainer";
 
 interface itemProps {
   url: string;
 }
 
-interface bannnerProps {
-  banners: { url: string; href: string }[];
-}
-
-const Container = styled(CenteredContainer).attrs({ as: "section" })``;
+const Container = styled(CenteredBox).attrs({ as: "section" })``;
 
 const BoxSize = styled.div``;
 
@@ -29,19 +24,13 @@ const Item = styled.div<itemProps>`
   }
 `;
 
-const PromotionBanner = ({ banners }: bannnerProps) => {
-  const [width, setWidth] = useState(0);
-  const $banner = useRef(null);
-  useEffect(() => {
-    console.log($banner?.current?.clientWidth);
-    setWidth($banner?.current?.clientWidth);
-  }, []);
+const PromotionBanner = ({ banners, $bannerRef, width }: any) => {
   return (
     <Container>
-      <BoxSize ref={$banner}>
+      <BoxSize ref={$bannerRef}>
         <Wrapper
           itemWidth={width}
-          items={banners.map(({ url, href }, i) => (
+          items={banners.map(({ url, href }: any, i: any) => (
             <>
               <Link key={i} href={href} passHref>
                 <Item url={url} />

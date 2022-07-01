@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredContainer from "./common/CenteredContainer";
+import CenteredBox from "./common/CenteredBox";
 
-const Container = styled(CenteredContainer).attrs({ as: "header" })`
+const Container = styled(CenteredBox).attrs({ as: "header" })`
   position: fixed;
   right: 0;
   top: 0;

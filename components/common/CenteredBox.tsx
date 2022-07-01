@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CenteredContainer = styled.div`
+const CenteredBox = styled.div`
   align-items: center;
   max-width: 76.8rem;
   margin: 0 auto;
@@ -9,4 +9,4 @@ const CenteredContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export default CenteredContainer;
+export default CenteredBox;

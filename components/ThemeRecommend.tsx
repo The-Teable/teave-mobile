@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredContainer from "./common/CenteredContainer";
+import CenteredBox from "./common/CenteredBox";
 import axios from "axios";
 import SliderContainer from "../container/common/SliderContainer";
 
@@ -20,7 +20,7 @@ interface itemThumbProps {
   url: string;
 }
 
-const Container = styled(CenteredContainer).attrs({ as: "section" })``;
+const Container = styled(CenteredBox).attrs({ as: "section" })``;
 
 const Title = styled.p`
   font-size: 2rem;
@@ -71,32 +71,22 @@ const ItemPrice = styled.span`
   color: #808080;
 `;
 
-const ThemeRecommend = ({ title, items }: props) => {
-  const tempUserId = 123;
-  const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
-
+const ThemeRecommend = ({
+  title,
+  items,
+  onClickProduct,
+  onClickFavorite,
+}: any) => {
   return (
     <Container>
       <Title>{title}</Title>
       <ItemsContainer
         itemWidth={150}
-        items={items.map(({ id, url, href, brand, name, price }) => (
-          <Link key={id} href={href} passHref>
-            <ItemWrapper
-              onClick={() => {
-                console.log("posted");
-                instance.post("user-click-product", {
-                  userId: tempUserId,
-                  teaId: id,
-                });
-              }}
-            >
+        items={items.map(({ teaId, url, href, brand, name, price }: any) => (
+          <Link key={teaId} href={href} passHref>
+            <ItemWrapper onClick={() => onClickProduct(teaId)}>
               <ItemThumbnail url={url}>
-                <ItemFavorite
-                  onClick={() => {
-                    console.log(id, name);
-                  }}
-                />
+                <ItemFavorite onClick={() => onClickFavorite(teaId)} />
               </ItemThumbnail>
               <ItemDescribeContainer>
                 <ItemBrand>{brand}</ItemBrand>

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredContainer from "./common/CenteredContainer";
+import CenteredBox from "./common/CenteredBox";
 
 interface iconProps {
   url: string;
 }
 
-const Container = styled(CenteredContainer).attrs({ as: "nav" })`
+const Container = styled(CenteredBox).attrs({ as: "nav" })`
   display: flex;
   flex-direction: row;
   justify-content: space-around;

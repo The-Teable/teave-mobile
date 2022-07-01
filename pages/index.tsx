@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Header from "../components/Header";
-import PromotionBanner from "../components/PromotionBanner";
 import ThemeRecommend from "../components/ThemeRecommend";
 import TabBar from "../components/TabBar";
+import PromotionBannerContainer from "../container/PromotionBannerContainer";
 
 const promotionBanners = [
   { url: "image/promotion1.png", href: "/" },
@@ -203,7 +203,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <PromotionBanner banners={promotionBanners} />
+      <PromotionBannerContainer banners={promotionBanners} />
       <>
         {themeRecommends.map(({ title, goods }, i) => (
           <ThemeRecommend key={i} title={title} items={goods} />
