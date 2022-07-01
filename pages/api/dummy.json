@@ -1,0 +1,195 @@
+{
+  "promotionBanners": [
+    { "url": "image/promotion1.png", "href": "/" },
+    { "url": "image/promotion2.png", "href": "/" },
+    { "url": "image/promotion3.png", "href": "/" },
+    { "url": "image/promotion1.png", "href": "/" },
+    { "url": "image/promotion2.png", "href": "/" },
+    { "url": "image/promotion3.png", "href": "/" }
+  ],
+  "themeRecommends": [
+    {
+      "title": "민초단을 위한",
+      "goods": [
+        {
+          "id": 0,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]1",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 1,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]2",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 2,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]3",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 3,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]4",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 4,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]5",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 5,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]6",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 6,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]7",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 7,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]8",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 8,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]9",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "title": "민초단을 위한",
+      "goods": [
+        {
+          "id": 0,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]1",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 1,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]2",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 2,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]3",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 3,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]4",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 4,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]5",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 5,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]6",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "title": "민초단을 위한",
+      "goods": [
+        {
+          "id": 0,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]1",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 1,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]2",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 2,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]3",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 3,
+          "url": "image/goods1.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]4",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 4,
+          "url": "image/goods2.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]5",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        },
+        {
+          "id": 5,
+          "url": "image/goods3.png",
+          "href": "/",
+          "brand": "[큐앤리브리즈]6",
+          "name": "카라멜 티메리카노",
+          "price": 15000
+        }
+      ]
+    }
+  ]
+}
