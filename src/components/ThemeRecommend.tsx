@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import CenteredBox from "./common/CenteredBox";
-import axios from "axios";
-import SliderContainer from "../container/common/SliderContainer";
+import SliderContainer from "../containers/common/SliderContainer";
 
 interface props {
   title: string;

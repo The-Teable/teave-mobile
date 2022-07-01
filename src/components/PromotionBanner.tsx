@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import CenteredBox from "./common/CenteredBox";
-import SliderContainer from "../container/common/SliderContainer";
+import SliderContainer from "../containers/common/SliderContainer";
 
 interface itemProps {
   url: string;
