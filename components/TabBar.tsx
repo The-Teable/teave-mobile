@@ -2,11 +2,35 @@ import styled from "styled-components";
 import Link from "next/link";
 import CenteredBox from "./common/CenteredBox";
 
-interface iconProps {
-  url: string;
-}
+const items = [
+  { url: "image/icon_home.svg", text: "홈", href: "/" },
+  { url: "image/icon_search.svg", text: "검색", href: "/" },
+  { url: "image/icon_favorite.svg", text: "찜", href: "/" },
+  { url: "image/icon_cart.svg", text: "장바구니", href: "/" },
+  { url: "image/icon_account.svg", text: "마이페이지", href: "/" },
+];
 
-const Container = styled(CenteredBox).attrs({ as: "nav" })`
+const TabBar = () => (
+  <>
+    <S.Padding />
+    <S.Container>
+      {items.map(({ url, text, href }, i) => (
+        <Link key={i} href={href} passHref>
+          <S.Item>
+            <S.Icon url={url} />
+            <p>{text}</p>
+          </S.Item>
+        </Link>
+      ))}
+    </S.Container>
+  </>
+);
+
+export default TabBar;
+
+const S: any = {};
+
+S.Container = styled(CenteredBox).attrs({ as: "nav" })`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -18,7 +42,7 @@ const Container = styled(CenteredBox).attrs({ as: "nav" })`
   border-top: 0.1rem solid #e6e6e6;
 `;
 
-const Item = styled.div`
+S.Item = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,38 +54,12 @@ const Item = styled.div`
   }
 `;
 
-const Icon = styled.div<iconProps>`
+S.Icon = styled.div<{ url: string }>`
   background: url(${({ url }) => url}) no-repeat center/contain;
   width: 2.5rem;
   height: 2.5rem;
 `;
 
-const Padding = styled.div`
+S.Padding = styled.div`
   height: 5rem;
 `;
-
-const items = [
-  { url: "image/icon_home.svg", text: "홈", href: "/" },
-  { url: "image/icon_search.svg", text: "검색", href: "/" },
-  { url: "image/icon_favorite.svg", text: "찜", href: "/" },
-  { url: "image/icon_cart.svg", text: "장바구니", href: "/" },
-  { url: "image/icon_account.svg", text: "마이페이지", href: "/" },
-];
-
-const TabBar = () => (
-  <>
-    <Padding />
-    <Container>
-      {items.map(({ url, text, href }, i) => (
-        <Link key={i} href={href} passHref>
-          <Item>
-            <Icon url={url} />
-            <p>{text}</p>
-          </Item>
-        </Link>
-      ))}
-    </Container>
-  </>
-);
-
-export default TabBar;

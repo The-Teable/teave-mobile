@@ -4,18 +4,38 @@ import usePromotionBanner from "../hooks/usePromotionBanner";
 import CenteredBox from "./common/CenteredBox";
 import Slider from "./common/Slider";
 
-interface itemProps {
-  url: string;
-}
+const PromotionBanner = ({ banners }: any) => {
+  const [width, $bannerRef] = usePromotionBanner();
+  return (
+    <S.Container>
+      <S.BoxSize ref={$bannerRef}>
+        <S.Wrapper
+          itemWidth={width}
+          items={banners.map(({ url, href }: any, i: any) => (
+            <>
+              <Link key={i} href={href} passHref>
+                <S.Item url={url} />
+              </Link>
+            </>
+          ))}
+        />
+      </S.BoxSize>
+    </S.Container>
+  );
+};
 
-const Container = styled(CenteredBox).attrs({ as: "section" })``;
+export default PromotionBanner;
 
-const BoxSize = styled.div``;
+const S: any = {};
 
-const Wrapper = styled(Slider)``;
+S.Container = styled(CenteredBox).attrs({ as: "section" })``;
 
-const Item = styled.div<itemProps>`
-  background: url(${({ url }: itemProps) => url}) no-repeat center/cover;
+S.BoxSize = styled.div``;
+
+S.Wrapper = styled(Slider)``;
+
+S.Item = styled.div<{ url: string }>`
+  background: url(${({ url }) => url}) no-repeat center/cover;
   height: 18rem;
   flex-shrink: 0;
   width: 100%;
@@ -24,25 +44,3 @@ const Item = styled.div<itemProps>`
     cursor: pointer;
   }
 `;
-
-const PromotionBanner = ({ banners }: any) => {
-  const [width, $bannerRef] = usePromotionBanner();
-  return (
-    <Container>
-      <BoxSize ref={$bannerRef}>
-        <Wrapper
-          itemWidth={width}
-          items={banners.map(({ url, href }: any, i: any) => (
-            <>
-              <Link key={i} href={href} passHref>
-                <Item url={url} />
-              </Link>
-            </>
-          ))}
-        />
-      </BoxSize>
-    </Container>
-  );
-};
-
-export default PromotionBanner;

@@ -1,43 +1,6 @@
 import styled from "styled-components";
 import useSlider from "../../hooks/useSlider";
 
-interface itemProps {
-  moveWidth: number;
-}
-
-const MoveButton = styled.button`
-  display: none;
-  position: absolute;
-  top: 30px;
-  width: 30px;
-  height: 100px;
-`;
-
-const Container = styled.div`
-  position: relative;
-  overflow: scroll;
-  &:hover ${MoveButton} {
-    display: block;
-  }
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const Wrapper = styled.div<itemProps>`
-  display: flex;
-  transform: translate(-${({ moveWidth }: any) => moveWidth}px);
-  transition: transform 0.5s;
-`;
-
-const PrevButton = styled(MoveButton)`
-  left: 10px;
-`;
-
-const NextButton = styled(MoveButton)`
-  right: 10px;
-`;
-
 const Slider = ({ items, itemWidth }: any) => {
   const [
     $wrapperRef,
@@ -48,14 +11,49 @@ const Slider = ({ items, itemWidth }: any) => {
     nextOnClick,
   ] = useSlider(itemWidth);
   return (
-    <Container>
-      <Wrapper ref={$wrapperRef} moveWidth={moveWidth}>
+    <S.Container>
+      <S.Wrapper ref={$wrapperRef} moveWidth={moveWidth}>
         {items.map((e: any) => e)}
-      </Wrapper>
-      <PrevButton onClick={prevOnClick} disabled={prevDisable} />
-      <NextButton onClick={nextOnClick} disabled={nextDisable} />
-    </Container>
+      </S.Wrapper>
+      <S.PrevButton onClick={prevOnClick} disabled={prevDisable} />
+      <S.NextButton onClick={nextOnClick} disabled={nextDisable} />
+    </S.Container>
   );
 };
 
 export default Slider;
+
+const S: any = {};
+
+S.MoveButton = styled.button`
+  display: none;
+  position: absolute;
+  top: 30px;
+  width: 30px;
+  height: 100px;
+`;
+
+S.Container = styled.div`
+  position: relative;
+  overflow: scroll;
+  &:hover ${S.MoveButton} {
+    display: block;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+S.Wrapper = styled.div<{ moveWidth: number }>`
+  display: flex;
+  transform: translate(-${({ moveWidth }) => moveWidth}px);
+  transition: transform 0.5s;
+`;
+
+S.PrevButton = styled(S.MoveButton)`
+  left: 10px;
+`;
+
+S.NextButton = styled(S.MoveButton)`
+  right: 10px;
+`;

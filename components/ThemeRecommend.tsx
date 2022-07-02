@@ -16,22 +16,48 @@ interface props {
   }[];
 }
 
-interface itemThumbProps {
-  url: string;
-}
+const ThemeRecommend = ({ title, items }: props) => {
+  const [onClickProduct, onClickFavorite] = useThemeRecommend();
+  return (
+    <S.Container>
+      <S.Title>{title}</S.Title>
+      <S.ItemsContainer
+        itemWidth={150}
+        items={items.map(({ teaId, url, href, brand, name, price }: any) => (
+          <Link key={teaId} href={href} passHref>
+            <S.ItemWrapper onClick={() => onClickProduct(teaId)}>
+              <S.ItemThumbnail url={url}>
+                <S.ItemFavorite onClick={() => onClickFavorite(teaId)} />
+              </S.ItemThumbnail>
+              <S.ItemDescribeContainer>
+                <S.ItemBrand>{brand}</S.ItemBrand>
+                <S.ItemName>{name}</S.ItemName>
+                <S.ItemPrice>{price.toLocaleString()}원</S.ItemPrice>
+              </S.ItemDescribeContainer>
+            </S.ItemWrapper>
+          </Link>
+        ))}
+      ></S.ItemsContainer>
+    </S.Container>
+  );
+};
 
-const Container = styled(CenteredBox).attrs({ as: "section" })``;
+export default ThemeRecommend;
 
-const Title = styled.p`
+const S: any = {};
+
+S.Container = styled(CenteredBox).attrs({ as: "section" })``;
+
+S.Title = styled.p`
   font-size: 2rem;
   padding: 1.5rem 0;
 `;
 
-const ItemsContainer = styled(Slider)`
+S.ItemsContainer = styled(Slider)`
   padding: 1.5rem 0;
 `;
 
-const ItemWrapper = styled.div`
+S.ItemWrapper = styled.div`
   margin-left: 1rem;
   &:hover {
     cursor: pointer;
@@ -41,15 +67,15 @@ const ItemWrapper = styled.div`
   }
 `;
 
-const ItemThumbnail = styled.div<itemThumbProps>`
+S.ItemThumbnail = styled.div<{ url: string }>`
   position: relative;
-  background: url(${({ url }: itemThumbProps) => url}) no-repeat center/cover;
+  background: url(${({ url }) => url}) no-repeat center/cover;
   width: 14rem;
   height: 18.6rem;
   border-radius: 0.5rem;
 `;
 
-const ItemFavorite = styled.div`
+S.ItemFavorite = styled.div`
   background: url("image/icon_favorite.svg") no-repeat center/cover;
   width: 2rem;
   height: 2rem;
@@ -58,43 +84,15 @@ const ItemFavorite = styled.div`
   bottom: 1rem;
 `;
 
-const ItemDescribeContainer = styled.div`
+S.ItemDescribeContainer = styled.div`
   padding-top: 1.5rem;
   font-size: 12px;
 `;
 
-const ItemBrand = styled.p``;
+S.ItemBrand = styled.p``;
 
-const ItemName = styled.p``;
+S.ItemName = styled.p``;
 
-const ItemPrice = styled.span`
+S.ItemPrice = styled.span`
   color: #808080;
 `;
-
-const ThemeRecommend = ({ title, items }: any) => {
-  const [onClickProduct, onClickFavorite] = useThemeRecommend();
-  return (
-    <Container>
-      <Title>{title}</Title>
-      <ItemsContainer
-        itemWidth={150}
-        items={items.map(({ teaId, url, href, brand, name, price }: any) => (
-          <Link key={teaId} href={href} passHref>
-            <ItemWrapper onClick={() => onClickProduct(teaId)}>
-              <ItemThumbnail url={url}>
-                <ItemFavorite onClick={() => onClickFavorite(teaId)} />
-              </ItemThumbnail>
-              <ItemDescribeContainer>
-                <ItemBrand>{brand}</ItemBrand>
-                <ItemName>{name}</ItemName>
-                <ItemPrice>{price.toLocaleString()}원</ItemPrice>
-              </ItemDescribeContainer>
-            </ItemWrapper>
-          </Link>
-        ))}
-      ></ItemsContainer>
-    </Container>
-  );
-};
-
-export default ThemeRecommend;
