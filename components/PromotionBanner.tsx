@@ -1,7 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
+import usePromotionBanner from "../hooks/usePromotionBanner";
 import CenteredBox from "./common/CenteredBox";
-import SliderContainer from "../containers/common/SliderContainer";
+import Slider from "./common/Slider";
 
 interface itemProps {
   url: string;
@@ -11,7 +12,7 @@ const Container = styled(CenteredBox).attrs({ as: "section" })``;
 
 const BoxSize = styled.div``;
 
-const Wrapper = styled(SliderContainer)``;
+const Wrapper = styled(Slider)``;
 
 const Item = styled.div<itemProps>`
   background: url(${({ url }: itemProps) => url}) no-repeat center/cover;
@@ -24,7 +25,8 @@ const Item = styled.div<itemProps>`
   }
 `;
 
-const PromotionBanner = ({ banners, $bannerRef, width }: any) => {
+const PromotionBanner = ({ banners }: any) => {
+  const [width, $bannerRef] = usePromotionBanner();
   return (
     <Container>
       <BoxSize ref={$bannerRef}>

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
 import CenteredBox from "./common/CenteredBox";
-import SliderContainer from "../containers/common/SliderContainer";
+import Slider from "./common/Slider";
+import useThemeRecommend from "../hooks/useThemeRecommend";
 
 interface props {
   title: string;
@@ -26,7 +27,7 @@ const Title = styled.p`
   padding: 1.5rem 0;
 `;
 
-const ItemsContainer = styled(SliderContainer)`
+const ItemsContainer = styled(Slider)`
   padding: 1.5rem 0;
 `;
 
@@ -70,12 +71,8 @@ const ItemPrice = styled.span`
   color: #808080;
 `;
 
-const ThemeRecommend = ({
-  title,
-  items,
-  onClickProduct,
-  onClickFavorite,
-}: any) => {
+const ThemeRecommend = ({ title, items }: any) => {
+  const [onClickProduct, onClickFavorite] = useThemeRecommend();
   return (
     <Container>
       <Title>{title}</Title>

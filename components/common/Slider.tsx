@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useSlider from "../../hooks/useSlider";
 
 interface itemProps {
   moveWidth: number;
@@ -37,15 +38,15 @@ const NextButton = styled(MoveButton)`
   right: 10px;
 `;
 
-const Slider = ({
-  items,
-  moveWidth,
-  prevOnClick,
-  nextOnClick,
-  prevDisable,
-  nextDisable,
-  $wrapperRef,
-}: any) => {
+const Slider = ({ items, itemWidth }: any) => {
+  const [
+    $wrapperRef,
+    moveWidth,
+    prevDisable,
+    nextDisable,
+    prevOnClick,
+    nextOnClick,
+  ] = useSlider(itemWidth);
   return (
     <Container>
       <Wrapper ref={$wrapperRef} moveWidth={moveWidth}>
