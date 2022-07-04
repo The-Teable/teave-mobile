@@ -24,8 +24,6 @@ const PromotionBanner = ({ banners }: any) => {
   );
 };
 
-export default PromotionBanner;
-
 const S: any = {};
 
 S.Container = styled(CenteredBox).attrs({ as: "section" })``;
@@ -44,3 +42,5 @@ S.Item = styled.div<{ url: string }>`
     cursor: pointer;
   }
 `;
+
+export default PromotionBanner;
