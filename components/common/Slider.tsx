@@ -4,7 +4,7 @@ import useSlider from "../../hooks/useSlider";
 const Slider = ({ items, itemWidth }: any) => {
   const [
     $wrapperRef,
-    moveWidth,
+    transitionX,
     prevDisable,
     nextDisable,
     onPrevClick,
@@ -19,7 +19,7 @@ const Slider = ({ items, itemWidth }: any) => {
     <S.Container>
       <S.Wrapper
         ref={$wrapperRef}
-        moveWidth={moveWidth}
+        transitionX={transitionX}
         onMouseDown={onDragStart}
         onMouseMove={onDragMove}
         onMouseUp={onDragEnd}
@@ -59,9 +59,9 @@ S.Container = styled.div`
   }
 `;
 
-S.Wrapper = styled.div<{ moveWidth: number; isDrag: boolean }>`
+S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
   display: flex;
-  transform: translate(${({ moveWidth }) => -moveWidth}px);
+  transform: translate(${({ transitionX }) => -transitionX}px);
   transition: transform ${({ isDrag }) => (isDrag ? 0 : 0.5)}s;
 `;
 

@@ -34,12 +34,37 @@ const useSlider = (itemWidth: number) => {
           transitionX,
           itemWidth,
           $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth,
-          e.clientX
+          originClientX - e.clientX
         )
       );
       setIsDragging(false);
     }
   };
+
+  const onPrevClick = () =>
+    setTransitionX(
+      getFitTransitionX(
+        transitionX - itemWidth,
+        itemWidth,
+        $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth,
+        -itemWidth
+      )
+    );
+
+  const onNextClick = () =>
+    setTransitionX(
+      getFitTransitionX(
+        transitionX + itemWidth,
+        itemWidth,
+        $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth,
+        itemWidth
+      )
+    );
+
+  const checkPrevMove = (width: number) => width > 0;
+
+  const checkNextMove = (width: number, maxTransition: number) =>
+    width < maxTransition;
 
   const dragBoundary = (
     originTransitionX: number,
@@ -57,25 +82,16 @@ const useSlider = (itemWidth: number) => {
     transitionX: number,
     itemWidth: number,
     maxTransitionX: number,
-    lastClientX: number
+    movedDistance: number
   ) => {
     if (transitionX <= 0) return 0;
     if (transitionX >= maxTransitionX) return maxTransitionX;
-    if (originClientX - lastClientX > (itemWidth > 400 ? 100 : itemWidth / 4))
+    if (movedDistance > (itemWidth > 400 ? 100 : itemWidth / 4))
       return itemWidth * Math.ceil(transitionX / itemWidth);
-    if (originClientX - lastClientX < -(itemWidth > 400 ? 100 : itemWidth / 4))
+    if (movedDistance < -(itemWidth > 400 ? 100 : itemWidth / 4))
       return itemWidth * Math.floor(transitionX / itemWidth);
-    return originTransitionX;
+    return transitionX - movedDistance;
   };
-
-  const onPrevClick = () => setTransitionX(transitionX - itemWidth);
-
-  const onNextClick = () => setTransitionX(transitionX + itemWidth);
-
-  const checkPrevMove = (width: number) => width > 0;
-
-  const checkNextMove = (width: number, maxTransition: number) =>
-    width < maxTransition;
 
   useEffect(() => {
     setPrevDisable(!checkPrevMove(transitionX));
