@@ -33,7 +33,7 @@ const useSlider = (itemWidth: number) => {
         getFitTransitionX(
           transitionX,
           itemWidth,
-          $sliderRef?.current?.scrollWidth - $sliderRef?.current?.clientWidth,
+          $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth,
           e.clientX
         )
       );
