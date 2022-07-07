@@ -1,104 +1,94 @@
 import { useEffect, useRef, useState } from "react";
 
-const useSlider = itemWidth => {
-  const [moveWidth, setMoveWidth] = useState(0);
+const useSlider = (itemWidth: number) => {
+  const $sliderRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [originClientX, setOriginClientX] = useState(0);
+  const [originTransitionX, setOriginTransitionX] = useState(0);
+  const [transitionX, setTransitionX] = useState(0);
   const [prevDisable, setPrevDisable] = useState(false);
   const [nextDisable, setNextDisable] = useState(false);
-  const $wrapperRef = useRef();
-  const [startX, setStartX] = useState(0);
-  const [isDrag, setIsDrag] = useState(false);
 
-  const movePrev = (moved: any) => (moved > 0 ? moved : 0);
-
-  const moveNext = (totalWidth, viewWidth, moved) =>
-    viewWidth + moved < totalWidth ? moved : totalWidth - viewWidth;
-
-  const isMovablePrev = moveWidth => moveWidth <= 0;
-
-  const isMovableNext = (moveWidth, viewWidth, totalWidth) =>
-    moveWidth + viewWidth >= totalWidth;
-
-  // const onDragStart = e => {
-  //   setIsDrag(true);
-  //   setStartX(
-  //     moveWidth + (isNaN(e.clientX) ? e.touches[0].clientX : e.clientX)
-  //   );
-  // };
-
-  // const onDragMove = e => {
-  //   if (isDrag) {
-  //     setMoveWidth(
-  //       startX - (isNaN(e.clientX) ? e.touches[0].clientX : e.clientX)
-  //     );
-  //   }
-  // };
-
-  const onDragStart = e => {
-    setIsDrag(true);
-    setStartX(moveWidth + e.clientX); // 움직인 누적 거리 + 마우스 X좌표
+  const onDragStart = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setOriginClientX(e.clientX);
+    setOriginTransitionX(transitionX);
   };
 
-  const onDragMove = e => {
-    if (isDrag) {
-      setMoveWidth(
-        startX - e.clientX < 0
-          ? -500 * Math.log(-0.001 * (startX - e.clientX - 1000))
-          : startX - e.clientX
-      );
-    }
-  };
-
-  //500 * Math.log(-0.001 * (e.clientX - startX - 1000))
-
-  const getClosestMoveWidth = (moveWidth, itemWidth, totalWidth, viewWidth) => {
-    let unit = 0;
-    if (moveWidth < 0) return 0;
-    if (moveWidth > totalWidth - viewWidth) moveWidth = totalWidth - viewWidth;
-    while (unit < moveWidth) unit += itemWidth;
-    if (unit - moveWidth > itemWidth / 2) return unit - itemWidth;
-    // 기준치 미달, 움직임 방지
-    else return unit < totalWidth - viewWidth ? unit : totalWidth - viewWidth;
-  };
-
-  const onDragEnd = () => {
-    console.log(moveWidth);
-    if (isDrag) {
-      setMoveWidth(
-        getClosestMoveWidth(
-          moveWidth,
-          itemWidth,
-          $wrapperRef?.current?.scrollWidth,
-          $wrapperRef?.current?.clientWidth
+  const onDragMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      setTransitionX(
+        dragBoundary(
+          originTransitionX,
+          $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth,
+          originClientX - e.clientX
         )
       );
     }
-    setIsDrag(false);
   };
 
-  const onPrevClick = () => setMoveWidth(movePrev(moveWidth - itemWidth));
+  const onDragEnd = (e: React.MouseEvent) => {
+    if (isDragging) {
+      setTransitionX(
+        getFitTransitionX(
+          transitionX,
+          itemWidth,
+          $sliderRef?.current?.scrollWidth - $sliderRef?.current?.clientWidth,
+          e.clientX
+        )
+      );
+      setIsDragging(false);
+    }
+  };
 
-  const onNextClick = () =>
-    setMoveWidth(
-      moveNext(
-        $wrapperRef?.current?.scrollWidth,
-        $wrapperRef?.current?.clientWidth,
-        moveWidth + itemWidth
-      )
-    );
+  const dragBoundary = (
+    originTransitionX: number,
+    maxTransitionX: number,
+    movedDistance: number
+  ) => {
+    return originTransitionX + movedDistance < 0
+      ? movedDistance / 3
+      : originTransitionX + movedDistance > maxTransitionX + movedDistance / 3
+      ? maxTransitionX + movedDistance / 3
+      : originTransitionX + movedDistance;
+  };
+
+  const getFitTransitionX = (
+    transitionX: number,
+    itemWidth: number,
+    maxTransitionX: number,
+    lastClientX: number
+  ) => {
+    if (transitionX <= 0) return 0;
+    if (transitionX >= maxTransitionX) return maxTransitionX;
+    if (originClientX - lastClientX > (itemWidth > 400 ? 100 : itemWidth / 4))
+      return itemWidth * Math.ceil(transitionX / itemWidth);
+    if (originClientX - lastClientX < -(itemWidth > 400 ? 100 : itemWidth / 4))
+      return itemWidth * Math.floor(transitionX / itemWidth);
+    return originTransitionX;
+  };
+
+  const onPrevClick = () => setTransitionX(transitionX - itemWidth);
+
+  const onNextClick = () => setTransitionX(transitionX + itemWidth);
+
+  const checkPrevMove = (width: number) => width > 0;
+
+  const checkNextMove = (width: number, maxTransition: number) =>
+    width < maxTransition;
 
   useEffect(() => {
-    setPrevDisable(isMovablePrev(moveWidth));
+    setPrevDisable(!checkPrevMove(transitionX));
     setNextDisable(
-      isMovableNext(
-        moveWidth,
-        $wrapperRef?.current?.clientWidth,
-        $wrapperRef?.current?.scrollWidth
+      !checkNextMove(
+        transitionX,
+        $sliderRef.current!.scrollWidth - $sliderRef.current!.clientWidth
       )
     );
-  }, [moveWidth]);
+  }, [transitionX]);
   return [
-    $wrapperRef,
-    moveWidth,
+    $sliderRef,
+    transitionX,
     prevDisable,
     nextDisable,
     onPrevClick,
@@ -106,7 +96,7 @@ const useSlider = itemWidth => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDrag
+    isDragging
   ];
 };
 

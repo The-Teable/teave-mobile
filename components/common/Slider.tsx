@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useSlider from "../../hooks/useSlider";
-import { useState, useRef } from "react";
 
 const Slider = ({ items, itemWidth }: any) => {
   const [
