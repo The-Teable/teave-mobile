@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredBox from "./common/CenteredBox";
+import CenteredBox from "../common/CenteredBox";
 
 const items = [
   { url: "image/icon_home.svg", text: "홈", href: "/" },
@@ -18,7 +18,7 @@ const TabBar = () => (
         <Link key={i} href={href} passHref>
           <S.Item>
             <S.Icon url={url} />
-            <p>{text}</p>
+            <S.Text>{text}</S.Text>
           </S.Item>
         </Link>
       ))}
@@ -31,10 +31,11 @@ export default TabBar;
 const S: any = {};
 
 S.Container = styled(CenteredBox).attrs({ as: "nav" })`
+  box-sizing: content-box;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 4.8rem;
+  height: 5rem;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -56,9 +57,13 @@ S.Item = styled.div`
 
 S.Icon = styled.div<{ url: string }>`
   background: url(${({ url }) => url}) no-repeat center/contain;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
 `;
+
+S.Text = styled.p`
+  line-height: 1.4rem;
+`
 
 S.Padding = styled.div`
   height: 5rem;
