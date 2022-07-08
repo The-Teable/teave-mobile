@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredBox from "../common/CenteredBox";
+import CenteredContainer from "./CenteredContainer";
 
 const items = [
   { url: "image/icon_home.svg", text: "홈", href: "/" },
   { url: "image/icon_search.svg", text: "검색", href: "/" },
   { url: "image/icon_favorite.svg", text: "찜", href: "/" },
   { url: "image/icon_cart.svg", text: "장바구니", href: "/" },
-  { url: "image/icon_account.svg", text: "마이페이지", href: "/" },
+  { url: "image/icon_account.svg", text: "마이페이지", href: "/" }
 ];
 
 const TabBar = () => (
@@ -30,7 +30,7 @@ export default TabBar;
 
 const S: any = {};
 
-S.Container = styled(CenteredBox).attrs({ as: "nav" })`
+S.Container = styled(CenteredContainer).attrs({ as: "nav" })`
   box-sizing: content-box;
   display: flex;
   flex-direction: row;
@@ -63,7 +63,7 @@ S.Icon = styled.div<{ url: string }>`
 
 S.Text = styled.p`
   line-height: 1.4rem;
-`
+`;
 
 S.Padding = styled.div`
   height: 5rem;

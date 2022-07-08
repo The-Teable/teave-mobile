@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredBox from "./common/CenteredBox";
 import Slider from "./common/Slider";
 import useThemeRecommend from "../hooks/useThemeRecommend";
 
@@ -46,7 +45,7 @@ export default ThemeRecommend;
 
 const S: any = {};
 
-S.Container = styled(CenteredBox).attrs({ as: "section" })``;
+S.Container = styled.section``;
 
 S.Title = styled.p`
   font-size: 2rem;

@@ -1,6 +1,5 @@
 import Layout from "../../components/layout/Layout";
 import styled from "styled-components";
-import CenteredBox from "../../components/common/CenteredBox";
 import Button from "../../components/common/Button";
 import Link from "next/link";
 
@@ -19,7 +18,7 @@ const TestPage = () => {
 
 const S: any = {};
 
-S.Container = styled(CenteredBox).attrs({ as: "section" })``;
+S.Container = styled.section``;
 
 // temp style
 S.Text = styled.p`

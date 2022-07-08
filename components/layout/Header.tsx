@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredBox from "../common/CenteredBox";
+import CenteredContainer from "./CenteredContainer";
 
 const items = [
   { title: "메인", href: "/", selected: true },
@@ -53,7 +53,7 @@ export default Header;
 
 const S: any = {};
 
-S.Container = styled(CenteredBox).attrs({ as: "header" })`
+S.Container = styled(CenteredContainer).attrs({ as: "header" })`
   position: fixed;
   right: 0;
   top: 0;

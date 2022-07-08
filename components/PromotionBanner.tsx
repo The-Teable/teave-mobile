@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 import usePromotionBanner from "../hooks/usePromotionBanner";
-import CenteredBox from "./common/CenteredBox";
 import Slider from "./common/Slider";
 
 const PromotionBanner = ({ banners }: any) => {
@@ -26,7 +25,7 @@ const PromotionBanner = ({ banners }: any) => {
 
 const S: any = {};
 
-S.Container = styled(CenteredBox).attrs({ as: "section" })``;
+S.Container = styled.section``;
 
 S.BoxSize = styled.div``;
 

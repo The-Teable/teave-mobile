@@ -20,7 +20,7 @@ const QuestionCard = ({ title, choices }: props) => {
 
 const S: any = {};
 
-S.Container = styled.div`
+S.Container = styled.div<{ width: number }>`
   height: 100%;
   width: 100%;
 `;
