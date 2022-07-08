@@ -3,15 +3,18 @@ import styled from "styled-components";
 interface props {
   title: string;
   choices: string[];
+  nextQuestion: () => void;
 }
 
-const QuestionCard = ({ title, choices }: props) => {
+const QuestionCard = ({ title, choices, nextQuestion }: props) => {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
       <S.ChoicesContainer>
         {choices.map((choice, i) => (
-          <S.Choice key={i}>{choice}</S.Choice>
+          <S.Choice key={i} onClick={nextQuestion}>
+            {choice}
+          </S.Choice>
         ))}
       </S.ChoicesContainer>
     </S.Container>
@@ -20,10 +23,7 @@ const QuestionCard = ({ title, choices }: props) => {
 
 const S: any = {};
 
-S.Container = styled.div<{ width: number }>`
-  height: 100%;
-  width: 100%;
-`;
+S.Container = styled.div<{ width: number }>``;
 
 S.Title = styled.h2`
   width: 100%;
@@ -35,9 +35,9 @@ S.Title = styled.h2`
 
 S.ChoicesContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 S.Choice = styled.div`
