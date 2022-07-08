@@ -8,7 +8,7 @@ const promotionBanners = dummy.promotionBanners;
 
 const themeRecommends = dummy.themeRecommends;
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <Layout>
       <PromotionBanner banners={promotionBanners} />
@@ -21,4 +21,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;

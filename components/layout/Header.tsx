@@ -5,8 +5,8 @@ import CenteredBox from "../common/CenteredBox";
 const items = [
   { title: "메인", href: "/", selected: true },
   { title: "샵", href: "/", selected: false },
-  { title: "테스트", href: "/test", selected: false },
-  { title: "매거진", href: "/", selected: false },
+  { title: "테스트", href: "/tea-test", selected: false },
+  { title: "매거진", href: "/", selected: false }
 ];
 
 const Header = () => {
@@ -23,10 +23,10 @@ const Header = () => {
               <S.LoginLogOutButton>로그인 / 회원가입</S.LoginLogOutButton>
             </Link>
           ) : (
-              <Link href="/" passHref>
-                <S.LoginLogOutButton>로그아웃</S.LoginLogOutButton>
-              </Link>
-            )}
+            <Link href="/" passHref>
+              <S.LoginLogOutButton>로그아웃</S.LoginLogOutButton>
+            </Link>
+          )}
         </S.TopWrapper>
         <S.NavWrapper>
           {items.map(({ title, href, selected }, i) => (
@@ -36,10 +36,10 @@ const Header = () => {
                   <S.NavItemTitle>{title}</S.NavItemTitle>
                 </S.Selected>
               ) : (
-                  <S.NavItemContainer>
-                    <S.NavItemTitle>{title}</S.NavItemTitle>
-                  </S.NavItemContainer>
-                )}
+                <S.NavItemContainer>
+                  <S.NavItemTitle>{title}</S.NavItemTitle>
+                </S.NavItemContainer>
+              )}
             </Link>
           ))}
         </S.NavWrapper>
