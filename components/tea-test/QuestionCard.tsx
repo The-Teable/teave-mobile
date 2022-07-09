@@ -41,9 +41,9 @@ S.ChoicesContainer = styled.div`
 `;
 
 S.Choice = styled.div`
-  width: 15rem;
-  height: 15rem;
-  line-height: 15rem;
+  width: 12rem;
+  height: 12rem;
+  line-height: 12rem;
   text-align: center;
   margin: 1rem;
   background-color: #dddddd;

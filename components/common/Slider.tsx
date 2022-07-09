@@ -63,6 +63,7 @@ S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
   display: flex;
   transform: translate(${({ transitionX }) => -transitionX}px);
   transition: transform ${({ isDrag }) => (isDrag ? 0 : 0.5)}s;
+  user-select: none;
 `;
 
 S.PrevButton = styled(S.MoveButton)`

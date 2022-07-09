@@ -8,24 +8,42 @@ interface props {
     title: string;
     choices: string[];
   }[];
+  providerWidth?: number;
 }
 
-const QuestionProvider = ({ questions }: props) => {
+const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [transitionX, setTransitionX] = useState(0);
   const [disablePrev, setDisablePrev] = useState(false);
   const [disableNext, setDisableNext] = useState(false);
+  const [answerList, setAnswerList] = useState([]);
+  const checkGoNext = (
+    answerList: string[],
+    curQuestionNumber: number,
+    endQustionNumber: number
+  ) =>
+    answerList.length > curQuestionNumber &&
+    endQustionNumber > curQuestionNumber;
+  const checkGoPrev = (curQuestionNumber: number) => curQuestionNumber > 0;
   const nextQuestion = () => {
-    setTransitionX(transitionX + 1225);
+    setTransitionX(transitionX + providerWidth);
+    setQuestionNumber(questionNumber + 1);
   };
   const prevQuestion = () => {
-    setTransitionX(transitionX - 1225);
+    setTransitionX(transitionX - providerWidth);
+    setQuestionNumber(questionNumber - 1);
   };
   const onClickPrev = () => prevQuestion();
   const onClickNext = () => nextQuestion();
-  console.log(transitionX);
+
+  useEffect(() => {
+    setDisableNext(
+      !checkGoNext(answerList, questionNumber, questions.length - 1)
+    );
+    setDisablePrev(!checkGoPrev(questionNumber));
+  }, []);
   return (
-    <S.Container>
+    <S.Container providerWidth={providerWidth}>
       <S.Wrapper transitionX={transitionX}>
         {questions.map(({ title, choices }, i) => (
           <S.QuestionCardWrapper>
@@ -55,25 +73,28 @@ const QuestionProvider = ({ questions }: props) => {
 
 const S: any = {};
 
-S.Container = styled.div`
+S.Container = styled.div<{ providerWidth: number }>`
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 60vh;
-
+  height: 80vh;
+  width: ${({ providerWidth }) => providerWidth}px;
+  margin: 0 auto;
   overflow: hidden;
 `;
 
 S.Wrapper = styled.div<{ transitionX: number }>`
   display: flex;
+  align-items: center;
+  width: 400px;
   transform: translate(${({ transitionX }) => -transitionX}px);
   transition: transform 0.5s;
 `;
 
 S.QuestionCardWrapper = styled.div`
-  width: 100%;
   flex-shrink: 0;
+  width: 100%;
 `;
 
 S.QuestionNav = styled.div`
