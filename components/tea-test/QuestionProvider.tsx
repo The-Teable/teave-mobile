@@ -11,12 +11,22 @@ interface props {
   providerWidth?: number;
 }
 
+interface answerProps {
+  questionNumber: null | number;
+  choice: null | string;
+}
+
 const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [transitionX, setTransitionX] = useState(0);
   const [disablePrev, setDisablePrev] = useState(false);
   const [disableNext, setDisableNext] = useState(false);
-  const [answerList, setAnswerList] = useState([]);
+  const [answerList, setAnswerList] = useState<string[]>([]);
+  const [answer, setAnswer] = useState<answerProps>({
+    questionNumber: null,
+    choice: null
+  });
+
   const checkGoNext = (
     answerList: string[],
     curQuestionNumber: number,
@@ -24,16 +34,21 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   ) =>
     answerList.length > curQuestionNumber &&
     endQustionNumber > curQuestionNumber;
+
   const checkGoPrev = (curQuestionNumber: number) => curQuestionNumber > 0;
+
   const nextQuestion = () => {
     setTransitionX(transitionX + providerWidth);
     setQuestionNumber(questionNumber + 1);
   };
+
   const prevQuestion = () => {
     setTransitionX(transitionX - providerWidth);
     setQuestionNumber(questionNumber - 1);
   };
+
   const onClickPrev = () => prevQuestion();
+
   const onClickNext = () => nextQuestion();
 
   useEffect(() => {
@@ -41,17 +56,30 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
       !checkGoNext(answerList, questionNumber, questions.length - 1)
     );
     setDisablePrev(!checkGoPrev(questionNumber));
-  }, []);
+  }, [questionNumber]);
+
+  useEffect(() => {
+    if (answer.choice !== null) {
+      const newAnswerList = answerList.slice();
+      newAnswerList.splice(questionNumber, 1, answer.choice);
+      setAnswerList(newAnswerList);
+    }
+  }, [answer]);
+
+  useEffect(() => {
+    if (checkGoNext(answerList, questionNumber, questions.length - 1))
+      nextQuestion();
+  }, [answerList]);
+
   return (
     <S.Container providerWidth={providerWidth}>
       <S.Wrapper transitionX={transitionX}>
         {questions.map(({ title, choices }, i) => (
-          <S.QuestionCardWrapper>
+          <S.QuestionCardWrapper key={i}>
             <QuestionCard
-              key={i}
               title={title}
               choices={choices}
-              nextQuestion={nextQuestion}
+              setAnswer={setAnswer}
             />
           </S.QuestionCardWrapper>
         ))}
@@ -61,11 +89,11 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
         </Link>
       </S.Wrapper>
       <S.QuestionNav>
-        <S.PrevButton onClick={onClickPrev} disable={disablePrev} />
+        <S.PrevButton onClick={onClickPrev} disabled={disablePrev} />
         <S.QuestionCounter>
-          {questionNumber} / {questions.length}
+          {questionNumber + 1} / {questions.length}
         </S.QuestionCounter>
-        <S.NextButton onClick={onClickNext} disable={disableNext} />
+        <S.NextButton onClick={onClickNext} disabled={disableNext} />
       </S.QuestionNav>
     </S.Container>
   );
@@ -78,7 +106,7 @@ S.Container = styled.div<{ providerWidth: number }>`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 70vh;
   width: ${({ providerWidth }) => providerWidth}px;
   margin: 0 auto;
   overflow: hidden;
@@ -90,6 +118,7 @@ S.Wrapper = styled.div<{ transitionX: number }>`
   width: 400px;
   transform: translate(${({ transitionX }) => -transitionX}px);
   transition: transform 0.5s;
+  transition-delay: 0.1s;
 `;
 
 S.QuestionCardWrapper = styled.div`
