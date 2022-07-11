@@ -1,8 +1,9 @@
 import Layout from "../../components/layout/Layout";
+import { HeaderIndex } from "../../components/layout/Header";
 
 const ResultPage = () => {
   return (
-    <Layout>
+    <Layout headerIndex={HeaderIndex.TEST}>
       <div>result</div>
     </Layout>
   );

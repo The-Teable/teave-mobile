@@ -3,8 +3,15 @@ import styled from "styled-components";
 import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
 
+export enum HeaderIndex {
+  MAIN,
+  SHOP,
+  TEST,
+  MAGAZINE
+}
+
 interface props {
-  selectedIndex: number;
+  selectedIndex: HeaderIndex;
 }
 
 const items = [
