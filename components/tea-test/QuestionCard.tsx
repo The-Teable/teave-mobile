@@ -25,21 +25,32 @@ const QuestionCard = ({ title, choices, multiChoicable, setAnswer }: props) => {
       setAnswer({
         questionNumber,
         choice: [clickedChoice],
-        multiChoicable: false
+        multiChoicable: false,
       });
       setSelectedChoiceList([clickedChoice]);
-    } else if (wasSelected) {
-      setSelectedChoiceList(
-        selectedChoiceList.filter(e => e !== clickedChoice)
-      );
     } else {
-      console.log("hi");
-      setSelectedChoiceList(selectedChoiceList.concat(clickedChoice));
+      if (wasSelected) {
+        setSelectedChoiceList(
+          selectedChoiceList.filter((e) => e !== clickedChoice)
+        );
+        setAnswer({
+          questionNumber,
+          choice: selectedChoiceList.filter((e) => e !== clickedChoice),
+          multiChoicable: true,
+        });
+      } else {
+        setSelectedChoiceList(selectedChoiceList.concat(clickedChoice));
+        setAnswer({
+          questionNumber,
+          choice: selectedChoiceList.concat(clickedChoice),
+          multiChoicable: true,
+        });
+      }
     }
   };
 
   const checkSelected = (choiceList, selectedChoice) =>
-    choiceList.some(choice => choice === selectedChoice);
+    choiceList.some((choice) => choice === selectedChoice);
 
   return (
     <S.Container>

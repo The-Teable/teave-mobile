@@ -28,16 +28,20 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   const [answer, setAnswer] = useState<answerProps>({
     questionNumber: -1,
     choice: [],
-    multiChoicable: null
+    multiChoicable: null,
   });
 
   const checkGoNext = (
     answerList: string[][],
     curQuestionNumber: number,
     endQustionNumber: number
-  ) =>
-    answerList.length > curQuestionNumber &&
-    endQustionNumber > curQuestionNumber;
+  ) => {
+    return (
+      answerList.length > curQuestionNumber &&
+      answerList[answerList.length - 1].length > 0 &&
+      endQustionNumber >= curQuestionNumber
+    );
+  };
 
   const checkGoPrev = (curQuestionNumber: number) => curQuestionNumber > 0;
 
