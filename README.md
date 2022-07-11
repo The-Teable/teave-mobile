@@ -9,3 +9,5 @@
 | design   | UI design changes such as CSS |
 | refactor | Refactoring the code          |
 | docs     | Modify the document           |
+| test     | Make the test file            |
+| chores   | etc.                          |
