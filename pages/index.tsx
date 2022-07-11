@@ -10,7 +10,7 @@ const themeRecommends = dummy.themeRecommends;
 
 const HomePage: NextPage = () => {
   return (
-    <Layout>
+    <Layout headerIndex={0}>
       <PromotionBanner banners={promotionBanners} />
       <>
         {themeRecommends.map(({ title, goods }, i) => (

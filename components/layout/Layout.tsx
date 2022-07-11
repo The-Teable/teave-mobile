@@ -2,12 +2,12 @@ import Header from "./Header";
 import Tabbar from "./TabBar";
 import CenteredContainer from "./CenteredContainer";
 
-const Layout = ({ children }) => (
-  <CenteredContainer>
-    <Header />
-    {children}
+const Layout = ({ headerIndex, children }) => (
+  <>
+    <Header selectedIndex={headerIndex} />
+    <CenteredContainer>{children}</CenteredContainer>
     <Tabbar />
-  </CenteredContainer>
+  </>
 );
 
 export default Layout;

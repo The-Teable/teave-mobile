@@ -1,16 +1,20 @@
+import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
 
+interface props {
+  selectedIndex: number;
+}
+
 const items = [
-  { title: "메인", href: "/", selected: true },
-  { title: "샵", href: "/", selected: false },
-  { title: "테스트", href: "/tea-test", selected: false },
-  { title: "매거진", href: "/", selected: false }
+  { title: "메인", href: "/" },
+  { title: "샵", href: "/" },
+  { title: "테스트", href: "/tea-test" },
+  { title: "매거진", href: "/" }
 ];
 
-const Header = () => {
-  const isLogin = false;
+const Header = ({ selectedIndex }: props) => {
   return (
     <>
       <S.Container>
@@ -18,20 +22,11 @@ const Header = () => {
           <Link href="/" passHref>
             <S.Logo />
           </Link>
-          {!isLogin ? (
-            <Link href="/" passHref>
-              <S.LoginLogOutButton>로그인 / 회원가입</S.LoginLogOutButton>
-            </Link>
-          ) : (
-            <Link href="/" passHref>
-              <S.LoginLogOutButton>로그아웃</S.LoginLogOutButton>
-            </Link>
-          )}
         </S.TopWrapper>
         <S.NavWrapper>
-          {items.map(({ title, href, selected }, i) => (
+          {items.map(({ title, href }, i) => (
             <Link key={i} href={href} passHref>
-              {selected ? (
+              {i === selectedIndex ? (
                 <S.Selected>
                   <S.NavItemTitle>{title}</S.NavItemTitle>
                 </S.Selected>
@@ -49,8 +44,6 @@ const Header = () => {
   );
 };
 
-export default Header;
-
 const S: any = {};
 
 S.Container = styled(CenteredContainer).attrs({ as: "header" })`
@@ -59,7 +52,8 @@ S.Container = styled(CenteredContainer).attrs({ as: "header" })`
   top: 0;
   left: 0;
   z-index: 1;
-  height: 9rem;
+  height: 8rem;
+  border-bottom: solid #eeeeee 0.1rem;
 `;
 
 S.TopWrapper = styled.div`
@@ -73,7 +67,7 @@ S.NavWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 4rem;
+  height: 3rem;
   font-size: 1.4rem;
 `;
 S.Logo = styled.div`
@@ -86,28 +80,20 @@ S.Logo = styled.div`
   }
 `;
 
-S.LoginLogOutButton = styled.button`
-  background-color: #ffffff;
-  border: 0;
-  color: #424242;
-  height: 2rem;
-  font-size: 1rem;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 S.NavItemContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  height: 85%;
+  width: 4.5rem;
   &:hover {
     cursor: pointer;
   }
 `;
 
 S.Selected = styled(S.NavItemContainer)`
-  border-bottom: solid #1a4c45 0.3rem;
+  height: 3rem;
+  box-sizing: border-box;
+  border-bottom: solid #1a4c45 0.2rem;
 `;
 
 S.NavItemTitle = styled.span``;
@@ -115,3 +101,5 @@ S.NavItemTitle = styled.span``;
 S.Padding = styled.div`
   height: 9rem;
 `;
+
+export default Header;

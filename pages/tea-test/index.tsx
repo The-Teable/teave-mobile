@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TestPage = () => {
   return (
-    <Layout>
+    <Layout headerIndex={2}>
       <S.Container>
         <S.Text>내 취향에 꼭 맞는 어쩌구저쩌구</S.Text>
         <Link href="/tea-test/question" passHref>
