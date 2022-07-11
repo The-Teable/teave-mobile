@@ -1,29 +1,63 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
+
+interface answerProps {
+  questionNumber: number;
+  choice: string[];
+  multiChoicable: null | boolean;
+}
 
 interface props {
   title: string;
   choices: string[];
-  setAnswer: ({}: { questionNumber: number; choice: string }) => void;
+  multiChoicable: boolean;
+  setAnswer: Dispatch<SetStateAction<answerProps>>;
 }
 
-const QuestionCard = ({ title, choices, setAnswer }: props) => {
-  const [selectedChoice, setSelectedChoice] = useState("");
-  const onClickChoice = (questionNumber: number, choice: string) => {
-    setAnswer({ questionNumber, choice });
-    setSelectedChoice(choice);
+const QuestionCard = ({ title, choices, multiChoicable, setAnswer }: props) => {
+  const [selectedChoiceList, setSelectedChoiceList] = useState<string[]>([]);
+  const onClickChoice = (
+    questionNumber: number,
+    clickedChoice: string,
+    wasSelected: boolean
+  ) => {
+    if (!multiChoicable) {
+      setAnswer({
+        questionNumber,
+        choice: [clickedChoice],
+        multiChoicable: false
+      });
+      setSelectedChoiceList([clickedChoice]);
+    } else if (wasSelected) {
+      setSelectedChoiceList(
+        selectedChoiceList.filter(e => e !== clickedChoice)
+      );
+    } else {
+      console.log("hi");
+      setSelectedChoiceList(selectedChoiceList.concat(clickedChoice));
+    }
   };
+
+  const checkSelected = (choiceList, selectedChoice) =>
+    choiceList.some(choice => choice === selectedChoice);
+
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
       <S.ChoicesContainer>
-        {choices.map((choice, i) => (
+        {choices.map((curChoice, i) => (
           <S.Choice
             key={i}
-            onClick={() => onClickChoice(i, choice)}
-            isSelected={selectedChoice === choice}
+            onClick={() =>
+              onClickChoice(
+                i,
+                curChoice,
+                checkSelected(selectedChoiceList, curChoice)
+              )
+            }
+            isSelected={checkSelected(selectedChoiceList, curChoice)}
           >
-            {choice}
+            {curChoice}
           </S.Choice>
         ))}
       </S.ChoicesContainer>

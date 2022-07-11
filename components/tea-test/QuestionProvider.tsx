@@ -7,28 +7,32 @@ interface props {
   questions: {
     title: string;
     choices: string[];
+    multiChoicable: boolean;
   }[];
   providerWidth?: number;
 }
 
 interface answerProps {
-  questionNumber: null | number;
-  choice: null | string;
+  questionNumber: number;
+  choice: string[];
+  multiChoicable: null | boolean;
 }
 
 const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
+  const isInitialMount = useRef(true);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [transitionX, setTransitionX] = useState(0);
   const [disablePrev, setDisablePrev] = useState(false);
   const [disableNext, setDisableNext] = useState(false);
-  const [answerList, setAnswerList] = useState<string[]>([]);
+  const [answerList, setAnswerList] = useState<string[][]>([]);
   const [answer, setAnswer] = useState<answerProps>({
-    questionNumber: null,
-    choice: null
+    questionNumber: -1,
+    choice: [],
+    multiChoicable: null
   });
 
   const checkGoNext = (
-    answerList: string[],
+    answerList: string[][],
     curQuestionNumber: number,
     endQustionNumber: number
   ) =>
@@ -59,7 +63,9 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   }, [questionNumber]);
 
   useEffect(() => {
-    if (answer.choice !== null) {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
       const newAnswerList = answerList.slice();
       newAnswerList.splice(questionNumber, 1, answer.choice);
       setAnswerList(newAnswerList);
@@ -67,14 +73,17 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
   }, [answer]);
 
   useEffect(() => {
-    if (checkGoNext(answerList, questionNumber, questions.length - 1))
-      nextQuestion();
+    if (answer.multiChoicable === false) nextQuestion();
+    else
+      setDisableNext(
+        !checkGoNext(answerList, questionNumber, questions.length - 1)
+      );
   }, [answerList]);
 
   return (
     <S.Container providerWidth={providerWidth}>
       <S.Wrapper transitionX={transitionX}>
-        {questions.map(({ title, choices }, i) => (
+        {questions.map(({ title, choices, multiChoicable }, i) => (
           <S.QuestionCardWrapper key={i}>
             <S.QuestionCounter>
               {questionNumber + 1} / {questions.length}
@@ -83,6 +92,7 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
               title={title}
               choices={choices}
               setAnswer={setAnswer}
+              multiChoicable={multiChoicable}
             />
           </S.QuestionCardWrapper>
         ))}
