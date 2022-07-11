@@ -76,6 +76,9 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
       <S.Wrapper transitionX={transitionX}>
         {questions.map(({ title, choices }, i) => (
           <S.QuestionCardWrapper key={i}>
+            <S.QuestionCounter>
+              {questionNumber + 1} / {questions.length}
+            </S.QuestionCounter>
             <QuestionCard
               title={title}
               choices={choices}
@@ -88,13 +91,8 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
           <button>결과 보기</button>
         </Link>
       </S.Wrapper>
-      <S.QuestionNav>
-        <S.PrevButton onClick={onClickPrev} disabled={disablePrev} />
-        <S.QuestionCounter>
-          {questionNumber + 1} / {questions.length}
-        </S.QuestionCounter>
-        <S.NextButton onClick={onClickNext} disabled={disableNext} />
-      </S.QuestionNav>
+      <S.PrevButton onClick={onClickPrev} disabled={disablePrev} />
+      <S.NextButton onClick={onClickNext} disabled={disableNext} />
     </S.Container>
   );
 };
@@ -106,7 +104,7 @@ S.Container = styled.div<{ providerWidth: number }>`
   position: relative;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 80vh;
   width: ${({ providerWidth }) => providerWidth}px;
   margin: 0 auto;
   overflow: hidden;
@@ -126,34 +124,23 @@ S.QuestionCardWrapper = styled.div`
   width: 100%;
 `;
 
-S.QuestionNav = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 0px;
-  width: 100px;
-  height: 30px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+S.QuestionCounter = styled.div`
   text-align: center;
 `;
 
-S.PrevButton = styled.button`
+S.TeaTestButton = styled.button`
+  position: absolute;
+  top: 48%;
   width: 30px;
-  height: 30px;
+  height: 80px;
 `;
 
-S.QuestionCounter = styled.div`
-  flex-shrink: 0;
-  padding: 0 10px;
+S.PrevButton = styled(S.TeaTestButton)`
+  left: 0;
 `;
 
-S.NextButton = styled.button`
-  width: 30px;
-  height: 30px;
+S.NextButton = styled(S.TeaTestButton)`
+  right: 0;
 `;
 
 export default QuestionProvider;
