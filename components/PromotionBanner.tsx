@@ -3,7 +3,11 @@ import styled from "styled-components";
 import usePromotionBanner from "../hooks/usePromotionBanner";
 import Slider from "./common/Slider";
 
-const PromotionBanner = ({ banners }: any) => {
+interface props {
+  banners: any;
+}
+
+const PromotionBanner = ({ banners }: props) => {
   const [width, $bannerRef] = usePromotionBanner();
   return (
     <S.Container>
@@ -32,7 +36,7 @@ S.BoxSize = styled.div``;
 S.Wrapper = styled(Slider)``;
 
 S.Item = styled.div<{ url: string }>`
-  background: url(${({ url }) => url}) no-repeat center/cover;
+  background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
   height: 18rem;
   flex-shrink: 0;
   width: 100%;

@@ -68,7 +68,7 @@ S.ItemWrapper = styled.div`
 
 S.ItemThumbnail = styled.div<{ url: string }>`
   position: relative;
-  background: url(${({ url }) => url}) no-repeat center/cover;
+  background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
   width: 14rem;
   height: 18.6rem;
   border-radius: 0.5rem;

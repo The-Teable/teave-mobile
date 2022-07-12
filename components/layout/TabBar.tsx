@@ -56,7 +56,7 @@ S.Item = styled.div`
 `;
 
 S.Icon = styled.div<{ url: string }>`
-  background: url(${({ url }) => url}) no-repeat center/contain;
+  background: url(${({ url }: { url: string }) => url}) no-repeat center/contain;
   width: 3rem;
   height: 3rem;
 `;

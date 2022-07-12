@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface props {
   title: string;
@@ -33,8 +33,8 @@ const QuestionCard = ({
     else handleChoice(selectedChoiceList);
   }, [selectedChoiceList]);
 
-  const checkSelected = (choiceList, selectedChoice) =>
-    choiceList.some(choice => choice === selectedChoice);
+  const checkSelected = (selectedChoice: string) =>
+    selectedChoiceList.some(choice => choice === selectedChoice);
 
   return (
     <S.Container>
@@ -43,13 +43,8 @@ const QuestionCard = ({
         {choices.map((curChoice, i) => (
           <S.Choice
             key={i}
-            onClick={() =>
-              onClickChoice(
-                curChoice,
-                checkSelected(selectedChoiceList, curChoice)
-              )
-            }
-            isSelected={checkSelected(selectedChoiceList, curChoice)}
+            onClick={() => onClickChoice(curChoice, checkSelected(curChoice))}
+            isSelected={checkSelected(curChoice)}
           >
             {curChoice}
           </S.Choice>
@@ -85,7 +80,8 @@ S.Choice = styled.div<{ isSelected: boolean }>`
   line-height: 13rem;
   text-align: center;
   margin: 0.5rem;
-  background-color: ${({ isSelected }) => (isSelected ? "#aaaaaa" : "#dddddd")};
+  background-color: ${({ isSelected }: { isSelected: boolean }) =>
+    isSelected ? "#aaaaaa" : "#dddddd"};
 `;
 
 export default QuestionCard;

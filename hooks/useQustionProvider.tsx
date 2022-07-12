@@ -43,14 +43,14 @@ const useQuestionProvider = (questions: any) => {
     setDisableNext(!(checkReciveAnswer() && checkGoNext()));
   }, [questionIndex]);
 
-  return [
+  return {
     questionIndex,
     disablePrev,
     disableNext,
     onClickPrev,
     onClickNext,
     handleChoice
-  ];
+  };
 };
 
 export default useQuestionProvider;

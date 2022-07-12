@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import useSlider from "../../hooks/useSlider";
 
-const Slider = ({ items, itemWidth }: any) => {
+interface props {
+  items: any;
+  itemWidth: number;
+}
+
+const Slider = ({ items, itemWidth }: props) => {
   const [
     $wrapperRef,
     transitionX,
@@ -61,8 +66,11 @@ S.Container = styled.div`
 
 S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
   display: flex;
-  transform: translate(${({ transitionX }) => -transitionX}px);
-  transition: transform ${({ isDrag }) => (isDrag ? 0 : 0.5)}s;
+  transform: translate(
+    ${({ transitionX }: { transitionX: number }) => -transitionX}px
+  );
+  transition: transform
+    ${({ isDrag }: { isDrag: boolean }) => (isDrag ? 0 : 0.5)}s;
   user-select: none;
 `;
 

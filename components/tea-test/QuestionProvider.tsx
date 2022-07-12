@@ -13,14 +13,14 @@ interface props {
 }
 
 const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
-  const [
+  const {
     questionIndex,
     disablePrev,
     disableNext,
     onClickPrev,
     onClickNext,
     handleChoice
-  ] = useQuestionProvider(questions);
+  } = useQuestionProvider(questions);
 
   return (
     <S.Container providerWidth={providerWidth}>
@@ -57,7 +57,7 @@ S.Container = styled.div<{ providerWidth: number }>`
   align-items: center;
   justify-content: center;
   height: 80vh;
-  width: ${({ providerWidth }) => providerWidth}px;
+  width: ${({ providerWidth }: { providerWidth: number }) => providerWidth}px;
   margin: 0 auto;
   overflow: hidden;
 `;
@@ -66,7 +66,9 @@ S.Wrapper = styled.div<{ transitionX: number }>`
   display: flex;
   align-items: center;
   width: 400px;
-  transform: translate(${({ transitionX }) => -transitionX}px);
+  transform: translate(
+    ${({ transitionX }: { transitionX: number }) => -transitionX}px
+  );
   transition: transform 0.5s;
   transition-delay: 0.1s;
 `;

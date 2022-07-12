@@ -2,7 +2,12 @@ import Header from "./Header";
 import Tabbar from "./TabBar";
 import CenteredContainer from "./CenteredContainer";
 
-const Layout = ({ headerIndex, children }) => (
+interface props {
+  headerIndex: number;
+  children: any;
+}
+
+const Layout = ({ headerIndex, children }: props) => (
   <>
     <Header selectedIndex={headerIndex} />
     <CenteredContainer>{children}</CenteredContainer>
