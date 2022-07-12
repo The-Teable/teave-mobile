@@ -1,56 +1,40 @@
 import styled from "styled-components";
-import { useState, Dispatch, SetStateAction } from "react";
-
-interface answerProps {
-  questionNumber: number;
-  choice: string[];
-  multiChoicable: null | boolean;
-}
+import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 interface props {
   title: string;
   choices: string[];
   multiChoicable: boolean;
-  setAnswer: Dispatch<SetStateAction<answerProps>>;
+  handleChoice: (choice: string[]) => void;
 }
 
-const QuestionCard = ({ title, choices, multiChoicable, setAnswer }: props) => {
+const QuestionCard = ({
+  title,
+  choices,
+  multiChoicable,
+  handleChoice
+}: props) => {
+  const isInitailRendering = useRef(true);
   const [selectedChoiceList, setSelectedChoiceList] = useState<string[]>([]);
-  const onClickChoice = (
-    questionNumber: number,
-    clickedChoice: string,
-    wasSelected: boolean
-  ) => {
-    if (!multiChoicable) {
-      setAnswer({
-        questionNumber,
-        choice: [clickedChoice],
-        multiChoicable: false,
-      });
-      setSelectedChoiceList([clickedChoice]);
+  const onClickChoice = (selectedChoice: string, wasSelected: boolean) => {
+    if (wasSelected) {
+      setSelectedChoiceList(() =>
+        selectedChoiceList.filter(e => e !== selectedChoice)
+      );
+    } else if (multiChoicable) {
+      setSelectedChoiceList(() => selectedChoiceList.concat(selectedChoice));
     } else {
-      if (wasSelected) {
-        setSelectedChoiceList(
-          selectedChoiceList.filter((e) => e !== clickedChoice)
-        );
-        setAnswer({
-          questionNumber,
-          choice: selectedChoiceList.filter((e) => e !== clickedChoice),
-          multiChoicable: true,
-        });
-      } else {
-        setSelectedChoiceList(selectedChoiceList.concat(clickedChoice));
-        setAnswer({
-          questionNumber,
-          choice: selectedChoiceList.concat(clickedChoice),
-          multiChoicable: true,
-        });
-      }
+      setSelectedChoiceList(() => [selectedChoice]);
     }
   };
 
+  useEffect(() => {
+    if (isInitailRendering.current) isInitailRendering.current = false;
+    else handleChoice(selectedChoiceList);
+  }, [selectedChoiceList]);
+
   const checkSelected = (choiceList, selectedChoice) =>
-    choiceList.some((choice) => choice === selectedChoice);
+    choiceList.some(choice => choice === selectedChoice);
 
   return (
     <S.Container>
@@ -61,7 +45,6 @@ const QuestionCard = ({ title, choices, multiChoicable, setAnswer }: props) => {
             key={i}
             onClick={() =>
               onClickChoice(
-                i,
                 curChoice,
                 checkSelected(selectedChoiceList, curChoice)
               )
@@ -96,6 +79,7 @@ S.ChoicesContainer = styled.div`
 `;
 
 S.Choice = styled.div<{ isSelected: boolean }>`
+  user-select: none;
   width: 13rem;
   height: 13rem;
   line-height: 13rem;

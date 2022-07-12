@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import QuestionCard from "./QuestionCard";
-import { useState, useRef, useEffect } from "react";
+import useQuestionProvider from "../../hooks/useQustionProvider";
 
 interface props {
   questions: {
@@ -12,91 +12,29 @@ interface props {
   providerWidth?: number;
 }
 
-interface answerProps {
-  questionNumber: number;
-  choice: string[];
-  multiChoicable: null | boolean;
-}
-
 const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
-  const isInitialMount = useRef(true);
-  const [questionNumber, setQuestionNumber] = useState(0);
-  const [transitionX, setTransitionX] = useState(0);
-  const [disablePrev, setDisablePrev] = useState(false);
-  const [disableNext, setDisableNext] = useState(false);
-  const [answerList, setAnswerList] = useState<string[][]>([]);
-  const [answer, setAnswer] = useState<answerProps>({
-    questionNumber: -1,
-    choice: [],
-    multiChoicable: null,
-  });
-
-  const checkGoNext = (
-    answerList: string[][],
-    curQuestionNumber: number,
-    endQustionNumber: number
-  ) => {
-    return (
-      answerList.length > curQuestionNumber &&
-      answerList[answerList.length - 1].length > 0 &&
-      endQustionNumber >= curQuestionNumber
-    );
-  };
-
-  const checkGoPrev = (curQuestionNumber: number) => curQuestionNumber > 0;
-
-  const nextQuestion = () => {
-    setTransitionX(transitionX + providerWidth);
-    setQuestionNumber(questionNumber + 1);
-  };
-
-  const prevQuestion = () => {
-    setTransitionX(transitionX - providerWidth);
-    setQuestionNumber(questionNumber - 1);
-  };
-
-  const onClickPrev = () => prevQuestion();
-
-  const onClickNext = () => nextQuestion();
-
-  useEffect(() => {
-    setDisableNext(
-      !checkGoNext(answerList, questionNumber, questions.length - 1)
-    );
-    setDisablePrev(!checkGoPrev(questionNumber));
-  }, [questionNumber]);
-
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      const newAnswerList = answerList.slice();
-      newAnswerList.splice(questionNumber, 1, answer.choice);
-      setAnswerList(newAnswerList);
-    }
-  }, [answer]);
-
-  useEffect(() => {
-    if (answer.multiChoicable === false) nextQuestion();
-    else
-      setDisableNext(
-        !checkGoNext(answerList, questionNumber, questions.length - 1)
-      );
-  }, [answerList]);
+  const [
+    questionIndex,
+    disablePrev,
+    disableNext,
+    onClickPrev,
+    onClickNext,
+    handleChoice
+  ] = useQuestionProvider(questions);
 
   return (
     <S.Container providerWidth={providerWidth}>
-      <S.Wrapper transitionX={transitionX}>
+      <S.Wrapper transitionX={questionIndex * providerWidth}>
         {questions.map(({ title, choices, multiChoicable }, i) => (
           <S.QuestionCardWrapper key={i}>
             <S.QuestionCounter>
-              {questionNumber + 1} / {questions.length}
+              {questionIndex + 1} / {questions.length}
             </S.QuestionCounter>
             <QuestionCard
               title={title}
               choices={choices}
-              setAnswer={setAnswer}
               multiChoicable={multiChoicable}
+              handleChoice={handleChoice}
             />
           </S.QuestionCardWrapper>
         ))}
