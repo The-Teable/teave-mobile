@@ -1,4 +1,4 @@
-import Layout from "../../components/layout/Layout";
+import HomeLayout from "../../components/layout/HomeLayout";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Link from "next/link";
@@ -6,14 +6,14 @@ import { HeaderIndex } from "../../components/layout/Header";
 
 const TestPage = () => {
   return (
-    <Layout headerIndex={HeaderIndex.TEST}>
+    <HomeLayout headerIndex={HeaderIndex.TEST}>
       <S.Container>
         <S.Text>내 취향에 꼭 맞는 어쩌구저쩌구</S.Text>
         <Link href="/tea-test/question" passHref>
           <S.Button>티 테스트 시작</S.Button>
         </Link>
       </S.Container>
-    </Layout>
+    </HomeLayout>
   );
 };
 

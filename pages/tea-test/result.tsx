@@ -1,11 +1,11 @@
-import Layout from "../../components/layout/Layout";
+import HomeLayout from "../../components/layout/HomeLayout";
 import { HeaderIndex } from "../../components/layout/Header";
 
 const ResultPage = () => {
   return (
-    <Layout headerIndex={HeaderIndex.TEST}>
+    <HomeLayout headerIndex={HeaderIndex.TEST}>
       <div>result</div>
-    </Layout>
+    </HomeLayout>
   );
 };
 

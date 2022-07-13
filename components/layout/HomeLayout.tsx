@@ -7,7 +7,7 @@ interface props {
   children: any;
 }
 
-const Layout = ({ headerIndex, children }: props) => (
+const HomeLayout = ({ headerIndex, children }: props) => (
   <>
     <Header selectedIndex={headerIndex} />
     <CenteredContainer>{children}</CenteredContainer>
@@ -15,4 +15,4 @@ const Layout = ({ headerIndex, children }: props) => (
   </>
 );
 
-export default Layout;
+export default HomeLayout;
