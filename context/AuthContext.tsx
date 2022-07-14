@@ -1,36 +1,36 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
-const AuthContext = createContext();
+const AuthContext = createContext<any>(null);
 
 export default AuthContext;
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: any) => {
   const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
-      ? JSON.parse(localStorage.getItem("authTokens"))
+      ? JSON.parse(localStorage.getItem("authTokens")!)
       : null
   );
   const [user, setUser] = useState(() =>
     localStorage.getItem("authTokens")
-      ? jwt_decode(localStorage.getItem("authTokens"))
+      ? jwt_decode(localStorage.getItem("authTokens")!)
       : null
   );
   const [loading, setLoading] = useState(true);
 
-  const history = useHistory();
+  const router = useRouter();
 
-  const loginUser = async (username, password) => {
+  const loginUser = async (username: string, password: string) => {
     const response = await fetch("http://127.0.0.1:8000/api/token/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username,
-        password
-      })
+        password,
+      }),
     });
     const data = await response.json();
 
@@ -38,28 +38,37 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      history.push("/");
+      router.push("/");
     } else {
-      alert("Something went wrong!");
+      alert(
+        `로그인에 실패했습니다. 다시 시도해주세요.\n오류 상태 코드:${response.status}`
+      );
     }
   };
 
-  const registerUser = async (username, password, password2) => {
+  const registerUser = async (
+    username: string,
+    password: string,
+    password2: string
+  ) => {
     const response = await fetch("http://127.0.0.1:8000/api/register/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username,
         password,
-        password2
-      })
+        password2,
+      }),
     });
     if (response.status === 201) {
-      history.push("/login");
+      alert("회원가입이 완료되었습니다. 로그인 해주세요.");
+      router.push("/login");
     } else {
-      alert("Something went wrong!");
+      alert(
+        `회원가입에 실패하였습니다. 다시 시도해주세요.\n오류 상태 코드:${response.status}`
+      );
     }
   };
 
@@ -67,7 +76,7 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    history.push("/");
+    router.push("/");
   };
 
   const contextData = {
@@ -77,7 +86,7 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
   };
 
   useEffect(() => {
