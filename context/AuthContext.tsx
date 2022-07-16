@@ -7,16 +7,8 @@ const AuthContext = createContext<any>(null);
 export default AuthContext;
 
 export const AuthProvider = ({ children }: any) => {
-  const [authTokens, setAuthTokens] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? JSON.parse(localStorage.getItem("authTokens")!)
-      : null
-  );
-  const [user, setUser] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? jwt_decode(localStorage.getItem("authTokens")!)
-      : null
-  );
+  const [authTokens, setAuthTokens] = useState<any>(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
@@ -95,6 +87,19 @@ export const AuthProvider = ({ children }: any) => {
     }
     setLoading(false);
   }, [authTokens, loading]);
+
+  useEffect(() => {
+    setAuthTokens(
+      localStorage.getItem("authTokens")
+        ? JSON.parse(localStorage.getItem("authTokens")!)
+        : null
+    );
+    setUser(
+      localStorage.getItem("authTokens")
+        ? jwt_decode(localStorage.getItem("authTokens")!)
+        : null
+    );
+  }, []);
 
   return (
     <AuthContext.Provider value={contextData}>
