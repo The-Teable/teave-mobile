@@ -13,14 +13,14 @@ export const AuthProvider = ({ children }: any) => {
 
   const router = useRouter();
 
-  const loginUser = async (username: string, password: string) => {
+  const loginUser = async (userid: string, password: string) => {
     const response = await fetch("http://127.0.0.1:8000/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        userid,
         password,
       }),
     });
@@ -38,20 +38,15 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  const registerUser = async (
-    username: string,
-    password: string,
-    password2: string
-  ) => {
+  const registerUser = async (userid: string, password: string) => {
     const response = await fetch("http://127.0.0.1:8000/api/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        userid,
         password,
-        password2,
       }),
     });
     if (response.status === 201) {

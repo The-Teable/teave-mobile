@@ -21,7 +21,7 @@ const LoginPage = () => {
   return (
     <CenteredContainer>
       <S.Container>
-        <Link href={"/" + returnUrl} passHref>
+        <Link href={`/${returnUrl ? returnUrl : ""}`} passHref>
           <S.ExitIcon />
         </Link>
         <Margin size={9} />
@@ -34,12 +34,17 @@ const LoginPage = () => {
         <S.Division />
         <Margin size={5} />
         <form onSubmit={handleSubmit}>
-          <S.InputText id={"userid"} placeholder={"아이디를 입력해주세요"} />
+          <S.InputText
+            id={"userid"}
+            placeholder={"아이디를 입력해주세요"}
+            required
+          />
           <Margin size={1} />
           <S.InputText
             id={"password"}
             placeholder={"비밀번호를 입력해주세요"}
             type={"password"}
+            required
           />
           <Margin size={1} />
           <div>
@@ -75,7 +80,9 @@ const S: any = {};
 S.Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  max-width: 40rem;
+  padding: 4rem;
+  margin: 0 auto;
 `;
 
 S.ExitIcon = styled.div`
