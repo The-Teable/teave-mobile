@@ -1,12 +1,23 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled, { css } from "styled-components";
+import { useContext } from "react";
+import styled from "styled-components";
+import Button from "../../components/common/Button";
+import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import CenteredContainer from "../../components/layout/CenteredContainer";
+import AuthContext from "../../context/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
   const { returnUrl }: any = router.query;
+  const { loginUser }: any = useContext(AuthContext);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const userid = e.target.userid.value;
+    const password = e.target.password.value;
+    loginUser(userid, password);
+  };
   return (
     <CenteredContainer>
       <S.Container>
@@ -22,16 +33,22 @@ const LoginPage = () => {
         <Margin size={5} />
         <S.Division />
         <Margin size={5} />
-        <S.Input placeholder={"아이디를 입력해주세요"} />
-        <Margin size={1} />
-        <S.Input placeholder={"비밀번호를 입력해주세요"} type={"password"} />
-        <Margin size={1} />
-        <div>
-          <input type={"checkbox"} id={"autoLogin"} />
-          <label htmlFor={"autoLogin"}>자동 로그인</label>
-        </div>
-        <Margin size={1} />
-        <S.Button>로그인</S.Button>
+        <form onSubmit={handleSubmit}>
+          <S.InputText id={"userid"} placeholder={"아이디를 입력해주세요"} />
+          <Margin size={1} />
+          <S.InputText
+            id={"password"}
+            placeholder={"비밀번호를 입력해주세요"}
+            type={"password"}
+          />
+          <Margin size={1} />
+          <div>
+            <input type={"checkbox"} id={"autoLogin"} />
+            <label htmlFor={"autoLogin"}>자동 로그인</label>
+          </div>
+          <Margin size={1} />
+          <S.Button>로그인</S.Button>
+        </form>
         <Margin size={2} />
         <S.FindIDPWContainer>
           <Link href={"/"} passHref>
@@ -43,7 +60,9 @@ const LoginPage = () => {
           </Link>
         </S.FindIDPWContainer>
         <Margin size={2} />
-        <S.Button reverse>회원가입</S.Button>
+        <Link href="/mypage/signup">
+          <S.Button reverse>회원가입</S.Button>
+        </Link>
       </S.Container>
     </CenteredContainer>
   );
@@ -89,37 +108,14 @@ S.Division = styled.div`
   margin: 0 auto;
 `;
 
-S.Input = styled.input`
-  border: 1px solid #b3b3b3;
-  border-radius: 3rem;
-  &:focus {
-    border: 1px solid #000000;
-  }
-  box-sizing: border-box;
-  height: 4rem;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-`;
+S.InputText = styled(InputText)``;
 
-S.Button = styled.button<{ reverse: boolean }>`
-  border: 0px;
-  height: 4rem;
-  padding: 1rem;
-  border-radius: 3rem;
-  font-size: 1.1rem;
-  ${({ reverse }: any) =>
-    reverse
-      ? css`
-          border: 1px solid #104315;
-          color: #104315;
-        `
-      : css`
-          background-color: #104315;
-          color: #ffffff;
-        `}
-`;
+S.Button = styled(Button)``;
 
 S.FindIDPWContainer = styled.div`
   margin: 0 auto;
   color: #b3b3b3;
+  &:hover {
+    cursor: pointer;
+  }
 `;
