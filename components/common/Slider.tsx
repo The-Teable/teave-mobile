@@ -17,7 +17,7 @@ const Slider = ({ items, itemWidth }: props) => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDrag
+    isDrag,
   ] = useSlider(itemWidth);
 
   return (
@@ -48,9 +48,13 @@ const S: any = {};
 S.MoveButton = styled.button`
   display: none;
   position: absolute;
-  top: 30px;
-  width: 30px;
-  height: 100px;
+  top: 4.5rem;
+  width: 3rem;
+  height: 8rem;
+  border: 0px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 S.Container = styled.div`
@@ -75,9 +79,11 @@ S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
 `;
 
 S.PrevButton = styled(S.MoveButton)`
+  background: url("/image/icon_go_prev.svg") no-repeat center/contain;
   left: 10px;
 `;
 
 S.NextButton = styled(S.MoveButton)`
+  background: url("/image/icon_go_next.svg") no-repeat center/contain;
   right: 10px;
 `;
