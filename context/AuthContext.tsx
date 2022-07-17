@@ -2,6 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 
+const baseURL = process.env.NEXT_PUBLIC_LS_URL;
+
 const AuthContext = createContext<any>(null);
 
 export default AuthContext;
@@ -14,7 +16,7 @@ export const AuthProvider = ({ children }: any) => {
   const router = useRouter();
 
   const loginUser = async (userid: string, password: string) => {
-    const response = await fetch("http://127.0.0.1:8000/api/token/", {
+    const response = await fetch(`${baseURL}/token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +41,7 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   const registerUser = async (userid: string, password: string) => {
-    const response = await fetch("http://127.0.0.1:8000/api/register/", {
+    const response = await fetch(`${baseURL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

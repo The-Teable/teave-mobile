@@ -75,7 +75,7 @@ S.ItemThumbnail = styled.div<{ url: string }>`
 `;
 
 S.ItemFavorite = styled.div`
-  background: url("image/icon_favorite.svg") no-repeat center/cover;
+  background: url("/image/icon_favorite.svg") no-repeat center/cover;
   width: 2rem;
   height: 2rem;
   position: absolute;
