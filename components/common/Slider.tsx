@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import useSlider from "../../hooks/useSlider";
 
 interface props {
@@ -79,12 +79,26 @@ S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
   user-select: none;
 `;
 
-S.PrevButton = styled(S.MoveButton)`
-  background: url("/image/icon_go_prev.svg") no-repeat center/contain;
-  left: 10px;
+S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          opacity: 0;
+        `
+      : css`
+          background: url("/image/icon_go_prev.svg") no-repeat center/contain;
+          left: 10px;
+        `}
 `;
 
-S.NextButton = styled(S.MoveButton)`
-  background: url("/image/icon_go_next.svg") no-repeat center/contain;
-  right: 10px;
+S.NextButton = styled(S.MoveButton)<{ disabled: boolean }>`
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          opacity: 0;
+        `
+      : css`
+          background: url("/image/icon_go_next.svg") no-repeat center/contain;
+          right: 10px;
+        `}
 `;
