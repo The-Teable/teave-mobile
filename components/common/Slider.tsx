@@ -59,7 +59,8 @@ S.MoveButton = styled.button`
 
 S.Container = styled.div`
   position: relative;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   &:hover ${S.MoveButton} {
     display: block;
   }
