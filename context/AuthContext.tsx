@@ -40,16 +40,13 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  const registerUser = async (userid: string, password: string) => {
+  const registerUser = async (props: any) => {
     const response = await fetch(`${baseURL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        userid,
-        password,
-      }),
+      body: JSON.stringify({ ...props }),
     });
     if (response.status === 201) {
       alert("회원가입이 완료되었습니다. 로그인 해주세요.");

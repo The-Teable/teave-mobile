@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import CenteredContainer from "../../components/layout/CenteredContainer";
 import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
@@ -8,21 +8,69 @@ import Margin from "../../components/common/Margin";
 import DaumPostcode from "react-daum-postcode";
 import Link from "next/link";
 
+const baseURL = process.env.NEXT_PUBLIC_LS_URL;
+
 const SignupPage = () => {
-  const [userid, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
+  // const [isValidUserId, setIsValidUserId] = useState(false);
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  // const [isValidPassword, setIsValidPassword] = useState(false);
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
   const [address, setAddress] = useState("");
+  const [birth, setBirth] = useState<any>(null);
+  const [gender, setGender] = useState("");
   const { registerUser } = useContext(AuthContext);
   const [duplicateIdCheck, setDuplicateIdCheck] = useState(false);
   const [openPostcode, setOpenPostcode] = useState(false);
 
-  const handleDuplicateIdCheck = (e: any) => {
-    // 아이디 중복확인 API 만들기
-    e.preventDefault();
+  const markRequired = <span style={{ color: "red" }}>*</span>;
 
-    alert("중복확인");
-    setDuplicateIdCheck(true);
+  const onChangeUserId = (e: any) => {
+    setUserId(e.target.value);
+    setDuplicateIdCheck(false);
+  };
+
+  const handleDuplicateIdCheck = async (e: any) => {
+    e.preventDefault();
+    const response = await fetch(`${baseURL}/signup/check?user_id=${userId}`);
+    const { is_duplicate: isDuplicate } = await response.json();
+    setDuplicateIdCheck(!isDuplicate);
+    isDuplicate
+      ? alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")
+      : alert("중복 확인 완료");
+  };
+
+  const onChangePassword = (e: any) => {
+    setPassword(e.target.value);
+    setPasswordCheck("");
+  };
+
+  const onChagnePasswordCheck = (e: any) => {
+    setPasswordCheck(e.target.value);
+    setIsValidPasswordCheck(password === e.target.value);
+  };
+
+  const onChangeUserName = (e: any) => {
+    setUserName(e.target.value);
+  };
+
+  const onChangeEmail = (e: any) => {
+    setEmail(e.target.value);
+  };
+
+  const onChangePhone = (e: any) => {
+    setTel(e.target.value);
+  };
+  const onChangeBirth = (e: any) => {
+    setBirth(e.target.value);
+  };
+
+  const onChangeGender = (e: any) => {
+    setGender(e.target.value);
   };
 
   const handleSearchAddress = (e: any) => {
@@ -37,12 +85,21 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    registerUser(userid, password);
+
+    // id, pw 유효성 검사 체크 필요
+
+    await registerUser({
+      user_id: userId,
+      password,
+      name: userName,
+      email,
+      tel,
+      address,
+      birth,
+      gender,
+    });
   };
 
-  useEffect(() => {
-    setDuplicateIdCheck(false);
-  }, [userid]);
   return (
     <>
       <Margin size={4} />
@@ -55,11 +112,14 @@ const SignupPage = () => {
         </S.Header>
         <Margin size={2} />
         <form onSubmit={handleSubmit}>
-          <S.Label htmlFor="userid">
-            아이디<span style={{ color: "red" }}>*</span>
-          </S.Label>
+          <S.Label htmlFor="userId">아이디{markRequired}</S.Label>
           <S.IdContainer>
-            <S.InputId id={"userid"} placeholder={"아이디"} required />
+            <S.InputId
+              placeholder={"아이디"}
+              id={"userId"}
+              onChange={onChangeUserId}
+              required
+            />
             <Margin size={1} row />
             <S.ButtonIdCheck
               onClick={handleDuplicateIdCheck}
@@ -68,35 +128,46 @@ const SignupPage = () => {
               중복확인
             </S.ButtonIdCheck>
           </S.IdContainer>
-          <S.Label htmlFor="password">
-            비밀번호<span style={{ color: "red" }}>*</span>
-          </S.Label>
+          <S.Label htmlFor="password">비밀번호{markRequired}</S.Label>
           <S.InputText
             id={"password"}
             placeholder={"비밀번호를 입력해주세요"}
             type={"password"}
+            onChange={onChangePassword}
             required
           />
-          <S.Label htmlFor="passwordCheck">
-            비밀번호 확인<span style={{ color: "red" }}>*</span>
-          </S.Label>
+          <S.Label htmlFor="passwordCheck">비밀번호 확인{markRequired}</S.Label>
           <S.InputText
             id={"passwordCheck"}
             placeholder={"비밀번호를 입력해주세요"}
             type={"password"}
+            value={passwordCheck}
+            onChange={onChagnePasswordCheck}
             required
           />
-          <S.Label htmlFor="username">이름</S.Label>
-          <S.InputText id={"username"} placeholder={"이름을 입력해주세요"} />
-          <S.Label htmlFor="email">이메일</S.Label>
-          <S.InputText id={"email"} placeholder={"이메일을 입력해주세요"} />
-          <S.Label htmlFor="phone">휴대폰</S.Label>
+          {}
+          <S.Label htmlFor="userName">이름{markRequired}</S.Label>
           <S.InputText
-            id={"phone"}
+            id={"userName"}
+            placeholder={"이름을 입력해주세요"}
+            onChange={onChangeUserName}
+            required
+          />
+          <S.Label htmlFor="email">이메일{markRequired}</S.Label>
+          <S.InputText
+            id={"email"}
+            placeholder={"이메일을 입력해주세요"}
+            onChange={onChangeEmail}
+            required
+          />
+          <S.Label htmlFor="tel">휴대폰{markRequired}</S.Label>
+          <S.InputText
+            id={"tel"}
             placeholder={"숫자만 입력해주세요"}
             type={"tel"}
+            onChange={onChangePhone}
           />
-          <S.Label htmlFor="address">주소</S.Label>
+          <S.Label htmlFor="address">주소{markRequired}</S.Label>
           <S.InputText
             id={"address"}
             placeholder={"도로명, 지번, 건물명 검색"}
@@ -115,8 +186,9 @@ const SignupPage = () => {
             id={"birthday"}
             placeholder={"YYYY / MM / DD"}
             type="date"
+            onChange={onChangeBirth}
           />
-          <fieldset>
+          <fieldset onChange={onChangeGender}>
             <legend>성별</legend>
             <S.GenderRadioContainer>
               <input name="gender" value="male" id="male" type="radio" />
