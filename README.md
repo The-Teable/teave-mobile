@@ -10,4 +10,4 @@
 | refactor | Refactoring the code          |
 | docs     | Modify the document           |
 | test     | Make the test file            |
-| chores   | etc.                          |
+| chore    | etc.                          |

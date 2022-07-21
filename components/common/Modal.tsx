@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled, { css } from "styled-components";
 import Button from "./Button";
 import Margin from "./Margin";
@@ -46,7 +45,7 @@ S.Overlay = styled.div<{ visible: boolean }>`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.25);
-  ${({ visible, exit }) =>
+  ${({ visible }) =>
     visible
       ? null
       : css`
