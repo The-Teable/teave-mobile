@@ -7,6 +7,7 @@ import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import DaumPostcode from "react-daum-postcode";
 import Link from "next/link";
+import Modal from "../../components/common/Modal";
 
 const baseURL = process.env.NEXT_PUBLIC_LS_URL;
 
@@ -174,13 +175,15 @@ const SignupPage = () => {
             onClick={handleSearchAddress}
             value={address}
           />
-          {openPostcode ? (
-            <DaumPostcode
-              onComplete={handleSelectAddress}
-              autoClose={false}
-              defaultQuery={"논현로 66길"}
-            />
-          ) : null}
+          {openPostcode && (
+            <Modal title={"주소 검색"} onCancel={() => setOpenPostcode(false)}>
+              <DaumPostcode
+                onComplete={handleSelectAddress}
+                autoClose={false}
+                defaultQuery={"논현로 66길"}
+              />
+            </Modal>
+          )}
           <S.Label htmlFor="birthday">생년월일</S.Label>
           <S.InputText
             id={"birthday"}

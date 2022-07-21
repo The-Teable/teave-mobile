@@ -66,7 +66,9 @@ const LoginPage = () => {
         </S.FindIDPWContainer>
         <Margin size={2} />
         <Link href="/mypage/signup">
-          <S.Button reverse>회원가입</S.Button>
+          <S.Button type={"submit"} reverse>
+            회원가입
+          </S.Button>
         </Link>
       </S.Container>
     </CenteredContainer>
