@@ -194,11 +194,11 @@ const SignupPage = () => {
           <fieldset onChange={onChangeGender}>
             <legend>성별</legend>
             <S.GenderRadioContainer>
-              <input name="gender" value="male" id="male" type="radio" />
+              <input name="gender" value={0} id="male" type="radio" />
               <S.GenderRadioOption htmlFor="male">남</S.GenderRadioOption>
             </S.GenderRadioContainer>
             <S.GenderRadioContainer>
-              <input name="gender" value="female" id="female" type="radio" />
+              <input name="gender" value={1} id="female" type="radio" />
               <S.GenderRadioOption htmlFor="female">여</S.GenderRadioOption>
             </S.GenderRadioContainer>
             <S.GenderRadioContainer>
