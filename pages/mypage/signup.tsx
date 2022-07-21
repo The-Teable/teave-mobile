@@ -90,7 +90,7 @@ const SignupPage = () => {
     // id, pw 유효성 검사 체크 필요
 
     await registerUser({
-      user_id: userId,
+      id: userId,
       password,
       name: userName,
       email,
