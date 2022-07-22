@@ -56,11 +56,11 @@ const LoginPage = () => {
         </form>
         <Margin size={2} />
         <S.FindIDPWContainer>
-          <Link href={"/"} passHref>
+          <Link href={"/mypage/find_id"} passHref>
             <span>아이디 찾기</span>
           </Link>
           {" | "}
-          <Link href={"/"} passHref>
+          <Link href={"/mypage/find_pw"} passHref>
             <span>비밀번호 찾기</span>
           </Link>
         </S.FindIDPWContainer>
