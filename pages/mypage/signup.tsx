@@ -90,7 +90,7 @@ const SignupPage = () => {
     // id, pw 유효성 검사 체크 필요
 
     await registerUser({
-      id: userId,
+      user_id: userId,
       password,
       name: userName,
       email,
@@ -106,7 +106,7 @@ const SignupPage = () => {
       <Margin size={4} />
       <S.Container>
         <S.Header>
-          <Link href={"/mypage/login"} passHref>
+          <Link href={"/mypage/login/"} passHref>
             <S.GoBackButton />
           </Link>
           <S.Title>회원가입</S.Title>

@@ -15,15 +15,14 @@ export const AuthProvider = ({ children }: any) => {
 
   const router = useRouter();
 
-  const loginUser = async (userid: string, password: string) => {
-    const response = await fetch(`${baseURL}/token`, {
+  const loginUser = async (props: { user_id: string; password: string }) => {
+    const response = await fetch(`${baseURL}/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userid,
-        password,
+        ...props,
       }),
     });
     const data = await response.json();
@@ -40,8 +39,17 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  const registerUser = async (props: any) => {
-    const response = await fetch(`${baseURL}/register`, {
+  const registerUser = async (props: {
+    user_id: string;
+    password: string;
+    name: string;
+    email: string;
+    tel: string;
+    address: string;
+    birth: Date;
+    gender: number;
+  }) => {
+    const response = await fetch(`${baseURL}/signup/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

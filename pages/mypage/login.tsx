@@ -16,7 +16,7 @@ const LoginPage = () => {
     e.preventDefault();
     const userid = e.target.userid.value;
     const password = e.target.password.value;
-    loginUser(userid, password);
+    loginUser({ user_id: userid, password });
   };
   return (
     <CenteredContainer>
