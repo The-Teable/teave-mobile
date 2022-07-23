@@ -10,7 +10,7 @@ const MyPage = () => {
     <>
       <CenteredContainer>
         <h1>마이페이지</h1>
-        {!user ? (
+        {user ? (
           <button onClick={logoutUser}>로그아웃</button>
         ) : (
           <Link href={"/mypage/login/?returnUrl=mypage"} passHref>
