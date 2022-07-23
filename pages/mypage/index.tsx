@@ -5,12 +5,12 @@ import TabBar from "../../components/layout/TabBar";
 import AuthContext from "../../context/AuthContext";
 
 const MyPage = () => {
-  const [user, logoutUser] = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
   return (
     <>
       <CenteredContainer>
         <h1>마이페이지</h1>
-        {user ? (
+        {!user ? (
           <button onClick={logoutUser}>로그아웃</button>
         ) : (
           <Link href={"/mypage/login/?returnUrl=mypage"} passHref>
