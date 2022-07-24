@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }: any) => {
     });
     if (response.status === 201) {
       alert("회원가입이 완료되었습니다. 로그인 해주세요.");
-      router.push("/login");
+      router.push("/mypage/login");
     } else {
       alert(
         `회원가입에 실패하였습니다. 다시 시도해주세요.\n오류 상태 코드:${response.status}`
