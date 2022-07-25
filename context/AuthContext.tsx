@@ -19,11 +19,11 @@ export const AuthProvider = ({ children }: any) => {
     const response = await fetch(`${baseURL}/login/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        ...props,
-      }),
+        ...props
+      })
     });
     const data = await response.json();
 
@@ -52,9 +52,9 @@ export const AuthProvider = ({ children }: any) => {
     const response = await fetch(`${baseURL}/signup/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ ...props }),
+      body: JSON.stringify({ ...props })
     });
     if (response.status === 201) {
       alert("회원가입이 완료되었습니다. 로그인 해주세요.");
@@ -66,11 +66,16 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  const logoutUser = () => {
-    setAuthTokens(null);
-    setUser(null);
-    localStorage.removeItem("authTokens");
-    router.push("/");
+  const logoutUser = async () => {
+    const response = await fetch(`${baseURL}/logout/`);
+    if (response.status === 401) {
+      alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+    } else {
+      setAuthTokens(null);
+      setUser(null);
+      localStorage.removeItem("authTokens");
+      router.push("/");
+    }
   };
 
   const contextData = {
@@ -80,7 +85,7 @@ export const AuthProvider = ({ children }: any) => {
     setAuthTokens,
     registerUser,
     loginUser,
-    logoutUser,
+    logoutUser
   };
 
   useEffect(() => {
