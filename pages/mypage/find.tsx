@@ -1,31 +1,39 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import MyPageLayout from "../../components/layout/MyPageLayout";
 
-enum verifyWay {
-  EMAIL = "EMAIL",
-  PHONE = "PHONE",
-}
+const verifyWay = {
+  EMAIL: "EMAIL",
+  PHONE: "PHONE"
+};
 
-const FindPwPage = () => {
+const FindPage = () => {
+  const router = useRouter();
+  const { target } = router.query;
   const [choiceVerifyWay, setChoiceVerifyWay] = useState(verifyWay.EMAIL);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // find pw api
+    if (target === "id") {
+      // find id api
+    } else if (target === "pw") {
+      // find pw api
+    } else {
+      throw Error(`wrong query string in find page : ${target}`);
+    }
   };
 
-  const onChangeVerifyWay = (e: any) => {
+  const onChangeVerifyWay = (e: ChangeEvent<HTMLInputElement>) => {
     setChoiceVerifyWay(e.target.value);
   };
   return (
     <>
       <MyPageLayout
-        title={"비밀번호 찾기"}
+        title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"}
         backlink="/mypage/login"
         handleSubmit={handleSubmit}
       >
@@ -48,8 +56,12 @@ const FindPwPage = () => {
           <label htmlFor="wayPhone">휴대폰번호로 인증하기</label>
         </S.Fieldset>
         <Margin size={3} />
-        <S.Label htmlFor="userId">아이디</S.Label>
-        <S.InputText id="userId" />
+        {target === "pw" ? (
+          <>
+            <S.Label htmlFor="userId">아이디</S.Label>
+            <S.InputText id="userId" />
+          </>
+        ) : null}
         <S.Label htmlFor="name">이름</S.Label>
         <S.InputText id="name" />
         {choiceVerifyWay === verifyWay.EMAIL ? (
@@ -64,13 +76,13 @@ const FindPwPage = () => {
           </>
         ) : null}
         <Margin size={2} />
-        <S.Button type={"submit"}>비밀번호 찾기</S.Button>
+        <S.Button type={"submit"}>제출하기</S.Button>
       </MyPageLayout>
     </>
   );
 };
 
-export default FindPwPage;
+export default FindPage;
 
 const S: any = {};
 
