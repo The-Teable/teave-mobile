@@ -6,7 +6,7 @@ import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import MyPageLayout from "../../components/layout/MyPageLayout";
 
-const verifyWay = {
+const VERIFYWAY = {
   EMAIL: "EMAIL",
   PHONE: "PHONE"
 };
@@ -14,7 +14,7 @@ const verifyWay = {
 const FindPage = () => {
   const router = useRouter();
   const { target } = router.query;
-  const [choiceVerifyWay, setChoiceVerifyWay] = useState(verifyWay.EMAIL);
+  const [choiceVerifyWay, setChoiceVerifyWay] = useState(VERIFYWAY.EMAIL);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,14 +43,14 @@ const FindPage = () => {
           <input
             name="way"
             id="wayEmail"
-            value={verifyWay.EMAIL}
+            value={VERIFYWAY.EMAIL}
             type="radio"
           />
           <label htmlFor="wayEmail">이메일로 인증하기</label>
           <input
             name="way"
             id="wayPhone"
-            value={verifyWay.PHONE}
+            value={VERIFYWAY.PHONE}
             type="radio"
           />
           <label htmlFor="wayPhone">휴대폰번호로 인증하기</label>
@@ -64,12 +64,12 @@ const FindPage = () => {
         ) : null}
         <S.Label htmlFor="name">이름</S.Label>
         <S.InputText id="name" />
-        {choiceVerifyWay === verifyWay.EMAIL ? (
+        {choiceVerifyWay === VERIFYWAY.EMAIL ? (
           <>
             <S.Label htmlFor="email">이메일</S.Label>
             <S.InputText id="email" />
           </>
-        ) : choiceVerifyWay === verifyWay.PHONE ? (
+        ) : choiceVerifyWay === VERIFYWAY.PHONE ? (
           <>
             <S.Label htmlFor="phone">휴대폰 번호</S.Label>
             <S.InputText id="phone" type="tel" />

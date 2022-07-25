@@ -15,10 +15,10 @@ interface props {
 }
 
 const items = [
-  { title: "메인", href: "/" },
-  { title: "샵", href: "/" },
-  { title: "테스트", href: "/tea-test" },
-  { title: "매거진", href: "/" }
+  { title: "메인", href: "/home" },
+  { title: "샵", href: "/home/shop" },
+  { title: "테스트", href: "/home/tea-test" },
+  { title: "매거진", href: "/home/magazine" }
 ];
 
 const Header = ({ selectedIndex }: props) => {

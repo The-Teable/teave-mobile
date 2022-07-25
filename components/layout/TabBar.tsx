@@ -3,7 +3,7 @@ import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
 
 const items = [
-  { url: "/image/icon_home.svg", text: "홈", href: "/" },
+  { url: "/image/icon_home.svg", text: "홈", href: "/home" },
   { url: "/image/icon_search.svg", text: "검색", href: "/" },
   { url: "/image/icon_favorite.svg", text: "찜", href: "/" },
   { url: "/image/icon_cart.svg", text: "장바구니", href: "/" },

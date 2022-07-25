@@ -10,9 +10,14 @@ interface props {
     multiChoicable: boolean;
   }[];
   providerWidth?: number;
+  handleSubmit: () => void;
 }
 
-const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
+const QuestionProvider = ({
+  questions = [],
+  providerWidth = 400,
+  handleSubmit
+}: props) => {
   const {
     questionIndex,
     disablePrev,
@@ -38,10 +43,7 @@ const QuestionProvider = ({ questions = [], providerWidth = 400 }: props) => {
             />
           </S.QuestionCardWrapper>
         ))}
-
-        <Link href={"/tea-test/result"}>
-          <button>결과 보기</button>
-        </Link>
+        <button onClick={handleSubmit}>결과 보기</button>
       </S.Wrapper>
       <S.PrevButton onClick={onClickPrev} disabled={disablePrev} />
       <S.NextButton onClick={onClickNext} disabled={disableNext} />
