@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 import useSlider from "../../hooks/useSlider";
 
-interface props {
+interface SliderProps {
   items: any;
   itemWidth: number;
 }
 
-const Slider = ({ items, itemWidth }: props) => {
+const Slider = ({ items, itemWidth }: SliderProps) => {
   const [
     $wrapperRef,
     transitionX,
@@ -17,7 +17,7 @@ const Slider = ({ items, itemWidth }: props) => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDrag,
+    isDrag
   ] = useSlider(itemWidth);
 
   return (
@@ -80,7 +80,7 @@ S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
 `;
 
 S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
-  ${({ disabled }) =>
+  ${({ disabled }: { disabled: boolean }) =>
     disabled
       ? css`
           opacity: 0;
@@ -92,7 +92,7 @@ S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
 `;
 
 S.NextButton = styled(S.MoveButton)<{ disabled: boolean }>`
-  ${({ disabled }) =>
+  ${({ disabled }: { disabled: boolean }) =>
     disabled
       ? css`
           opacity: 0;

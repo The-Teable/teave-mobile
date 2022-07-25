@@ -1,16 +1,16 @@
 import HomeLayout from "../../components/layout/HomeLayout";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
-import { HeaderIndex } from "../../components/layout/Header";
+import { HOME_HEADER_INDEX } from "../../components/layout/HomeHeader";
 import Margin from "../../components/common/Margin";
 import { useState } from "react";
 import QuestionProvider from "../../components/tea-test/QuestionProvider";
 import questions from "../api/teaTestQuestions.json";
 
 const NAVIGATE = {
-  WELCOME: "welcome",
-  QUESTION: "question",
-  RESULT: "result"
+  WELCOME: "WELCOME",
+  QUESTION: "QUESTION",
+  RESULT: "RESULT"
 };
 
 const TeaTestPage = () => {
@@ -19,7 +19,7 @@ const TeaTestPage = () => {
     setNavigate(NAVIGATE.RESULT);
   };
   return (
-    <HomeLayout headerIndex={HeaderIndex.TEST}>
+    <HomeLayout headerIndex={HOME_HEADER_INDEX.TEST}>
       {navigate === NAVIGATE.WELCOME ? (
         <S.Container>
           <S.Text>

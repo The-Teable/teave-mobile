@@ -1,37 +1,49 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Margin from "../common/Margin";
+import CenteredContainer from "./CenteredContainer";
+import { ReactNode, FormEvent } from "react";
 
-const MyPageLayout = ({ title, backlink, handleSubmit, children }: any) => {
+const MypageLayout = ({
+  title,
+  backlink = null,
+  handleSubmit = null,
+  children
+}: {
+  title: string;
+  backlink?: string | null;
+  handleSubmit?: ((e: FormEvent<HTMLFormElement>) => void) | null;
+  children?: ReactNode;
+}) => {
   return (
     <>
-      <Margin size={4} />
       <S.Container>
         <S.Header>
-          <Link href={backlink} passHref>
-            <S.GoBackButton />
-          </Link>
+          {backlink ? (
+            <Link href={backlink} passHref>
+              <S.GoBackButton />
+            </Link>
+          ) : null}
           <S.Title>{title}</S.Title>
         </S.Header>
         <Margin size={2} />
-        <form onSubmit={handleSubmit}></form>
-        {children}
+
+        {handleSubmit ? (
+          <form onSubmit={handleSubmit}>{children}</form>
+        ) : (
+          children
+        )}
       </S.Container>
     </>
   );
 };
 
-export default MyPageLayout;
+export default MypageLayout;
 
 const S: any = {};
 
-S.Container = styled.div`
+S.Container = styled(CenteredContainer)`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  max-width: 40rem;
-  padding: 2rem;
-  margin: 0 auto;
   font-size: 1.2rem;
 `;
 S.Header = styled.div`

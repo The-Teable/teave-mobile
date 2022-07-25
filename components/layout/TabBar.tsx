@@ -31,16 +31,16 @@ export default TabBar;
 const S: any = {};
 
 S.Container = styled(CenteredContainer).attrs({ as: "nav" })`
-  box-sizing: content-box;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
+  box-sizing: content-box;
   height: 5rem;
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   border-top: 0.1rem solid #e6e6e6;
+  background-color: #ffffff;
 `;
 
 S.Item = styled.div`

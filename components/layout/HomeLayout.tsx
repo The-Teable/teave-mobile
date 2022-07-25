@@ -1,13 +1,15 @@
-import Header from "./Header";
+import Header, { HOME_HEADER_INDEX_TYPE } from "./HomeHeader";
 import Tabbar from "./TabBar";
 import CenteredContainer from "./CenteredContainer";
+import { ReactNode } from "react";
 
-interface props {
-  headerIndex: number;
-  children: any;
-}
-
-const HomeLayout = ({ headerIndex, children }: props) => (
+const HomeLayout = ({
+  headerIndex,
+  children
+}: {
+  headerIndex: HOME_HEADER_INDEX_TYPE;
+  children?: ReactNode;
+}) => (
   <>
     <Header selectedIndex={headerIndex} />
     <CenteredContainer>{children}</CenteredContainer>

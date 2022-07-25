@@ -1,6 +1,16 @@
 import styled, { css } from "styled-components";
 import Button from "./Button";
 import Margin from "./Margin";
+import { ReactNode } from "react";
+
+interface ModalProps {
+  visible?: boolean;
+  title?: string;
+  onOk?: () => void;
+  onCancel?: () => void;
+  noFooter?: boolean;
+  children: ReactNode;
+}
 
 const Modal = ({
   visible = true,
@@ -8,8 +18,8 @@ const Modal = ({
   onOk,
   onCancel,
   noFooter = false,
-  children,
-}: any) => {
+  children
+}: ModalProps) => {
   return (
     <S.Overlay visible={visible}>
       <S.Container>
@@ -45,7 +55,7 @@ S.Overlay = styled.div<{ visible: boolean }>`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.25);
-  ${({ visible }) =>
+  ${({ visible }: { visible: boolean }) =>
     visible
       ? null
       : css`
@@ -85,7 +95,7 @@ S.Footer = styled.div<{ noFooter: boolean }>`
   align-items: center;
   border-top: 1 solid #424242;
   padding: 2rem;
-  ${({ noFooter }) =>
+  ${({ noFooter }: { noFooter: boolean }) =>
     noFooter
       ? css`
           display: none;

@@ -10,7 +10,7 @@ const Button = styled.button<{ reverse: boolean }>`
   &:hover {
     cursor: pointer;
   }
-  ${({ reverse }: any) =>
+  ${({ reverse }: { reverse: boolean }) =>
     reverse
       ? css`
           background-color: #ffffff;

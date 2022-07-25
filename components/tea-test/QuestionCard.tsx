@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 
-interface props {
+interface QuestionCardProps {
   title: string;
   choices: string[];
   multiChoicable: boolean;
@@ -13,7 +13,7 @@ const QuestionCard = ({
   choices,
   multiChoicable,
   handleChoice
-}: props) => {
+}: QuestionCardProps) => {
   const isInitailRendering = useRef(true);
   const [selectedChoiceList, setSelectedChoiceList] = useState<string[]>([]);
   const onClickChoice = (selectedChoice: string, wasSelected: boolean) => {

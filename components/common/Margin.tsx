@@ -1,19 +1,19 @@
 import styled, { css } from "styled-components";
 
-type MarginProps = {
+interface Props {
   size?: number;
   row?: boolean;
-};
+}
 
-const Margin = styled.div<MarginProps>`
-  height: calc(${(props) => props.size} * 1rem);
-  min-height: calc(${(props) => props.size} * 1rem);
-  ${(props) =>
-    props.row &&
+const Margin = styled.div<Props>`
+  height: calc(${({ size }: Props) => size} * 1rem);
+  min-height: calc(${({ size }: Props) => size} * 1rem);
+  ${({ row, size }: Props) =>
+    row &&
     css`
       height: 0;
       min-height: 0;
-      width: calc(${props.size} * 1rem);
+      width: calc(${size} * 1rem);
     `}
 `;
 

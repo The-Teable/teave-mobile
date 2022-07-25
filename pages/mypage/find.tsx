@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
-import MyPageLayout from "../../components/layout/MyPageLayout";
+import MypageLayout from "../../components/layout/MypageLayout";
 
 const VERIFYWAY = {
   EMAIL: "EMAIL",
@@ -32,7 +32,7 @@ const FindPage = () => {
   };
   return (
     <>
-      <MyPageLayout
+      <MypageLayout
         title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"}
         backlink="/mypage/login"
         handleSubmit={handleSubmit}
@@ -77,7 +77,7 @@ const FindPage = () => {
         ) : null}
         <Margin size={2} />
         <S.Button type={"submit"}>제출하기</S.Button>
-      </MyPageLayout>
+      </MypageLayout>
     </>
   );
 };

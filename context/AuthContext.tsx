@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,7 @@ const AuthContext = createContext<any>(null);
 
 export default AuthContext;
 
-export const AuthProvider = ({ children }: any) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authTokens, setAuthTokens] = useState<any>(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,8 +46,8 @@ export const AuthProvider = ({ children }: any) => {
     email: string;
     tel: string;
     address: string;
-    birth: Date;
-    gender: number;
+    birth?: Date;
+    gender?: number;
   }) => {
     const response = await fetch(`${baseURL}/signup/`, {
       method: "POST",

@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import useSliderButton from "./useSliderButton";
 
-const useQuestionProvider = (questions: any) => {
+interface UseQuestionProviderProps {
+  questions: {
+    title: string;
+    choices: string[];
+    multiChoicable: boolean;
+  }[];
+}
+
+const useQuestionProvider = ({ questions }: UseQuestionProviderProps) => {
   const [answerList, setAnswerList] = useState<string[][]>([]);
 
   const {

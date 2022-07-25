@@ -1,9 +1,9 @@
 import HomeLayout from "../../components/layout/HomeLayout";
-import { HeaderIndex } from "../../components/layout/Header";
+import { HOME_HEADER_INDEX } from "../../components/layout/HomeHeader";
 
 const ShopPage = () => {
   return (
-    <HomeLayout headerIndex={HeaderIndex.SHOP}>
+    <HomeLayout headerIndex={HOME_HEADER_INDEX.SHOP}>
       <div>샵</div>
     </HomeLayout>
   );

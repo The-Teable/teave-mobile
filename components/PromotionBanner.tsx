@@ -3,18 +3,18 @@ import styled from "styled-components";
 import usePromotionBanner from "../hooks/usePromotionBanner";
 import Slider from "./common/Slider";
 
-interface props {
-  banners: any;
+interface Props {
+  banners: { url: string; href: string }[];
 }
 
-const PromotionBanner = ({ banners }: props) => {
+const PromotionBanner = ({ banners }: Props) => {
   const [width, $bannerRef] = usePromotionBanner();
   return (
     <S.Container>
       <S.BoxSize ref={$bannerRef}>
         <S.Wrapper
           itemWidth={width}
-          items={banners.map(({ url, href }: any, i: any) => (
+          items={banners.map(({ url, href }, i) => (
             <>
               <Link key={i} href={href} passHref>
                 <S.Item url={url} />

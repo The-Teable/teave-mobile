@@ -3,25 +3,26 @@ import styled from "styled-components";
 import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
 
-export enum HeaderIndex {
-  MAIN,
-  SHOP,
-  TEST,
-  MAGAZINE
-}
-
-interface props {
-  selectedIndex: HeaderIndex;
-}
+export const HOME_HEADER_INDEX = {
+  MAIN: "MAIN",
+  SHOP: "SHOP",
+  TEST: "TEST",
+  MAGAZINE: "MAGAZINE"
+};
+export type HOME_HEADER_INDEX_TYPE = typeof HOME_HEADER_INDEX[keyof typeof HOME_HEADER_INDEX];
 
 const items = [
-  { title: "메인", href: "/home" },
-  { title: "샵", href: "/home/shop" },
-  { title: "테스트", href: "/home/tea-test" },
-  { title: "매거진", href: "/home/magazine" }
+  { index: HOME_HEADER_INDEX.MAIN, title: "메인", href: "/home" },
+  { index: HOME_HEADER_INDEX.SHOP, title: "샵", href: "/home/shop" },
+  { index: HOME_HEADER_INDEX.TEST, title: "테스트", href: "/home/tea-test" },
+  { index: HOME_HEADER_INDEX.MAGAZINE, title: "매거진", href: "/home/magazine" }
 ];
 
-const Header = ({ selectedIndex }: props) => {
+const Header = ({
+  selectedIndex
+}: {
+  selectedIndex: HOME_HEADER_INDEX_TYPE;
+}) => {
   return (
     <>
       <S.Container>
@@ -31,9 +32,9 @@ const Header = ({ selectedIndex }: props) => {
           </Link>
         </S.TopWrapper>
         <S.NavWrapper>
-          {items.map(({ title, href }, i) => (
-            <Link key={i} href={href} passHref>
-              {i === selectedIndex ? (
+          {items.map(({ index, title, href }) => (
+            <Link key={index} href={href} passHref>
+              {index === selectedIndex ? (
                 <S.Selected>
                   <S.NavItemTitle>{title}</S.NavItemTitle>
                 </S.Selected>
@@ -61,6 +62,7 @@ S.Container = styled(CenteredContainer).attrs({ as: "header" })`
   z-index: 1;
   height: 8rem;
   border-bottom: solid #eeeeee 0.1rem;
+  background-color: #ffffff;
 `;
 
 S.TopWrapper = styled.div`

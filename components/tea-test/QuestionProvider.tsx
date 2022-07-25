@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import Link from "next/link";
 import QuestionCard from "./QuestionCard";
 import useQuestionProvider from "../../hooks/useQustionProvider";
 
-interface props {
+interface QuestionProviderProps {
   questions: {
     title: string;
     choices: string[];
@@ -14,10 +13,10 @@ interface props {
 }
 
 const QuestionProvider = ({
-  questions = [],
+  questions,
   providerWidth = 400,
   handleSubmit
-}: props) => {
+}: QuestionProviderProps) => {
   const {
     questionIndex,
     disablePrev,
@@ -25,7 +24,7 @@ const QuestionProvider = ({
     onClickPrev,
     onClickNext,
     handleChoice
-  } = useQuestionProvider(questions);
+  } = useQuestionProvider({ questions });
 
   return (
     <S.Container providerWidth={providerWidth}>

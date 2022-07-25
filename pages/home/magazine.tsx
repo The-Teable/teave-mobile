@@ -1,9 +1,9 @@
 import HomeLayout from "../../components/layout/HomeLayout";
-import { HeaderIndex } from "../../components/layout/Header";
+import { HOME_HEADER_INDEX } from "../../components/layout/HomeHeader";
 
 const MagazinePage = () => {
   return (
-    <HomeLayout headerIndex={HeaderIndex.MAGAZINE}>
+    <HomeLayout headerIndex={HOME_HEADER_INDEX.MAGAZINE}>
       <div>준비중입니다</div>
     </HomeLayout>
   );

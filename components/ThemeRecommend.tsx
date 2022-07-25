@@ -3,7 +3,7 @@ import Link from "next/link";
 import Slider from "./common/Slider";
 import useThemeRecommend from "../hooks/useThemeRecommend";
 
-interface props {
+interface ThemeRecommendProps {
   title: string;
   items: {
     id: number;
@@ -15,18 +15,18 @@ interface props {
   }[];
 }
 
-const ThemeRecommend = ({ title, items }: props) => {
+const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
   const [onClickProduct, onClickFavorite] = useThemeRecommend();
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
       <S.ItemsContainer
         itemWidth={150}
-        items={items.map(({ teaId, url, href, brand, name, price }: any) => (
-          <Link key={teaId} href={href} passHref>
-            <S.ItemWrapper onClick={() => onClickProduct(teaId)}>
+        items={items.map(({ id, url, href, brand, name, price }) => (
+          <Link key={id} href={href} passHref>
+            <S.ItemWrapper onClick={() => onClickProduct(id)}>
               <S.ItemThumbnail url={url}>
-                <S.ItemFavorite onClick={() => onClickFavorite(teaId)} />
+                <S.ItemFavorite onClick={() => onClickFavorite(id)} />
               </S.ItemThumbnail>
               <S.ItemDescribeContainer>
                 <S.ItemBrand>{brand}</S.ItemBrand>
