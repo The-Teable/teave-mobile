@@ -4,7 +4,8 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
-import MypageLayout from "../../components/layout/MypageLayout";
+import TitleHeader from "../../components/common/TitleHeader";
+import CenteredContainer from "../../components/layout/CenteredContainer";
 
 const VERIFYWAY = {
   EMAIL: "EMAIL",
@@ -32,11 +33,12 @@ const FindPage = () => {
   };
   return (
     <>
-      <MypageLayout
+      <TitleHeader
         title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"}
         backlink="/mypage/login"
-        handleSubmit={handleSubmit}
-      >
+      />
+      <S.Form onSubmit={handleSubmit}>
+        <Margin size={2} />
         <S.Fieldset onChange={onChangeVerifyWay}>
           <S.Legend>인증 방법</S.Legend>
           <Margin size={1} />
@@ -77,7 +79,7 @@ const FindPage = () => {
         ) : null}
         <Margin size={2} />
         <S.Button type={"submit"}>제출하기</S.Button>
-      </MypageLayout>
+      </S.Form>
     </>
   );
 };
@@ -85,6 +87,10 @@ const FindPage = () => {
 export default FindPage;
 
 const S: any = {};
+
+S.Form = styled(CenteredContainer).attrs({ as: "form" })`
+  font-size: 1.2rem;
+`;
 
 S.Fieldset = styled.fieldset``;
 
