@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import usePromotionBanner from "../hooks/usePromotionBanner";
+import useElementCurWidth from "../hooks/useElementCurWidth";
 import Slider from "./common/Slider";
 
 interface Props {
@@ -8,21 +8,18 @@ interface Props {
 }
 
 const PromotionBanner = ({ banners }: Props) => {
-  const [width, $bannerRef] = usePromotionBanner();
+  const [width, $bannerRef] = useElementCurWidth();
   return (
-    <S.Container>
-      <S.BoxSize ref={$bannerRef}>
-        <S.Wrapper
-          itemWidth={width}
-          items={banners.map(({ url, href }, i) => (
-            <>
-              <Link key={i} href={href} passHref>
-                <S.Item url={url} />
-              </Link>
-            </>
-          ))}
-        />
-      </S.BoxSize>
+    <S.Container ref={$bannerRef}>
+      <Slider itemWidth={width}>
+        {banners.map(({ url, href }, i) => (
+          <>
+            <Link key={i} href={href} passHref>
+              <S.Item url={url} />
+            </Link>
+          </>
+        ))}
+      </Slider>
     </S.Container>
   );
 };
@@ -30,10 +27,6 @@ const PromotionBanner = ({ banners }: Props) => {
 const S: any = {};
 
 S.Container = styled.section``;
-
-S.BoxSize = styled.div``;
-
-S.Wrapper = styled(Slider)``;
 
 S.Item = styled.div<{ url: string }>`
   background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;

@@ -1,12 +1,18 @@
 import styled, { css } from "styled-components";
 import useSlider from "../../hooks/useSlider";
+import { ReactNode } from "react";
 
 interface SliderProps {
-  items: any;
+  children: ReactNode;
   itemWidth: number;
 }
 
-const Slider = ({ items, itemWidth }: SliderProps) => {
+/* 
+  컴포넌트 사용 시
+  children으로 받는 슬라이딩 될 각 요소에 원하는 width와 flex-shrink: 0을 넣어야 정상작동
+ */
+
+const Slider = ({ children, itemWidth }: SliderProps) => {
   const [
     $wrapperRef,
     transitionX,
@@ -33,7 +39,7 @@ const Slider = ({ items, itemWidth }: SliderProps) => {
         onTouchEnd={onDragEnd}
         isDrag={isDrag}
       >
-        {items.map((e: any) => e)}
+        {children}
       </S.Wrapper>
       <S.PrevButton onClick={onPrevClick} disabled={prevDisable} />
       <S.NextButton onClick={onNextClick} disabled={nextDisable} />
@@ -48,7 +54,8 @@ const S: any = {};
 S.MoveButton = styled.button`
   display: none;
   position: absolute;
-  top: 4.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
   width: 3rem;
   height: 8rem;
   border: 0px;
@@ -87,7 +94,7 @@ S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
         `
       : css`
           background: url("/image/icon_go_prev.svg") no-repeat center/contain;
-          left: 10px;
+          left: 0.5rem;
         `}
 `;
 
@@ -99,6 +106,6 @@ S.NextButton = styled(S.MoveButton)<{ disabled: boolean }>`
         `
       : css`
           background: url("/image/icon_go_next.svg") no-repeat center/contain;
-          right: 10px;
+          right: 0.5rem;
         `}
 `;

@@ -20,9 +20,8 @@ const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
-      <S.ItemsContainer
-        itemWidth={150}
-        items={items.map(({ id, url, href, brand, name, price }) => (
+      <S.ItemsContainer itemWidth={150}>
+        {items.map(({ id, url, href, brand, name, price }) => (
           <Link key={id} href={href} passHref>
             <S.ItemWrapper onClick={() => onClickProduct(id)}>
               <S.ItemThumbnail url={url}>
@@ -36,7 +35,8 @@ const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
             </S.ItemWrapper>
           </Link>
         ))}
-      ></S.ItemsContainer>
+        >
+      </S.ItemsContainer>
     </S.Container>
   );
 };
