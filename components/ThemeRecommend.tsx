@@ -35,7 +35,6 @@ const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
             </S.ItemWrapper>
           </Link>
         ))}
-        >
       </S.ItemsContainer>
     </S.Container>
   );

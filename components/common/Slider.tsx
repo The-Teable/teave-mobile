@@ -52,7 +52,7 @@ export default Slider;
 const S: any = {};
 
 S.MoveButton = styled.button`
-  display: none;
+  opacity: 0;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -69,7 +69,7 @@ S.Container = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   &:hover ${S.MoveButton} {
-    display: block;
+    opacity: 1;
   }
   &::-webkit-scrollbar {
     display: none;
@@ -87,25 +87,23 @@ S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
 `;
 
 S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
+  background: url("/image/icon_go_prev.svg") no-repeat center/contain;
+  left: 0.5rem;
   ${({ disabled }: { disabled: boolean }) =>
     disabled
       ? css`
-          opacity: 0;
+          display: none;
         `
-      : css`
-          background: url("/image/icon_go_prev.svg") no-repeat center/contain;
-          left: 0.5rem;
-        `}
+      : null}
 `;
 
 S.NextButton = styled(S.MoveButton)<{ disabled: boolean }>`
+  background: url("/image/icon_go_next.svg") no-repeat center/contain;
+  right: 0.5rem;
   ${({ disabled }: { disabled: boolean }) =>
     disabled
       ? css`
-          opacity: 0;
+          display: none;
         `
-      : css`
-          background: url("/image/icon_go_next.svg") no-repeat center/contain;
-          right: 0.5rem;
-        `}
+      : null}
 `;
