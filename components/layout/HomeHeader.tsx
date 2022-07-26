@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
+import { color } from "../../styles/palette";
 
 export const HOME_HEADER_INDEX = {
   MAIN: "MAIN",
@@ -61,7 +62,7 @@ S.Container = styled(CenteredContainer).attrs({ as: "header" })`
   left: 0;
   z-index: 1;
   height: 8rem;
-  border-bottom: solid #eeeeee 0.1rem;
+  border-bottom: solid ${color.gray200} 0.1rem;
   background-color: #ffffff;
 `;
 

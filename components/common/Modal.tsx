@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import Button from "./Button";
 import Margin from "./Margin";
 import { ReactNode } from "react";
+import { color } from "../../styles/palette";
 
 interface ModalProps {
   visible?: boolean;
@@ -71,7 +72,7 @@ S.Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1 solid #424242;
+  border-bottom: 1 solid ${color.gray800};
   padding: 2rem;
 `;
 
@@ -93,7 +94,7 @@ S.Footer = styled.div<{ noFooter: boolean }>`
   display: flex;
   justify-content: end;
   align-items: center;
-  border-top: 1 solid #424242;
+  border-top: 1 solid ${color.gray800};
   padding: 2rem;
   ${({ noFooter }: { noFooter: boolean }) =>
     noFooter

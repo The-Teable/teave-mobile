@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { color } from "../../styles/palette";
 
 const Button = styled.button<{ reverse: boolean }>`
   border: 0px;
@@ -14,11 +15,11 @@ const Button = styled.button<{ reverse: boolean }>`
     reverse
       ? css`
           background-color: #ffffff;
-          border: 1px solid #104315;
-          color: #104315;
+          border: 1px solid ${color.teaveGreen};
+          color: ${color.teaveGreen};
         `
       : css`
-          background-color: #104315;
+          background-color: ${color.teaveGreen};
           color: #ffffff;
         `}
 `;

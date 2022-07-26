@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import CenteredContainer from "../layout/CenteredContainer";
+import { color } from "../../styles/palette";
 
 const TitleHeader = ({
   title,
@@ -32,7 +33,7 @@ S.Header = styled(CenteredContainer)`
   display: flex;
   align-items: center;
   height: 5rem;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid ${color.gray200};
 `;
 
 S.GoBackButton = styled.button`

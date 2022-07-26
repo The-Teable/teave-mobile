@@ -1,18 +1,12 @@
 const color = {
-  main: "#1b502b",
-  mainHover: "#143d21",
-  background: "#FFFEFA",
-  backgroundHover: "#e9e9e5",
-  gray: "#f5f5f7",
-  grayHover: "#c4c4c4",
+  teaveGreen: "#104315",
+  lightGray: "#F8F8FA",
+  gray200: "#EEEEEE",
+  gray300: "#E0E0E0",
+  gray400: "#BDBDBD",
+  gray500: "#9E9E9E",
+  gray600: "#757575",
+  gray800: "#424242"
 };
 
-const screen = {
-  width: {
-    mobile: 360,
-    tablet: 768,
-    desktop: 1440,
-  },
-};
-
-export { color, screen };
+export { color };
