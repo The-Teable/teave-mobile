@@ -10,7 +10,7 @@ interface TeaRecommendProps {
     img: string;
     brand: string;
     name: string;
-    feature: string;
+    features: string;
     describe: string;
   }[];
 }
@@ -22,21 +22,23 @@ const TeaRecommend = ({ items }: TeaRecommendProps) => {
       <S.Title>추천티를 둘러보세요.</S.Title>
       <Margin size={3} />
       <Slider itemWidth={width}>
-        {items.map(({ img, brand, name, feature, describe }, i) => (
+        {items.map(({ img, brand, name, features, describe }, i) => (
           <S.Wrapper key={i}>
             <S.TeaImg
               src={img}
               alt={name}
-              width={150}
-              height={150}
+              width={80}
+              height={80}
               quality={100}
             />
             <Margin row size={2} />
             <S.ContentWrapper>
               <S.TeaTitle>{`[${brand}] ${name}`}</S.TeaTitle>
               <Margin size={1} />
-              <S.Feature>{feature}</S.Feature>
-              <Margin size={2} />
+              {features.split(",").map((feature, i) => (
+                <S.Feature key={i}>{feature}</S.Feature>
+              ))}
+              <Margin size={1} />
               <S.Describe>{describe}</S.Describe>
             </S.ContentWrapper>
           </S.Wrapper>
@@ -66,7 +68,7 @@ S.Wrapper = styled.div`
 `;
 
 S.ContentWrapper = styled.div`
-  width: 35%;
+  width: 55%;
 `;
 
 S.TeaImg = styled(Image)`
@@ -78,10 +80,18 @@ S.TeaTitle = styled.div`
   font-weight: bold;
 `;
 S.Feature = styled.div`
-  color: ${color.teaveGreen};
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: ${color.teaveGreen};
+  color: #ffffff;
+  border-radius: 2rem;
+  margin: 0 0.5rem 0.5rem 0;
+  font-size: 0.8rem;
 `;
 
 S.Describe = styled.p`
   color: ${color.gray500};
-  line-height: 1.4rem;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  width: 90%;
 `;
