@@ -8,9 +8,21 @@ const AuthContext = createContext<any>(null);
 
 export default AuthContext;
 
+const DEFAULT_USER = {
+  user_id: null,
+  name: null,
+  email: null,
+  tel: null
+};
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authTokens, setAuthTokens] = useState<any>(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<{
+    user_id: number | null;
+    name: string | null;
+    email: string | null;
+    tel: string | null;
+  }>(DEFAULT_USER);
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
@@ -104,7 +116,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(
       localStorage.getItem("authTokens")
         ? jwt_decode(localStorage.getItem("authTokens")!)
-        : null
+        : DEFAULT_USER
     );
   }, []);
 
