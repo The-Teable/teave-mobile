@@ -1,42 +1,50 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import CenteredContainer from "../../components/layout/CenteredContainer";
 import AuthContext from "../../context/AuthContext";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import InputText from "../../components/common/InputText";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
-import DaumPostcode from "react-daum-postcode";
-import Modal from "../../components/common/Modal";
 import TitleHeader from "../../components/common/TitleHeader";
 
 const baseURL = process.env.NEXT_PUBLIC_LS_URL;
 
 const SignupPage = () => {
   const [userId, setUserId] = useState("");
-  // const [isValidUserId, setIsValidUserId] = useState(false);
+  const [isValidUserId, setIsValidUserId] = useState(true);
   const [password, setPassword] = useState("");
-  // const [isValidPassword, setIsValidPassword] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(true);
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(false);
+  const [isValidPasswordCheck, setIsValidPasswordCheck] = useState(true);
   const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
-  const [address, setAddress] = useState("");
   const [birth, setBirth] = useState<any>(null);
   const [gender, setGender] = useState("");
   const { registerUser } = useContext(AuthContext);
-  const [duplicateIdCheck, setDuplicateIdCheck] = useState(false);
-  const [openPostcode, setOpenPostcode] = useState(false);
+  const [duplicateIdCheck, setDuplicateIdCheck] = useState(true);
 
   const markRequired = <span style={{ color: "red" }}>*</span>;
 
   const onChangeUserId = (e: any) => {
     setUserId(e.target.value);
     setDuplicateIdCheck(false);
+    setIsValidUserId(checkValidUserId(e.target.value));
+  };
+
+  const checkValidUserId = (userId: string) => {
+    // 6자 이상의 영문 혹은 영문과 숫자를 조합
+    return (
+      /[A-Za-z]{6,}/.test(userId) ||
+      (/[A-Za-z]+/.test(userId) && /[A-Za-z0-9]{6,}/.test(userId))
+    );
   };
 
   const handleDuplicateIdCheck = async (e: any) => {
     e.preventDefault();
+    if (!isValidUserId) {
+      alert("올바른 아이디를 입력해주세요.");
+      return;
+    }
     const response = await fetch(`${baseURL}/signup/check?user_id=${userId}`);
     const { is_duplicate: isDuplicate } = await response.json();
     setDuplicateIdCheck(!isDuplicate);
@@ -45,9 +53,26 @@ const SignupPage = () => {
       : alert("중복 확인 완료");
   };
 
+  const checkValidPassword = (password: string) => {
+    /* x 10자 이상 입력 
+      영어/숫자/특수문자(공백을 제외한 다음의 특수문자 '"!@#$%^&*()-_+=~`)만 허용하며 2개 이상 조합
+      동일한 숫자 3개 이상 연속 사용 불가
+    */
+    const specialSymbol = new RegExp(/['"!@#$%^&*()-_+=~]/);
+    const alphabet = new RegExp(/[a-zA-Z]/);
+    const digit = new RegExp(/[0-9]/);
+    return (
+      password.length >= 10 &&
+      !/(\d)\1{2}/.test(password) &&
+      ((specialSymbol.test(password) && alphabet.test(password)) ||
+        (specialSymbol.test(password) && digit.test(password)) ||
+        (alphabet.test(password) && digit.test(password)))
+    );
+  };
+
   const onChangePassword = (e: any) => {
     setPassword(e.target.value);
-    setPasswordCheck("");
+    setIsValidPassword(checkValidPassword(e.target.value));
   };
 
   const onChagnePasswordCheck = (e: any) => {
@@ -57,10 +82,6 @@ const SignupPage = () => {
 
   const onChangeUserName = (e: any) => {
     setUserName(e.target.value);
-  };
-
-  const onChangeEmail = (e: any) => {
-    setEmail(e.target.value);
   };
 
   const onChangePhone = (e: any) => {
@@ -74,28 +95,17 @@ const SignupPage = () => {
     setGender(e.target.value);
   };
 
-  const handleSearchAddress = (e: any) => {
-    e.preventDefault();
-    setOpenPostcode(true);
-  };
-
-  const handleSelectAddress = ({ address }: any) => {
-    setAddress(address);
-    setOpenPostcode(false);
-  };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    // id, pw 유효성 검사 체크 필요
-
+    if (!duplicateIdCheck || !isValidPassword || !isValidPasswordCheck) {
+      alert("올바르지 않은 정보가 있습니다. 다시 확인해주세요.");
+      return;
+    }
     await registerUser({
       user_id: userId,
       password,
       name: userName,
-      email,
       tel,
-      address,
       birth,
       gender
     });
@@ -104,32 +114,51 @@ const SignupPage = () => {
   return (
     <>
       <TitleHeader title={"회원가입"} backlink={"/mypage/login/"} />
-      <S.Form handleSubmit={handleSubmit}>
+      <S.Form onSubmit={handleSubmit}>
         <Margin size={2} />
         <S.Label htmlFor="userId">아이디{markRequired}</S.Label>
-        <S.IdContainer>
-          <S.InputId
+        <S.InputContainer>
+          <S.InputCheckable
             placeholder={"아이디"}
             id={"userId"}
             onChange={onChangeUserId}
+            invalid={!isValidUserId || !duplicateIdCheck}
             required
           />
           <Margin size={1} row />
-          <S.ButtonIdCheck
+          <S.CheckButton
             onClick={handleDuplicateIdCheck}
             reverse={!duplicateIdCheck}
           >
             중복확인
-          </S.ButtonIdCheck>
-        </S.IdContainer>
+          </S.CheckButton>
+        </S.InputContainer>
+        {isValidUserId ? null : (
+          <S.InvaildText>
+            x 6자 이상의 영문 혹은 영문과 숫자를 조합
+          </S.InvaildText>
+        )}
+        {duplicateIdCheck ? null : (
+          <S.InvaildText>x 아이디 중복 확인</S.InvaildText>
+        )}
         <S.Label htmlFor="password">비밀번호{markRequired}</S.Label>
         <S.InputText
           id={"password"}
           placeholder={"비밀번호를 입력해주세요"}
           type={"password"}
           onChange={onChangePassword}
+          invalid={!isValidPassword}
           required
         />
+        {isValidPassword ? null : (
+          <>
+            <S.InvaildText>x 10자 이상 입력</S.InvaildText>
+            <S.InvaildText>
+              x 영어/숫자/특수문자(공백 제외)만 허용하며 2개 이상 조합
+            </S.InvaildText>
+            <S.InvaildText>x 동일한 숫자 3개 이상 연속 사용 불가</S.InvaildText>
+          </>
+        )}
         <S.Label htmlFor="passwordCheck">비밀번호 확인{markRequired}</S.Label>
         <S.InputText
           id={"passwordCheck"}
@@ -137,9 +166,12 @@ const SignupPage = () => {
           type={"password"}
           value={passwordCheck}
           onChange={onChagnePasswordCheck}
+          invalid={!isValidPasswordCheck}
           required
         />
-        {}
+        {isValidPasswordCheck ? null : (
+          <S.InvaildText>x 동일한 비밀번호를 입력해주세요</S.InvaildText>
+        )}
         <S.Label htmlFor="userName">이름{markRequired}</S.Label>
         <S.InputText
           id={"userName"}
@@ -147,36 +179,24 @@ const SignupPage = () => {
           onChange={onChangeUserName}
           required
         />
-        <S.Label htmlFor="email">이메일{markRequired}</S.Label>
-        <S.InputText
-          id={"email"}
-          placeholder={"이메일을 입력해주세요"}
-          onChange={onChangeEmail}
-          required
-        />
         <S.Label htmlFor="tel">휴대폰{markRequired}</S.Label>
-        <S.InputText
-          id={"tel"}
-          placeholder={"숫자만 입력해주세요"}
-          type={"tel"}
-          onChange={onChangePhone}
-        />
-        <S.Label htmlFor="address">주소{markRequired}</S.Label>
-        <S.InputText
-          id={"address"}
-          placeholder={"도로명, 지번, 건물명 검색"}
-          onClick={handleSearchAddress}
-          value={address}
-        />
-        {openPostcode && (
-          <Modal title={"주소 검색"} onCancel={() => setOpenPostcode(false)}>
-            <DaumPostcode
-              onComplete={handleSelectAddress}
-              autoClose={false}
-              defaultQuery={"논현로 66길"}
-            />
-          </Modal>
-        )}
+        <S.InputContainer>
+          <S.InputCheckable
+            placeholder={"숫자만 입력해주세요"}
+            id={"tel"}
+            onChange={onChangePhone}
+            required
+          />
+          <Margin size={1} row />
+          <S.CheckButton
+            onClick={e => {
+              e.preventDefault();
+            }}
+          >
+            본인인증
+          </S.CheckButton>
+        </S.InputContainer>
+
         <S.Label htmlFor="birthday">생년월일</S.Label>
         <S.InputText
           id={"birthday"}
@@ -184,6 +204,7 @@ const SignupPage = () => {
           type="date"
           onChange={onChangeBirth}
         />
+        <Margin size={2} />
         <fieldset onChange={onChangeGender}>
           <legend>성별</legend>
           <S.GenderRadioContainer>
@@ -216,26 +237,37 @@ S.Form = styled(CenteredContainer).attrs({ as: "form" })`
   font-size: 1.2rem;
 `;
 
-S.IdContainer = styled.div`
+S.InputContainer = styled.div`
   display: flex;
+`;
+
+S.InvaildText = styled.p`
+  color: red;
+  margin: 1rem 0;
 `;
 
 S.Label = styled.label`
   display: inline-block;
-  margin: 0 0 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 `;
 
-S.InputText = styled(InputText)`
-  margin: 0 0 2rem;
+S.InputText = styled(InputText)<{ invalid: boolean }>`
+  ${({ invalid }: { invalid: boolean }) =>
+    !invalid
+      ? null
+      : css`
+          border: 1px red solid;
+        `}
 `;
 
 S.Button = styled(Button)``;
 
-S.InputId = styled(S.InputText)`
+S.InputCheckable = styled(S.InputText)`
   flex: 3;
 `;
 
-S.ButtonIdCheck = styled(S.Button)`
+S.CheckButton = styled(S.Button)`
   flex: 1;
 `;
 

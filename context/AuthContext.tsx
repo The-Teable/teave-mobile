@@ -55,9 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     user_id: string;
     password: string;
     name: string;
-    email: string;
     tel: string;
-    address: string;
     birth?: Date;
     gender?: number;
   }) => {
