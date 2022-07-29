@@ -22,7 +22,7 @@ const SORT_CRITERIA = {
 type SORT_TYPE = typeof SORT_CRITERIA[keyof typeof SORT_CRITERIA];
 
 const ShopPage = () => {
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [modalSort, setModalSort] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
   const [filteredTeas, setFilteredTeas] = useState(tempDummy);
