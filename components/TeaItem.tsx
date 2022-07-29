@@ -3,25 +3,37 @@ import useProduct from "../hooks/useProduct";
 
 interface TeaItemProps {
   id: number;
-  img: string;
+  url: string;
   brand: string;
   name: string;
   price: number;
+  width?: string;
+  height?: string;
 }
 
-const TeaItem = ({ id, img, brand, name, price }: TeaItemProps) => {
+const TeaItem = ({
+  id,
+  url,
+  brand,
+  name,
+  price,
+  width = "14rem",
+  height = "18.6rem"
+}: TeaItemProps) => {
   const { onClickProduct, onClickFavorite } = useProduct({ tea_id: id });
   return (
-    <S.ItemWrapper onClick={() => onClickProduct()}>
-      <S.ItemThumbnail img={img}>
-        <S.ItemFavorite onClick={() => onClickFavorite()} />
-      </S.ItemThumbnail>
-      <S.ItemDescribeContainer>
-        <S.ItemBrand>{brand}</S.ItemBrand>
-        <S.ItemName>{name}</S.ItemName>
-        <S.ItemPrice>{price.toLocaleString()}원</S.ItemPrice>
-      </S.ItemDescribeContainer>
-    </S.ItemWrapper>
+    <S.Container onClick={() => onClickProduct()}>
+      <S.Thumbnail url={url} width={width} height={height}>
+        <S.Favorite onClick={() => onClickFavorite()} />
+      </S.Thumbnail>
+      <S.DescribeContainer>
+        <S.TitleWrapper>
+          <S.Brand>[{brand}] </S.Brand>
+          <S.Name>{name}</S.Name>
+        </S.TitleWrapper>
+        <S.Price>{price.toLocaleString()}원</S.Price>
+      </S.DescribeContainer>
+    </S.Container>
   );
 };
 
@@ -29,21 +41,21 @@ export default TeaItem;
 
 const S: any = {};
 
-S.ItemWrapper = styled.div`
+S.Container = styled.div`
   &:hover {
     cursor: pointer;
   }
 `;
 
-S.ItemThumbnail = styled.div<{ img: string }>`
+S.Thumbnail = styled.div<{ url: string; width: number; height: number }>`
   position: relative;
-  background: url(${({ img }: { img: string }) => img}) no-repeat center/cover;
-  width: 14rem;
-  height: 18.6rem;
+  background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
+  width: ${({ width }: { width: number }) => width};
+  height: ${({ height }: { height: number }) => height};
   border-radius: 0.5rem;
 `;
 
-S.ItemFavorite = styled.div`
+S.Favorite = styled.div`
   background: url("/image/icon_favorite.svg") no-repeat center/cover;
   width: 2rem;
   height: 2rem;
@@ -52,15 +64,20 @@ S.ItemFavorite = styled.div`
   bottom: 1rem;
 `;
 
-S.ItemDescribeContainer = styled.div`
+S.DescribeContainer = styled.div`
   padding-top: 1.5rem;
-  font-size: 12px;
+  font-size: 1.2rem;
 `;
 
-S.ItemBrand = styled.p``;
+S.TitleWrapper = styled.div`
+  height: 4.5rem;
+  line-height: 1.5rem;
+`;
 
-S.ItemName = styled.p``;
+S.Brand = styled.span``;
 
-S.ItemPrice = styled.span`
-  color: #808080;
+S.Name = styled.span``;
+
+S.Price = styled.p`
+  font-weight: bold;
 `;

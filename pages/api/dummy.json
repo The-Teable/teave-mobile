@@ -13,73 +13,64 @@
       "goods": [
         {
           "id": 0,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]1",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈1",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 1,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]2",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈2",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 2,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]3",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈3",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 3,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]4",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈4",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 4,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]5",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈5",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 5,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]6",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈6",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 6,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]7",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈7",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 7,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]8",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈8",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 8,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]9",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈9",
           "name": "카라멜 티메리카노",
           "price": 15000
         }
@@ -90,49 +81,43 @@
       "goods": [
         {
           "id": 0,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]1",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈1",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 1,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]2",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈2",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 2,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]3",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈3",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 3,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]4",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈4",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 4,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]5",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈5",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 5,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]6",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈6",
           "name": "카라멜 티메리카노",
           "price": 15000
         }
@@ -143,49 +128,43 @@
       "goods": [
         {
           "id": 0,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]1",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈1",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 1,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]2",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈2",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 2,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]3",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈3",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 3,
-          "img": "/image/goods1.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]4",
+          "url": "/image/goods1.svg",
+          "brand": "큐앤리브리즈4",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 4,
-          "img": "/image/goods2.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]5",
+          "url": "/image/goods2.svg",
+          "brand": "큐앤리브리즈5",
           "name": "카라멜 티메리카노",
           "price": 15000
         },
         {
           "id": 5,
-          "img": "/image/goods3.svg",
-          "href": "/",
-          "brand": "[큐앤리브리즈]6",
+          "url": "/image/goods3.svg",
+          "brand": "큐앤리브리즈6",
           "name": "카라멜 티메리카노",
           "price": 15000
         }
@@ -194,25 +173,69 @@
   ],
   "teaRecommends": [
     {
-      "img": "/image/sample.svg",
+      "url": "/image/sample.svg",
       "brand": "알디프",
       "name": "비포선셋",
       "features": "블랜딩 티, 무카페인, 매운/민트, 시트러스, 안정/숙면, 다이어트/피부",
       "describe": "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티 빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해"
     },
     {
-      "img": "/image/goods2.svg",
+      "url": "/image/goods2.svg",
       "brand": "알디프",
       "name": "비포선셋",
       "features": "루이보스, 베리, 상큼",
       "describe": "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티"
     },
     {
-      "img": "/image/goods3.svg",
+      "url": "/image/goods3.svg",
       "brand": "알디프",
       "name": "비포선셋",
       "features": "루이보스, 베리, 상큼",
       "describe": "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티"
+    }
+  ],
+  "shopFilterdTeas": [
+    {
+      "id": 0,
+      "url": "/image/goods3.svg",
+      "brand": "알디프",
+      "name": "카라멜 티메리카노",
+      "price": 15000
+    },
+    {
+      "id": 1,
+      "url": "/image/goods1.svg",
+      "brand": "알디프디프디프",
+      "name": "카라멜 티메리카노카노카노",
+      "price": 15000
+    },
+    {
+      "id": 2,
+      "url": "/image/goods2.svg",
+      "brand": "알디프",
+      "name": "카라멜 티메리카노",
+      "price": 15000
+    },
+    {
+      "id": 3,
+      "url": "/image/goods3.svg",
+      "brand": "알디프",
+      "name": "카라멜 티메리카노",
+      "price": 15000
+    },
+    {
+      "id": 4,
+      "url": "/image/goods1.svg",
+      "brand": "알디프",
+      "name": "카라멜 티메리카노",
+      "price": 15000
+    },
+    {
+      "id": 5,
+      "url": "/image/goods2.svg",
+      "brand": "알디프",
+      "name": "카라멜 티메리카노",
+      "price": 15000
     }
   ]
 }

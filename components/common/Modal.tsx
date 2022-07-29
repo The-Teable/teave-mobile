@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import Button from "./Button";
 import { ReactNode } from "react";
 import { color } from "../../styles/palette";
 
 interface ModalProps {
   title: string;
-  onCancel?: () => void;
+  onCancel: () => void;
   children: ReactNode;
 }
 
@@ -29,6 +28,7 @@ export default Modal;
 const S: any = {};
 
 S.Overlay = styled.div`
+  z-index: 1;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -36,9 +36,11 @@ S.Overlay = styled.div`
   top: 0;
   justify-content: center;
   background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
 `;
 
 S.Container = styled.div`
+  z-index: 2;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -48,6 +50,7 @@ S.Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
+  border-radius: 0.5rem;
 `;
 
 S.Header = styled.div`
@@ -61,7 +64,8 @@ S.Header = styled.div`
 `;
 
 S.Title = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: bold;
 `;
 
 S.ExitButton = styled.button`
@@ -75,13 +79,3 @@ S.ExitButton = styled.button`
     cursor: pointer;
   }
 `;
-
-S.Button = styled(Button)`
-  height: 3rem;
-  width: 6rem;
-  border-radius: 0.4rem;
-`;
-
-S.CancelButton = styled(S.Button)``;
-
-S.OkButton = styled(S.Button)``;
