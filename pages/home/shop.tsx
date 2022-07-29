@@ -5,21 +5,13 @@ import { useState } from "react";
 import { color } from "../../styles/palette";
 import Margin from "../../components/common/Margin";
 import TeaItem from "../../components/TeaItem";
-
 import { shopFilterdTeas as tempDummy } from "../api/dummy.json";
-
-import Modal from "../../components/common/Modal";
-
 import FilterModal from "../../components/FilterModal";
 
-const SORT_CRITERIA = {
-  RECENT: "최신순",
-  SAIL: "판매순",
-  LOW_PRICE: "낮은 가격순",
-  HIGH_PRICE: "높은 가격순",
-  REVIEW: "후기순"
-};
-type SORT_TYPE = typeof SORT_CRITERIA[keyof typeof SORT_CRITERIA];
+import SortModal, {
+  SORT_CRITERIA,
+  SORT_TYPE
+} from "../../components/SortModal";
 
 const ShopPage = () => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -58,9 +50,12 @@ const ShopPage = () => {
         />
       ) : null}
       {modalSort ? (
-        <Modal title={"정렬"} onCancel={() => setModalSort(false)}>
-          <></>
-        </Modal>
+        <SortModal
+          title={"정렬"}
+          onCancel={() => setModalSort(false)}
+          sortCriteria={sortCriteria}
+          setSortCriteria={setSortCriteria}
+        />
       ) : null}
       {selectedFilters.length > 0 ? (
         <S.SelectedFilter onClick={handleFilter}>
