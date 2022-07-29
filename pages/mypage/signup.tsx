@@ -189,7 +189,7 @@ const SignupPage = () => {
           />
           <Margin size={1} row />
           <S.CheckButton
-            onClick={e => {
+            onClick={(e: any) => {
               e.preventDefault();
             }}
           >
