@@ -9,18 +9,21 @@ import TitleHeader from "../../components/common/TitleHeader";
 import CenteredContainer from "../../components/layout/CenteredContainer";
 
 const MyPage = () => {
-  const { user, logoutUser } = useContext(AuthContext);
+  const {
+    user: { user_id, name },
+    logoutUser
+  } = useContext(AuthContext);
   return (
     <>
       <TitleHeader title={"마이페이지"} />
       <S.Container>
-        {user ? (
+        {user_id ? (
           <S.LoginContainer>
             <S.UserContainer>
               <S.UserImage url={"/image/icon_account.svg"} />
               <Margin row size={1.2} />
               <S.UserWrapper>
-                <S.UserName>김티브님</S.UserName>
+                <S.UserName>{name}</S.UserName>
                 <Margin size={1} />
                 <S.RankWrapper>
                   <S.UserRank>녹차 등급</S.UserRank>
@@ -80,9 +83,9 @@ const MyPage = () => {
         <S.ItemWrapper>배송 안내</S.ItemWrapper>
         <S.ItemWrapper>공지사항</S.ItemWrapper>
         <S.ItemWrapper>자주하는 질문</S.ItemWrapper>
-        <S.ItemWrapper>고객센터(앱 문의,건의)</S.ItemWrapper>
+        <S.ItemWrapper>고객센터 (앱 문의, 건의)</S.ItemWrapper>
         <S.ItemWrapper>이용안내</S.ItemWrapper>
-        {user ? (
+        {user_id ? (
           <S.ItemWrapper onClick={logoutUser}>로그아웃</S.ItemWrapper>
         ) : null}
       </S.Container>
