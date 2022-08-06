@@ -10,11 +10,13 @@ import FilterModal from "../../components/FilterModal";
 
 import SortModal, {
   SORT_CRITERIA,
-  SORT_TYPE
+  SORT_TYPE,
 } from "../../components/SortModal";
 
 const ShopPage = () => {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<
+    { filterName: string; value: string }[]
+  >([]);
   const [modalSort, setModalSort] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
   const [filteredTeas, setFilteredTeas] = useState(tempDummy);
@@ -59,8 +61,10 @@ const ShopPage = () => {
       ) : null}
       {selectedFilters.length > 0 ? (
         <S.SelectedFilter onClick={handleFilter}>
-          {selectedFilters.map(e => (
-            <S.FilterItem>{e}</S.FilterItem>
+          {selectedFilters.map(({ value }: any) => (
+            <>
+              <S.FilterItem>{value}</S.FilterItem>
+            </>
           ))}
         </S.SelectedFilter>
       ) : null}
@@ -78,7 +82,7 @@ const ShopPage = () => {
       </S.OptionContainer>
       <Margin size={2} />
       <S.Container>
-        {filteredTeas.map(props => (
+        {filteredTeas.map((props) => (
           <S.TeaItemWrapper>
             <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
           </S.TeaItemWrapper>

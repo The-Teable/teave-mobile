@@ -10,7 +10,7 @@ import Image from "next/image";
 interface FilterModalProps {
   title: string;
   onCancel: () => void;
-  selectedFilters: string[];
+  selectedFilters: { filterName: string; value: string }[];
   setSelectedFilters: Dispatch<SetStateAction<string[]>>;
 }
 
@@ -18,52 +18,124 @@ const FilterModal = ({
   title: modalTitle,
   onCancel,
   selectedFilters,
-  setSelectedFilters
+  setSelectedFilters,
 }: FilterModalProps) => {
-  const [buffer, setBuffer] = useState(selectedFilters);
+  const [caffeine, setCaffeine] = useState(
+    selectedFilters.filter(({ filterName }) => filterName === "caffeine")
+  );
+  const [teaType, setTeaType] = useState(
+    selectedFilters.filter(({ filterName }) => filterName === "teaType")
+  );
 
-  const handleSelectItem = (item: string) => {
-    setBuffer(
-      buffer.some(e => item === e)
-        ? buffer.filter(e => item !== e)
-        : buffer.concat(item)
-    );
+  const handleSelectItem = (
+    event: any,
+    filter,
+    setFilter,
+    filterName,
+    isUnique
+  ) => {
+    const {
+      target: { innerText },
+    } = event;
+    if (innerText === "전체") {
+      setFilter([]);
+    } else if (isUnique) {
+      setFilter([{ filterName, value: innerText }]);
+    } else {
+      setFilter(
+        filter.some(({ value }) => innerText === value)
+          ? filter.filter(({ value }) => innerText !== value)
+          : filter.concat({ filterName, value: innerText })
+      );
+    }
   };
 
   const handleReset = () => {
-    setBuffer([]);
+    setCaffeine([]);
+    setTeaType([]);
   };
 
   const handleFilterSubmit = () => {
-    setSelectedFilters(buffer);
+    setSelectedFilters([...caffeine, ...teaType]);
     onCancel();
   };
 
+  teaFilter.caffeine.filters;
   return (
     <Modal title={modalTitle} onCancel={onCancel}>
       <S.Container>
-        {teaFilter.map(({ title, filters }) => (
-          <S.Wrapper>
-            <S.Title>{title}</S.Title>
-            <Margin size={1} />
-            <S.ItemContainer>
-              {filters.map(item => (
+        <S.Wrapper>
+          <S.Title>카페인</S.Title>
+          <Margin size={1} />
+          <S.ItemContainer>
+            <S.Item
+              selected={caffeine.length === 0}
+              onClick={(e) =>
+                handleSelectItem(e, caffeine, setCaffeine, "caffeine", true)
+              }
+            >
+              전체
+            </S.Item>
+            <>
+              {teaFilter.caffeine.filters.map((item) => (
                 <>
                   <S.Item
-                    selected={buffer.some(e => e === item)}
-                    onClick={() => handleSelectItem(item)}
+                    selected={caffeine.some(({ value }) => value === item)}
+                    onClick={(e) =>
+                      handleSelectItem(
+                        e,
+                        caffeine,
+                        setCaffeine,
+                        "caffeine",
+                        true
+                      )
+                    }
                   >
                     {item}
                   </S.Item>
                 </>
               ))}
-            </S.ItemContainer>
-            <Margin size={3} />
-          </S.Wrapper>
-        ))}
+            </>
+          </S.ItemContainer>
+          <Margin size={3} />
+        </S.Wrapper>
+        <S.Wrapper>
+          <S.Title>티 종류</S.Title>
+          <Margin size={1} />
+          <S.ItemContainer>
+            <S.Item
+              selected={teaType.length === 0}
+              onClick={(e) =>
+                handleSelectItem(e, teaType, setTeaType, "teaType", false)
+              }
+            >
+              전체
+            </S.Item>
+            <>
+              {teaFilter.teaType.filters.map((item) => (
+                <>
+                  <S.Item
+                    selected={teaType.some(({ value }) => value === item)}
+                    onClick={(e) =>
+                      handleSelectItem(e, teaType, setTeaType, "teaType", false)
+                    }
+                  >
+                    {item}
+                  </S.Item>
+                </>
+              ))}
+            </>
+          </S.ItemContainer>
+          <Margin size={3} />
+        </S.Wrapper>
         <S.Footer>
           <S.Reset onClick={handleReset}>
-            <Image src={"/image/icon_reset.svg"} width={20} height={20} />
+            <Image
+              src={"/image/icon_reset.svg"}
+              width={20}
+              height={20}
+              alt="reset"
+            />
             <Margin row size={0.5} />
             전체 초기화
           </S.Reset>
