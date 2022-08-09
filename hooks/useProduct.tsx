@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthContext";
 
 const useProduct = ({ tea_id }: { tea_id: number }) => {
   const {
-    user: { user_id }
+    user: { user_id },
   } = useContext(AuthContext);
 
   const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
@@ -12,12 +12,15 @@ const useProduct = ({ tea_id }: { tea_id: number }) => {
   const onClickProduct = () => {
     instance.post("user-click-product", {
       user_id,
-      tea_id
+      tea_id,
     });
   };
 
   const onClickFavorite = () => {
-    // 찜하기
+    instance.post("user-wish-product", {
+      user_id,
+      tea_id,
+    });
   };
 
   return { onClickProduct, onClickFavorite };
