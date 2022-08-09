@@ -4,10 +4,10 @@ import CenteredContainer from "./CenteredContainer";
 
 const items = [
   { url: "/image/icon_home.svg", text: "홈", href: "/home" },
-  { url: "/image/icon_search.svg", text: "검색", href: "/" },
-  { url: "/image/icon_favorite.svg", text: "찜", href: "/" },
-  { url: "/image/icon_cart.svg", text: "장바구니", href: "/" },
-  { url: "/image/icon_account.svg", text: "마이페이지", href: "/mypage" }
+  { url: "/image/icon_search.svg", text: "검색", href: "/search" },
+  { url: "/image/icon_favorite.svg", text: "찜", href: "/favorite" },
+  { url: "/image/icon_cart.svg", text: "장바구니", href: "/cart" },
+  { url: "/image/icon_account.svg", text: "마이페이지", href: "/mypage" },
 ];
 
 const TabBar = () => (

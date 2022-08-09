@@ -6,7 +6,7 @@ const color = {
   gray400: "#BDBDBD",
   gray500: "#9E9E9E",
   gray600: "#757575",
-  gray800: "#424242"
+  gray800: "#424242",
 };
 
 export { color };

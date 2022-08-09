@@ -5,7 +5,7 @@ import { color } from "../../styles/palette";
 
 const TitleHeader = ({
   title,
-  backlink = null
+  backlink = null,
 }: {
   title: string;
   backlink?: string | null;
@@ -51,5 +51,6 @@ S.GoBackButton = styled.button`
 S.Title = styled.h1`
   margin: 0 auto;
   line-height: 2.5rem;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
 `;
