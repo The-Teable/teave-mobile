@@ -1,30 +1,37 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import AuthContext from "../context/AuthContext";
 import useProduct from "../hooks/useProduct";
+import { ProductProps } from "../types/product";
 
-interface TeaItemProps {
-  id: number;
-  url: string;
-  brand: string;
-  name: string;
-  price: number;
+type TeaItemProps = Pick<
+  ProductProps,
+  "id" | "name" | "brand" | "price" | "image_url"
+> & {
   width?: string;
   height?: string;
-}
+};
 
-const TeaItem = ({
-  id,
-  url,
-  brand,
-  name,
-  price,
-  width = "14rem",
-  height = "18.6rem"
-}: TeaItemProps) => {
-  const { onClickProduct, onClickFavorite } = useProduct({ tea_id: id });
+const TeaItem = (props: TeaItemProps) => {
+  const {
+    id,
+    image_url,
+    brand,
+    name,
+    price,
+    width = "14rem",
+    height = "18.6rem",
+  } = props;
+
+  const {
+    user: { user_id },
+  } = useContext(AuthContext);
+
+  const { onClickProduct, onClickWish } = useProduct({ user_id, tea_id: id });
   return (
     <S.Container onClick={() => onClickProduct()}>
-      <S.Thumbnail url={url} width={width} height={height}>
-        <S.Favorite onClick={() => onClickFavorite()} />
+      <S.Thumbnail url={image_url} width={width} height={height}>
+        <S.Favorite onClick={() => onClickWish()} />
       </S.Thumbnail>
       <S.DescribeContainer>
         <S.TitleWrapper>

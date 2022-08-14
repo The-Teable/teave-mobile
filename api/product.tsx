@@ -5,13 +5,12 @@ import errorHandling from "./errorHandling";
 
 const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
 
-const fetchSelectProduct = ({
-  user_id,
-  tea_id,
-}: {
-  tea_id: Pick<ProductProps, "id">;
-  user_id: Pick<UserProps, "user_id">;
+const fetchSelectProduct = (props: {
+  tea_id: ProductProps["id"];
+  user_id: UserProps["user_id"];
 }) => {
+  const { user_id, tea_id } = props;
+
   instance
     .post("user-click-product", {
       user_id,
@@ -22,13 +21,12 @@ const fetchSelectProduct = ({
     });
 };
 
-const fetchWishProduct = ({
-  user_id,
-  tea_id,
-}: {
-  tea_id: Pick<ProductProps, "id">;
-  user_id: Pick<UserProps, "user_id">;
+const fetchWishProduct = (props: {
+  tea_id: ProductProps["id"];
+  user_id: UserProps["user_id"];
 }) => {
+  const { user_id, tea_id } = props;
+
   instance
     .post("user-wish-product", {
       user_id,

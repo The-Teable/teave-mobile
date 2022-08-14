@@ -1,12 +1,12 @@
-import { useContext } from "react";
 import { fetchSelectProduct, fetchWishProduct } from "../api/product";
-import AuthContext from "../context/AuthContext";
 import { ProductProps } from "../types/product";
+import { UserProps } from "../types/user";
 
-const useProduct = ({ tea_id }: { tea_id: Pick<ProductProps, "id"> }) => {
-  const {
-    user: { user_id },
-  } = useContext(AuthContext);
+const useProduct = (props: {
+  tea_id: ProductProps["id"];
+  user_id: UserProps["user_id"];
+}) => {
+  const { tea_id, user_id } = props;
 
   const onClickProduct = () => {
     fetchSelectProduct({ user_id, tea_id });
