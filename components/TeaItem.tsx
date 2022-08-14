@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import AuthContext from "../context/AuthContext";
+import { useUserContext } from "../context/UserContext";
 import useProduct from "../hooks/useProduct";
 import { ProductProps } from "../types/product";
 
@@ -25,7 +24,7 @@ const TeaItem = (props: TeaItemProps) => {
 
   const {
     user: { user_id },
-  } = useContext(AuthContext);
+  } = useUserContext();
 
   const { onClickProduct, onClickWish } = useProduct({ user_id, tea_id: id });
   return (

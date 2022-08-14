@@ -1,4 +1,4 @@
-import { fetchSelectProduct, fetchWishProduct } from "../api/product";
+import { fetchSelectProduct, fetchWishProduct } from "../api/productApi";
 import { ProductProps } from "../types/product";
 import { UserProps } from "../types/user";
 
