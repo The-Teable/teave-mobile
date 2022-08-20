@@ -1,16 +1,17 @@
 import { LoginProps, LogoutProps, SignupProps } from "../model/authSchema";
-import { axiosInstance, urls } from "./instance";
+import { authenticInstance, authenticUrls } from "./authenticInstance";
+import { nonAuthenticInstance, nonAuthenticUrls } from "./nonAuthenticInstance";
 
 const fetchLogin = (props: LoginProps) => {
-  return axiosInstance.post(urls.LOGIN, props);
+  return nonAuthenticInstance.post(nonAuthenticUrls.LOGIN, props);
 };
 
 const fetchSignup = (props: SignupProps) => {
-  return axiosInstance.post(urls.SIGNUP, props);
+  return nonAuthenticInstance.post(nonAuthenticUrls.SIGNUP, props);
 };
 
 const fetchLogout = (props: LogoutProps) => {
-  return axiosInstance.post(urls.LOGOUT, props);
+  return authenticInstance.post(authenticUrls.LOGOUT, props);
 };
 
 export { fetchLogin, fetchSignup, fetchLogout };

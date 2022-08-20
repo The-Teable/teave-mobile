@@ -1,18 +1,14 @@
 import axios from "axios";
-import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { storage, STORAGE_KEY } from "../util/storage";
 
 const useProduct = ({ tea_id }: { tea_id: number }) => {
-  const {
-    user: { user_id }
-  } = useContext(AuthContext);
-
+  const user_id = storage.get(STORAGE_KEY.USER_ID);
   const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
 
   const onClickProduct = () => {
     instance.post("user-click-product", {
       user_id,
-      tea_id
+      tea_id,
     });
   };
 

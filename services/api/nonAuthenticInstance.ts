@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const urls = {
+const nonAuthenticUrls = {
   LOGIN: "/login",
   SIGNUP: "/signup",
-  LOGOUT: "/logout",
 } as const;
 
-const axiosInstance = axios.create({
+const nonAuthenticInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
 
-export { urls, axiosInstance };
+export { nonAuthenticUrls, nonAuthenticInstance };

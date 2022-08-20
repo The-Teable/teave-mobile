@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import AuthContext from "../../context/AuthContext";
 import styled, { css } from "styled-components";
 import InputText from "../../components/common/InputText";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
+import useAuthQuery from "../../services/hooks/useAuthQurey";
 
 const baseURL = process.env.NEXT_PUBLIC_LS_URL;
 
@@ -20,7 +20,7 @@ const SignupPage = () => {
   const [tel, setTel] = useState("");
   const [birth, setBirth] = useState<any>(null);
   const [gender, setGender] = useState("");
-  const { registerUser } = useContext(AuthContext);
+  const { signup } = useAuthQuery();
   const [duplicateIdCheck, setDuplicateIdCheck] = useState(true);
 
   const markRequired = <span style={{ color: "red" }}>*</span>;
@@ -101,13 +101,13 @@ const SignupPage = () => {
       alert("올바르지 않은 정보가 있습니다. 다시 확인해주세요.");
       return;
     }
-    await registerUser({
+    await signup({
       user_id: userId,
       password,
       name: userName,
       tel,
       birth,
-      gender
+      gender,
     });
   };
 

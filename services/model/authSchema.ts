@@ -2,8 +2,11 @@ import { User } from "./userSchema";
 
 type LoginProps = Pick<User, "user_id"> & { password: string };
 
-type SignupProps = User;
+type SignupPropsPartail = Pick<User, "birth" | "gender">;
+
+type SignupProps = Pick<User, "user_id" | "password" | "name" | "tel"> &
+  Partial<SignupPropsPartail>;
 
 type LogoutProps = { refresh: string };
 
-export type { User, LoginProps, SignupProps, LogoutProps };
+export type { LoginProps, SignupProps, LogoutProps };

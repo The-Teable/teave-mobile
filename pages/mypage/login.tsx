@@ -1,22 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import AuthContext from "../../context/AuthContext";
+import useAuthQuery from "../../services/hooks/useAuthQurey";
 
 const LoginPage = () => {
   const router = useRouter();
   const { returnUrl }: any = router.query;
-  const { loginUser }: any = useContext(AuthContext);
+  const { login } = useAuthQuery();
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const userid = e.target.userid.value;
     const password = e.target.password.value;
-    loginUser({ user_id: userid, password });
+    login({ user_id: userid, password });
   };
   return (
     <CenteredContainer>
