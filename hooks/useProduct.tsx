@@ -1,26 +1,22 @@
-import axios from "axios";
-import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { fetchSelectProduct, fetchWishProduct } from "../api/productApi";
+import { ProductProps } from "../types/product";
+import { UserProps } from "../types/user";
 
-const useProduct = ({ tea_id }: { tea_id: number }) => {
-  const {
-    user: { user_id }
-  } = useContext(AuthContext);
-
-  const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
+const useProduct = (props: {
+  tea_id: ProductProps["id"];
+  user_id: UserProps["user_id"];
+}) => {
+  const { tea_id, user_id } = props;
 
   const onClickProduct = () => {
-    instance.post("user-click-product", {
-      user_id,
-      tea_id
-    });
+    fetchSelectProduct({ user_id, tea_id });
   };
 
-  const onClickFavorite = () => {
-    // 찜하기
+  const onClickWish = () => {
+    fetchWishProduct({ user_id, tea_id });
   };
 
-  return { onClickProduct, onClickFavorite };
+  return { onClickProduct, onClickWish };
 };
 
 export default useProduct;

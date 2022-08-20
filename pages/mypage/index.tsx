@@ -1,18 +1,17 @@
 import Link from "next/link";
-import { useContext } from "react";
 import TabBar from "../../components/layout/TabBar";
-import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
 import CenteredContainer from "../../components/layout/CenteredContainer";
+import { useUserContext } from "../../context/UserContext";
+import Logout from "../../components/mypage/Logout";
 
 const MyPage = () => {
   const {
     user: { user_id, name },
-    logoutUser
-  } = useContext(AuthContext);
+  } = useUserContext();
   return (
     <>
       <TitleHeader title={"마이페이지"} />
@@ -86,7 +85,9 @@ const MyPage = () => {
         <S.ItemWrapper>고객센터 (앱 문의, 건의)</S.ItemWrapper>
         <S.ItemWrapper>이용안내</S.ItemWrapper>
         {user_id ? (
-          <S.ItemWrapper onClick={logoutUser}>로그아웃</S.ItemWrapper>
+          <S.ItemWrapper>
+            <Logout name={"로그아웃"} />
+          </S.ItemWrapper>
         ) : null}
       </S.Container>
       <TabBar />

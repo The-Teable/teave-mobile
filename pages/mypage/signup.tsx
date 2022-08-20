@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import AuthContext from "../../context/AuthContext";
 import styled, { css } from "styled-components";
 import InputText from "../../components/common/InputText";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
+import { fetchSignup } from "../../api/authApi";
+import { useRouter } from "next/router";
 
 const baseURL = process.env.NEXT_PUBLIC_LS_URL;
 
@@ -20,8 +21,9 @@ const SignupPage = () => {
   const [tel, setTel] = useState("");
   const [birth, setBirth] = useState<any>(null);
   const [gender, setGender] = useState("");
-  const { registerUser } = useContext(AuthContext);
   const [duplicateIdCheck, setDuplicateIdCheck] = useState(true);
+
+  const router = useRouter();
 
   const markRequired = <span style={{ color: "red" }}>*</span>;
 
@@ -96,19 +98,27 @@ const SignupPage = () => {
   };
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    if (!duplicateIdCheck || !isValidPassword || !isValidPasswordCheck) {
-      alert("올바르지 않은 정보가 있습니다. 다시 확인해주세요.");
-      return;
+    try {
+      e.preventDefault();
+      if (!duplicateIdCheck || !isValidPassword || !isValidPasswordCheck) {
+        alert("올바르지 않은 정보가 있습니다. 다시 확인해주세요.");
+        return;
+      }
+      const response = await fetchSignup({
+        user_id: userId,
+        password,
+        name: userName,
+        tel,
+        birth,
+        gender,
+      });
+      if (!response) throw Error("wrong response");
+      alert("회원가입이 완료되었습니다. 로그인 해주세요.");
+      router.push("/mypage/login");
+    } catch (error) {
+      alert(`회원가입에 실패하였습니다. 다시 시도해주세요.\n${error}`);
+      return false;
     }
-    await registerUser({
-      user_id: userId,
-      password,
-      name: userName,
-      tel,
-      birth,
-      gender
-    });
   };
 
   return (

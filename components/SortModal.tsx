@@ -9,7 +9,7 @@ export const SORT_CRITERIA = {
   SAIL: "판매순",
   LOW_PRICE: "낮은 가격순",
   HIGH_PRICE: "높은 가격순",
-  REVIEW: "후기순"
+  REVIEW: "후기순",
 };
 export type SORT_TYPE = typeof SORT_CRITERIA[keyof typeof SORT_CRITERIA];
 
@@ -24,7 +24,7 @@ const SortModal = ({
   title,
   onCancel,
   sortCriteria,
-  setSortCriteria
+  setSortCriteria,
 }: SortModalProps) => {
   const handleSelectItem = (item: SORT_TYPE) => {
     setSortCriteria(item);
@@ -34,14 +34,20 @@ const SortModal = ({
   return (
     <Modal title={title} onCancel={onCancel}>
       <S.Container>
-        {Object.values(SORT_CRITERIA).map(e => (
+        {Object.values(SORT_CRITERIA).map((e, i) => (
           <S.Item
+            key={i}
             onClick={() => handleSelectItem(e)}
             selected={e === sortCriteria}
           >
             {e}{" "}
             {e === sortCriteria ? (
-              <Image src="/image/icon_check.svg" width={10} height={10} />
+              <Image
+                src="/image/icon_check.svg"
+                width={10}
+                height={10}
+                alt={"check icon"}
+              />
             ) : null}
           </S.Item>
         ))}

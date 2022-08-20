@@ -1,22 +1,34 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
 import styled from "styled-components";
+import { fetchLogin } from "../../api/authApi";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import AuthContext from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
   const { returnUrl }: any = router.query;
-  const { loginUser }: any = useContext(AuthContext);
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const userid = e.target.userid.value;
-    const password = e.target.password.value;
-    loginUser({ user_id: userid, password });
+  const { setAuthToken } = useAuthContext();
+  const handleSubmit = async (e: any) => {
+    try {
+      e.preventDefault();
+      const response = await fetchLogin({
+        user_id: e.target.userid.value,
+        password: e.target.password.value,
+      });
+
+      if (!response) throw Error("wrong response");
+      setAuthToken(response.data);
+      //setUser(jwt_decode(data.access));
+      localStorage.setItem("authToken", JSON.stringify(response.data));
+      router.push("/");
+    } catch (error) {
+      alert(`로그인에 실패했습니다. 다시 시도해주세요.\n${error}`);
+      return false;
+    }
   };
   return (
     <CenteredContainer>

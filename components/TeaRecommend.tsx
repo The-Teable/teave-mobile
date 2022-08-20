@@ -7,7 +7,7 @@ import Margin from "./common/Margin";
 
 interface TeaRecommendProps {
   items: {
-    url: string;
+    image_url: string;
     brand: string;
     name: string;
     features: string;
@@ -22,10 +22,10 @@ const TeaRecommend = ({ items }: TeaRecommendProps) => {
       <S.Title>추천티를 둘러보세요.</S.Title>
       <Margin size={3} />
       <Slider itemWidth={width}>
-        {items.map(({ url, brand, name, features, describe }, i) => (
+        {items.map(({ image_url, brand, name, features, describe }, i) => (
           <S.Wrapper key={i}>
             <S.TeaImg
-              src={url}
+              src={image_url}
               alt={name}
               width={80}
               height={80}
