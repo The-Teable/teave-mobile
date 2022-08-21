@@ -45,7 +45,7 @@ const SignupPage = () => {
       alert("올바른 아이디를 입력해주세요.");
       return;
     }
-    const response = await fetch(`${baseURL}/signup/check?user_id=${userId}`);
+    const response = await fetch(`${baseURL}/signup/check/?user_id=${userId}`);
     const { is_duplicate: isDuplicate } = await response.json();
     setDuplicateIdCheck(!isDuplicate);
     isDuplicate
