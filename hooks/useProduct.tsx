@@ -1,22 +1,22 @@
-import { fetchSelectProduct, fetchWishProduct } from "../api/productApi";
-import { ProductProps } from "../types/product";
-import { UserProps } from "../types/user";
+import axios from "axios";
+import { storage, STORAGE_KEY } from "../util/storage";
 
-const useProduct = (props: {
-  tea_id: ProductProps["id"];
-  user_id: UserProps["user_id"];
-}) => {
-  const { tea_id, user_id } = props;
+const useProduct = ({ tea_id }: { tea_id: number }) => {
+  const user_id = storage.get(STORAGE_KEY.USER_ID);
+  const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_LS_URL });
 
   const onClickProduct = () => {
-    fetchSelectProduct({ user_id, tea_id });
+    instance.post("user-click-product", {
+      user_id,
+      tea_id,
+    });
   };
 
-  const onClickWish = () => {
-    fetchWishProduct({ user_id, tea_id });
+  const onClickFavorite = () => {
+    // 찜하기
   };
 
-  return { onClickProduct, onClickWish };
+  return { onClickProduct, onClickFavorite };
 };
 
 export default useProduct;

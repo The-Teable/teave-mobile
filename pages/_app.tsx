@@ -1,15 +1,15 @@
-import { AuthProvider } from "../context/AuthContext";
-import { UserProvider } from "../context/UserContext";
 import GlobalStyles from "../styles/globalStyles";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: any) {
   return (
-    <AuthProvider>
-      <UserProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
-      </UserProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyles />
+      <Component {...pageProps} />
+    </QueryClientProvider>
   );
 }
 

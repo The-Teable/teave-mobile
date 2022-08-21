@@ -1,36 +1,30 @@
 import styled from "styled-components";
-import { useUserContext } from "../context/UserContext";
 import useProduct from "../hooks/useProduct";
-import { ProductProps } from "../types/product";
 
-type TeaItemProps = Pick<
-  ProductProps,
-  "id" | "name" | "brand" | "price" | "image_url"
-> & {
+interface TeaItemProps {
+  id: number;
+  url: string;
+  brand: string;
+  name: string;
+  price: number;
   width?: string;
   height?: string;
-};
+}
 
-const TeaItem = (props: TeaItemProps) => {
-  const {
-    id,
-    image_url,
-    brand,
-    name,
-    price,
-    width = "14rem",
-    height = "18.6rem",
-  } = props;
-
-  const {
-    user: { user_id },
-  } = useUserContext();
-
-  const { onClickProduct, onClickWish } = useProduct({ user_id, tea_id: id });
+const TeaItem = ({
+  id,
+  url,
+  brand,
+  name,
+  price,
+  width = "14rem",
+  height = "18.6rem"
+}: TeaItemProps) => {
+  const { onClickProduct, onClickFavorite } = useProduct({ tea_id: id });
   return (
     <S.Container onClick={() => onClickProduct()}>
-      <S.Thumbnail url={image_url} width={width} height={height}>
-        <S.Favorite onClick={() => onClickWish()} />
+      <S.Thumbnail url={url} width={width} height={height}>
+        <S.Favorite onClick={() => onClickFavorite()} />
       </S.Thumbnail>
       <S.DescribeContainer>
         <S.TitleWrapper>

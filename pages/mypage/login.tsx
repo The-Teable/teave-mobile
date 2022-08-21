@@ -1,34 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { fetchLogin } from "../../api/authApi";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import { useAuthContext } from "../../context/AuthContext";
+import useAuthQuery from "../../services/hooks/useAuthQurey";
 
 const LoginPage = () => {
   const router = useRouter();
   const { returnUrl }: any = router.query;
-  const { setAuthToken } = useAuthContext();
-  const handleSubmit = async (e: any) => {
-    try {
-      e.preventDefault();
-      const response = await fetchLogin({
-        user_id: e.target.userid.value,
-        password: e.target.password.value,
-      });
-
-      if (!response) throw Error("wrong response");
-      setAuthToken(response.data);
-      //setUser(jwt_decode(data.access));
-      localStorage.setItem("authToken", JSON.stringify(response.data));
-      router.push("/");
-    } catch (error) {
-      alert(`로그인에 실패했습니다. 다시 시도해주세요.\n${error}`);
-      return false;
-    }
+  const { login } = useAuthQuery();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const userid = e.target.userid.value;
+    const password = e.target.password.value;
+    login({ user_id: userid, password });
   };
   return (
     <CenteredContainer>

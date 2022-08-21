@@ -5,18 +5,30 @@ import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import { useUserContext } from "../../context/UserContext";
-import Logout from "../../components/mypage/Logout";
+import { storage, STORAGE_KEY } from "../../util/storage";
+import tempUserInfo from "../api/tempUserInfo.json";
+import useAuthQuery from "../../services/hooks/useAuthQurey";
 
 const MyPage = () => {
+  const userId = storage.get(STORAGE_KEY.USER_ID);
+  const { logout } = useAuthQuery();
+
+  // api 임시 방편
   const {
-    user: { user_id, name },
-  } = useUserContext();
+    name,
+    rank,
+    mileage,
+    couponCount,
+    orderCount,
+    deliveryCount,
+    reviewCount,
+  } = tempUserInfo;
+
   return (
     <>
       <TitleHeader title={"마이페이지"} />
       <S.Container>
-        {user_id ? (
+        {userId ? (
           <S.LoginContainer>
             <S.UserContainer>
               <S.UserImage url={"/image/icon_account.svg"} />
@@ -25,7 +37,7 @@ const MyPage = () => {
                 <S.UserName>{name}</S.UserName>
                 <Margin size={1} />
                 <S.RankWrapper>
-                  <S.UserRank>녹차 등급</S.UserRank>
+                  <S.UserRank>{rank} 등급</S.UserRank>
                   <Margin row size={1} />
                   <S.RankInfo>등급 혜택보기&gt;</S.RankInfo>
                 </S.RankWrapper>
@@ -34,13 +46,13 @@ const MyPage = () => {
             <S.MileageConainer>
               <S.MileageWrapper>
                 <S.MileageTitle>적립금</S.MileageTitle>
-                <S.MileageContent>500 P</S.MileageContent>
+                <S.MileageContent>{mileage} P</S.MileageContent>
                 <S.MileageClickHint>&gt;</S.MileageClickHint>
               </S.MileageWrapper>
               <Margin row size={5} />
               <S.MileageWrapper>
                 <S.MileageTitle>쿠폰</S.MileageTitle>
-                <S.MileageContent>5 개</S.MileageContent>
+                <S.MileageContent>{couponCount} 개</S.MileageContent>
                 <S.MileageClickHint>&gt;</S.MileageClickHint>
               </S.MileageWrapper>
             </S.MileageConainer>
@@ -48,15 +60,15 @@ const MyPage = () => {
             <S.PurchaseContainer>
               <S.PurchaseWrapper>
                 <S.PurchaseTitle>주문내역</S.PurchaseTitle>
-                <S.PurchaseContent>0</S.PurchaseContent>
+                <S.PurchaseContent>{orderCount}</S.PurchaseContent>
               </S.PurchaseWrapper>
               <S.PurchaseWrapper>
                 <S.PurchaseTitle>배송정보</S.PurchaseTitle>
-                <S.PurchaseContent>0</S.PurchaseContent>
+                <S.PurchaseContent>{deliveryCount}</S.PurchaseContent>
               </S.PurchaseWrapper>
               <S.PurchaseWrapper>
                 <S.PurchaseTitle>리뷰</S.PurchaseTitle>
-                <S.PurchaseContent>0</S.PurchaseContent>
+                <S.PurchaseContent>{reviewCount}</S.PurchaseContent>
               </S.PurchaseWrapper>
             </S.PurchaseContainer>
             <Margin size={2} />
@@ -84,10 +96,8 @@ const MyPage = () => {
         <S.ItemWrapper>자주하는 질문</S.ItemWrapper>
         <S.ItemWrapper>고객센터 (앱 문의, 건의)</S.ItemWrapper>
         <S.ItemWrapper>이용안내</S.ItemWrapper>
-        {user_id ? (
-          <S.ItemWrapper>
-            <Logout name={"로그아웃"} />
-          </S.ItemWrapper>
+        {userId ? (
+          <S.ItemWrapper onClick={logout}>로그아웃</S.ItemWrapper>
         ) : null}
       </S.Container>
       <TabBar />

@@ -6,7 +6,7 @@ interface ThemeRecommendProps {
   title: string;
   items: {
     id: number;
-    image_url: string;
+    url: string;
     brand: string;
     name: string;
     price: number;
@@ -18,9 +18,15 @@ const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
     <S.Container>
       <S.Title>{title}</S.Title>
       <S.ItemsContainer itemWidth={150}>
-        {items.map((item, i) => (
-          <S.ItemWrapper key={i}>
-            <TeaItem {...item} />
+        {items.map(({ id, url, brand, name, price }) => (
+          <S.ItemWrapper>
+            <TeaItem
+              id={id}
+              url={url}
+              brand={brand}
+              name={name}
+              price={price}
+            />
           </S.ItemWrapper>
         ))}
       </S.ItemsContainer>
