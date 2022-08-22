@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { color } from "../styles/palette";
 import Slider from "./common/Slider";
-import useElementCurWidth from "../hooks/useElementCurWidth";
+import useElementCurWidth from "./hooks/useElementCurWidth";
 import Margin from "./common/Margin";
 
 interface TeaRecommendProps {

@@ -1,5 +1,5 @@
 import { LoginProps, LogoutProps, SignupProps } from "../model/authSchema";
-import { URL, URL_NEED_TOKEN, http, httpWithToken } from "./instance";
+import { http, URL } from "./instance";
 
 const fetchLogin = (props: LoginProps) => {
   return http.post(URL.LOGIN, props);
@@ -10,7 +10,7 @@ const fetchSignup = (props: SignupProps) => {
 };
 
 const fetchLogout = (props: LogoutProps) => {
-  return httpWithToken.post(URL_NEED_TOKEN.LOGOUT, props);
+  return http.post(URL.LOGOUT, props);
 };
 
 export { fetchLogin, fetchSignup, fetchLogout };

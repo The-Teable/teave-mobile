@@ -5,7 +5,7 @@ import InputText from "../../components/common/InputText";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
-import useAuthQuery from "../../services/hooks/useAuthQurey";
+import useAuthQuery from "../../services/hooks/useAuthQuery";
 
 const baseURL = process.env.NEXT_PUBLIC_LS_URL;
 

@@ -5,12 +5,13 @@ import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
 import CenteredContainer from "../../components/layout/CenteredContainer";
-import { storage, STORAGE_KEY } from "../../util/storage";
+import { storage } from "../../util/storage";
 import tempUserInfo from "../api/tempUserInfo.json";
-import useAuthQuery from "../../services/hooks/useAuthQurey";
+import useAuthQuery from "../../services/hooks/useAuthQuery";
+import { useEffect } from "react";
 
 const MyPage = () => {
-  const userId = storage.get(STORAGE_KEY.USER_ID);
+  const isAuthorized = storage.get("ACCESS_TOKEN") ? true : false;
   const { logout } = useAuthQuery();
 
   // api 임시 방편
@@ -24,11 +25,13 @@ const MyPage = () => {
     reviewCount,
   } = tempUserInfo;
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <TitleHeader title={"마이페이지"} />
       <S.Container>
-        {userId ? (
+        {isAuthorized ? (
           <S.LoginContainer>
             <S.UserContainer>
               <S.UserImage url={"/image/icon_account.svg"} />
@@ -96,7 +99,7 @@ const MyPage = () => {
         <S.ItemWrapper>자주하는 질문</S.ItemWrapper>
         <S.ItemWrapper>고객센터 (앱 문의, 건의)</S.ItemWrapper>
         <S.ItemWrapper>이용안내</S.ItemWrapper>
-        {userId ? (
+        {isAuthorized ? (
           <S.ItemWrapper onClick={logout}>로그아웃</S.ItemWrapper>
         ) : null}
       </S.Container>

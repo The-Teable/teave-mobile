@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useProduct from "../hooks/useProduct";
+import useTeaQuery from "../services/hooks/useTeaQuery";
 
 interface TeaItemProps {
   id: number;
@@ -18,13 +18,13 @@ const TeaItem = ({
   name,
   price,
   width = "14rem",
-  height = "18.6rem"
+  height = "18.6rem",
 }: TeaItemProps) => {
-  const { onClickProduct, onClickFavorite } = useProduct({ tea_id: id });
+  const { handleClickProduct, handleWishProduct } = useTeaQuery();
   return (
-    <S.Container onClick={() => onClickProduct()}>
+    <S.Container onClick={() => handleClickProduct({ id })}>
       <S.Thumbnail url={url} width={width} height={height}>
-        <S.Favorite onClick={() => onClickFavorite()} />
+        <S.Favorite onClick={() => handleWishProduct({ id })} />
       </S.Thumbnail>
       <S.DescribeContainer>
         <S.TitleWrapper>
