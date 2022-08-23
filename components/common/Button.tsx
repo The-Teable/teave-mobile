@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { color } from "../../styles/palette";
 
-const Button = styled.button<{ reverse: boolean }>`
+const Button = styled.button<{ reverse?: boolean }>`
   border: 0px;
   height: 3.5rem;
   width: 100%;
@@ -11,7 +11,7 @@ const Button = styled.button<{ reverse: boolean }>`
   &:hover {
     cursor: pointer;
   }
-  ${({ reverse }: { reverse: boolean }) =>
+  ${({ reverse }) =>
     reverse
       ? css`
           background-color: #ffffff;

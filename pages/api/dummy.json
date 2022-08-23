@@ -267,5 +267,31 @@
       "price": 15000,
       "image_url": "/image/goods1.svg"
     }
+  ],
+  "productInCart": [
+    {
+      "id": 0,
+      "brand": "보향다원",
+      "name": "홍차아람",
+      "price": 25000,
+      "count": 1,
+      "image_url": "/image/goods1.svg"
+    },
+    {
+      "id": 1,
+      "brand": "보향다원",
+      "name": "딸기 정원",
+      "price": 15000,
+      "count": 2,
+      "image_url": "/image/goods1.svg"
+    },
+    {
+      "id": 2,
+      "brand": "투티거스 호랑이 다과점",
+      "name": "홍차아람",
+      "price": 15000,
+      "count": 1,
+      "image_url": "/image/goods1.svg"
+    }
   ]
 }
