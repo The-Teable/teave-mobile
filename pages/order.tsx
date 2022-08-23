@@ -52,11 +52,7 @@ S.Container = styled(CenteredContainer)`
   font-size: 1.5rem;
 `;
 
-S.SubmitContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
+S.SubmitContainer = styled(CenteredContainer)`
   padding: 2rem;
 `;
 
