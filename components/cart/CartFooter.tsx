@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 import CenteredContainer from "../layout/CenteredContainer";
 import Button from "../common/Button";
 
@@ -7,7 +8,9 @@ const CartFooter = () => (
     <S.Padding />
     <S.Container>
       <S.Price>총 70,000원</S.Price>
-      <Button>바로구매</Button>
+      <Link href={"/order"} passHref>
+        <Button>바로구매</Button>
+      </Link>
     </S.Container>
   </>
 );

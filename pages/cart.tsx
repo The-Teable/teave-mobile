@@ -30,21 +30,21 @@ const CartPage = () => {
           <>
             <Margin size={1} />
             <S.BrandTitle>{brandName} 배송</S.BrandTitle>
-            {items.map(({ id, brand, name, price, count, image_url }) => (
+            {items.map(({ id, name, price, count, image_url }) => (
               <S.ItemContainer key={id}>
                 <ToggleSelector id={id + ""} labelName="" />
-                <Image src={image_url} width={75} height={90} alt={name} />
                 <S.ItemWrapper>
-                  <S.ItemTitle>
-                    [{brand}] {name}
-                  </S.ItemTitle>
-                  <Margin size={2} />
-                  <S.UnitPrice>{price.toLocaleString()}원</S.UnitPrice>
-                  <Margin size={2} />
-                  <S.CountWrapper>
-                    <S.Count type="number" min="1" defaultValue={count} />
-                    <Margin size={0.5} row />개
-                  </S.CountWrapper>
+                  <Image src={image_url} width={75} height={90} alt={name} />
+                  <S.ContentWrapper>
+                    <S.ItemTitle>{name}</S.ItemTitle>
+                    <Margin size={1} />
+                    <S.UnitPrice>{price.toLocaleString()}원</S.UnitPrice>
+                    <Margin size={1.5} />
+                    <S.CountWrapper>
+                      <S.Count type="number" min="1" defaultValue={count} />
+                      <Margin size={0.5} row />개
+                    </S.CountWrapper>
+                  </S.ContentWrapper>
                 </S.ItemWrapper>
                 <S.Price>{(price * count).toLocaleString()}원</S.Price>
               </S.ItemContainer>
@@ -88,16 +88,22 @@ S.BrandTitle = styled.div`
 S.ItemContainer = styled.div`
   display: flex;
   background-color: #ffffff;
+  justify-content: space-around;
   padding: 2.5rem 1rem;
   font-size: 1.2rem;
 `;
 
 S.ItemWrapper = styled.div`
+  display: flex;
+`;
+
+S.ContentWrapper = styled.div`
   padding: 1.8rem;
 `;
 
 S.ItemTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
 `;
 
 S.UnitPrice = styled.div`
