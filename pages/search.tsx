@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import Margin from "../../components/common/Margin";
-import TitleHeader from "../../components/common/TitleHeader";
-import useInput from "../../components/hooks/useInput";
-import CenteredContainer from "../../components/layout/CenteredContainer";
-import TabBar from "../../components/layout/TabBar";
-import SearchBar from "../../components/search/SearchBar";
-import SortModal, { SortKey, SORT_KEY } from "../../components/SortModal";
-import TeaItem from "../../components/TeaItem";
-import { shopFilterdTeas as tempDummy } from "../api/dummy.json";
+import Margin from "../components/common/Margin";
+import TitleHeader from "../components/common/TitleHeader";
+import useInput from "../components/hooks/useInput";
+import CenteredContainer from "../components/layout/CenteredContainer";
+import TabBar from "../components/layout/TabBar";
+import SearchBar from "../components/search/SearchBar";
+import SortModal, { SortKey, SORT_KEY } from "../components/SortModal";
+import TeaItem from "../components/TeaItem";
+import { shopFilterdTeas as tempDummy } from "./api/dummy.json";
 
 const SearchPage = () => {
   const router = useRouter();

@@ -1,4 +1,4 @@
-interface Tea {
+export interface Tea {
   id: number;
   name: string;
   flavor: string;
@@ -14,8 +14,11 @@ interface Tea {
   theme: string;
 }
 
-type ClickProductProps = Pick<Tea, "id">;
+export type ClickProductProps = Pick<Tea, "id">;
 
-type WishProductProps = Pick<Tea, "id">;
+export type WishProductProps = Pick<Tea, "id">;
 
-export type { Tea, ClickProductProps, WishProductProps };
+export type WishResponseProps = Pick<
+  Tea,
+  "id" | "name" | "brand" | "price" | "image_url"
+>;

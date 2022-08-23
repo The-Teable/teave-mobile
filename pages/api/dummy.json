@@ -237,5 +237,35 @@
       "name": "카라멜 티메리카노",
       "price": 15000
     }
+  ],
+  "wishList": [
+    {
+      "id": 0,
+      "name": "카라멜 티메리카노 ",
+      "brand": "큐앤리브리즈",
+      "price": 15000,
+      "image_url": "/image/goods1.svg"
+    },
+    {
+      "id": 0,
+      "name": "카라멜 티메리카노 ",
+      "brand": "큐앤리브리즈",
+      "price": 15000,
+      "image_url": "/image/goods2.svg"
+    },
+    {
+      "id": 0,
+      "name": "카라멜 티메리카노 ",
+      "brand": "큐앤리브리즈",
+      "price": 15000,
+      "image_url": "/image/goods3.svg"
+    },
+    {
+      "id": 0,
+      "name": "카라멜 티메리카노 ",
+      "brand": "큐앤리브리즈",
+      "price": 15000,
+      "image_url": "/image/goods1.svg"
+    }
   ]
 }
