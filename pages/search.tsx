@@ -77,6 +77,7 @@ const SearchPage = () => {
           )}
         </CenteredContainer>
       </form>
+      <TabBar />
     </>
   );
 };
