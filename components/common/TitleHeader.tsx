@@ -20,6 +20,7 @@ const TitleHeader = ({
         ) : null}
         <S.Title>{title}</S.Title>
       </S.Header>
+      <S.Padding />
     </>
   );
 };
@@ -29,7 +30,12 @@ export default TitleHeader;
 const S: any = {};
 
 S.Header = styled(CenteredContainer)`
-  position: relative;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   height: 5rem;
@@ -53,4 +59,8 @@ S.Title = styled.h1`
   line-height: 2.5rem;
   font-size: 1.6rem;
   font-weight: 500;
+`;
+
+S.Padding = styled.div`
+  height: 5rem;
 `;

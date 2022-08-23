@@ -36,12 +36,15 @@ S.Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  padding: 2rem 1.5rem;
+  padding: 1rem 1rem;
 `;
 S.Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 1rem;
+  padding: 1rem 0;
+  &:last-child {
+    border-top: 1px #f4f4f4 solid;
+  }
 `;
 S.ItemGray = styled.div`
   color: #808080;
@@ -52,6 +55,6 @@ S.Item = styled.div`
   font-weight: 500;
 `;
 S.Result = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
 `;
