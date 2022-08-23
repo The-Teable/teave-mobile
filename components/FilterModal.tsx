@@ -3,75 +3,41 @@ import styled, { css } from "styled-components";
 import { color } from "../styles/palette";
 import Margin from "./common/Margin";
 import teaFilter from "../pages/api/teaFilter.json";
-import { useState, Dispatch, SetStateAction } from "react";
 import Button from "./common/Button";
 import Image from "next/image";
+import { FilterModalProps } from "../types/filter";
+import useFilterModal from "./hooks/useFilterModal";
 
-interface FilterModalProps {
-  title: string;
-  onCancel: () => void;
-  selectedFilters: { filterName: string; value: string }[];
-  setSelectedFilters: Dispatch<SetStateAction<string[]>>;
-}
+const FilterModal = (props: FilterModalProps) => {
+  const { title: modalTitle, onCancel } = props;
+  const {
+    caffeine,
+    setCaffeine,
+    teaType,
+    setTeaType,
+    handleSelectItem,
+    handleReset,
+    handleFilterSubmit,
+  } = useFilterModal(props);
 
-const FilterModal = ({
-  title: modalTitle,
-  onCancel,
-  selectedFilters,
-  setSelectedFilters,
-}: FilterModalProps) => {
-  const [caffeine, setCaffeine] = useState(
-    selectedFilters.filter(({ filterName }) => filterName === "caffeine")
-  );
-  const [teaType, setTeaType] = useState(
-    selectedFilters.filter(({ filterName }) => filterName === "teaType")
-  );
-
-  const handleSelectItem = (
-    event: any,
-    filter,
-    setFilter,
-    filterName,
-    isUnique
-  ) => {
-    const {
-      target: { innerText },
-    } = event;
-    if (innerText === "전체") {
-      setFilter([]);
-    } else if (isUnique) {
-      setFilter([{ filterName, value: innerText }]);
-    } else {
-      setFilter(
-        filter.some(({ value }) => innerText === value)
-          ? filter.filter(({ value }) => innerText !== value)
-          : filter.concat({ filterName, value: innerText })
-      );
-    }
-  };
-
-  const handleReset = () => {
-    setCaffeine([]);
-    setTeaType([]);
-  };
-
-  const handleFilterSubmit = () => {
-    setSelectedFilters([...caffeine, ...teaType]);
-    onCancel();
-  };
-
-  teaFilter.caffeine.filters;
   return (
     <Modal title={modalTitle} onCancel={onCancel}>
       <S.Container>
+        <div onClick={(e) => e}></div>
         <S.Wrapper>
           <S.Title>카페인</S.Title>
           <Margin size={1} />
           <S.ItemContainer>
             <S.Item
               selected={caffeine.length === 0}
-              onClick={(e) =>
-                handleSelectItem(e, caffeine, setCaffeine, "caffeine", true)
+              onClick={() =>
+                handleSelectItem({
+                  filterName: "caffeine",
+                  itemName: "전체",
+                  filter: caffeine,
+                  setFilter: setCaffeine,
+                  isUnique: true,
+                })
               }
             >
               전체
@@ -81,14 +47,14 @@ const FilterModal = ({
                 <>
                   <S.Item
                     selected={caffeine.some(({ value }) => value === item)}
-                    onClick={(e) =>
-                      handleSelectItem(
-                        e,
-                        caffeine,
-                        setCaffeine,
-                        "caffeine",
-                        true
-                      )
+                    onClick={() =>
+                      handleSelectItem({
+                        filterName: "caffeine",
+                        itemName: item,
+                        filter: caffeine,
+                        setFilter: setCaffeine,
+                        isUnique: true,
+                      })
                     }
                   >
                     {item}
@@ -105,8 +71,14 @@ const FilterModal = ({
           <S.ItemContainer>
             <S.Item
               selected={teaType.length === 0}
-              onClick={(e) =>
-                handleSelectItem(e, teaType, setTeaType, "teaType", false)
+              onClick={() =>
+                handleSelectItem({
+                  filterName: "teaType",
+                  itemName: "전체",
+                  filter: teaType,
+                  setFilter: setTeaType,
+                  isUnique: false,
+                })
               }
             >
               전체
@@ -116,8 +88,14 @@ const FilterModal = ({
                 <>
                   <S.Item
                     selected={teaType.some(({ value }) => value === item)}
-                    onClick={(e) =>
-                      handleSelectItem(e, teaType, setTeaType, "teaType", false)
+                    onClick={() =>
+                      handleSelectItem({
+                        filterName: "teaType",
+                        itemName: item,
+                        filter: teaType,
+                        setFilter: setTeaType,
+                        isUnique: false,
+                      })
                     }
                   >
                     {item}

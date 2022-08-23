@@ -4,44 +4,51 @@ import { color } from "../styles/palette";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
-export const SORT_CRITERIA = {
+export const SORT_KEY = {
   RECENT: "최신순",
   SAIL: "판매순",
   LOW_PRICE: "낮은 가격순",
   HIGH_PRICE: "높은 가격순",
-  REVIEW: "후기순"
-};
-export type SORT_TYPE = typeof SORT_CRITERIA[keyof typeof SORT_CRITERIA];
+  REVIEW: "후기순",
+} as const;
+
+export type SortKey = typeof SORT_KEY[keyof typeof SORT_KEY];
 
 interface SortModalProps {
   title: string;
   onCancel: () => void;
-  sortCriteria: string;
-  setSortCriteria: Dispatch<SetStateAction<SORT_TYPE>>;
+  sortKey: string;
+  setSortKey: Dispatch<SetStateAction<SortKey>>;
 }
 
 const SortModal = ({
   title,
   onCancel,
-  sortCriteria,
-  setSortCriteria
+  sortKey,
+  setSortKey,
 }: SortModalProps) => {
-  const handleSelectItem = (item: SORT_TYPE) => {
-    setSortCriteria(item);
+  const handleSelectItem = (item: SortKey) => {
+    setSortKey(item);
     onCancel();
   };
 
   return (
     <Modal title={title} onCancel={onCancel}>
       <S.Container>
-        {Object.values(SORT_CRITERIA).map(e => (
+        {Object.values(SORT_KEY).map((e, i) => (
           <S.Item
+            key={i}
             onClick={() => handleSelectItem(e)}
-            selected={e === sortCriteria}
+            selected={e === sortKey}
           >
             {e}{" "}
-            {e === sortCriteria ? (
-              <Image src="/image/icon_check.svg" width={10} height={10} />
+            {e === sortKey ? (
+              <Image
+                src="/image/icon_check.svg"
+                width={10}
+                height={10}
+                alt="check icon"
+              />
             ) : null}
           </S.Item>
         ))}

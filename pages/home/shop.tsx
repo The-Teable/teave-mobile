@@ -8,10 +8,7 @@ import TeaItem from "../../components/TeaItem";
 import { shopFilterdTeas as tempDummy } from "../api/dummy.json";
 import FilterModal from "../../components/FilterModal";
 
-import SortModal, {
-  SORT_CRITERIA,
-  SORT_TYPE,
-} from "../../components/SortModal";
+import SortModal, { SORT_KEY, SortKey } from "../../components/SortModal";
 
 const ShopPage = () => {
   const [selectedFilters, setSelectedFilters] = useState<
@@ -20,9 +17,7 @@ const ShopPage = () => {
   const [modalSort, setModalSort] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
   const [filteredTeas, setFilteredTeas] = useState(tempDummy);
-  const [sortCriteria, setSortCriteria] = useState<SORT_TYPE>(
-    SORT_CRITERIA.RECENT
-  );
+  const [sortKey, setSortKey] = useState<SortKey>(SORT_KEY.RECENT);
 
   // 임시 더미파일 tempDummy
 
@@ -55,8 +50,8 @@ const ShopPage = () => {
         <SortModal
           title={"정렬"}
           onCancel={() => setModalSort(false)}
-          sortCriteria={sortCriteria}
-          setSortCriteria={setSortCriteria}
+          sortKey={sortKey}
+          setSortKey={setSortKey}
         />
       ) : null}
       {selectedFilters.length > 0 ? (
@@ -71,7 +66,7 @@ const ShopPage = () => {
       <Margin size={1} />
       <S.OptionContainer>
         <S.Option onClick={handleSort}>
-          {sortCriteria}
+          {sortKey}
           <S.SortIcon />
         </S.Option>
         <Margin row size={1.3} />
@@ -83,7 +78,7 @@ const ShopPage = () => {
       <Margin size={2} />
       <S.Container>
         {filteredTeas.map((props) => (
-          <S.TeaItemWrapper>
+          <S.TeaItemWrapper key={props.id}>
             <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
           </S.TeaItemWrapper>
         ))}
