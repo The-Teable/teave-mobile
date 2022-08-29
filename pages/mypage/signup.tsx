@@ -6,8 +6,7 @@ import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
-
-const baseURL = process.env.NEXT_PUBLIC_LS_URL;
+import { fetchCheckDuplicateId } from "../../services/api/validateApi";
 
 const SignupPage = () => {
   const [userId, setUserId] = useState("");
@@ -45,9 +44,11 @@ const SignupPage = () => {
       alert("올바른 아이디를 입력해주세요.");
       return;
     }
-    const response = await fetch(`${baseURL}/signup/check/?user_id=${userId}`);
-    const { is_duplicate: isDuplicate } = await response.json();
-    setDuplicateIdCheck(!isDuplicate);
+
+    const {
+      data: { is_duplicate: isDuplicate },
+    } = await fetchCheckDuplicateId({ user_id: userId });
+
     isDuplicate
       ? alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")
       : alert("중복 확인 완료");

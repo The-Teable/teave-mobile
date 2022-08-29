@@ -1,5 +1,14 @@
+import axios from "axios";
 import { ClickProductProps, WishProductProps } from "../model/teaSchema";
-import { http, URL } from "./instance";
+
+const URL = {
+  CLICK_PRODUCT: "/user-click-product/",
+  WISH_PRODUCT: "/user-wish-product/",
+};
+
+const http = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_LS_URL,
+});
 
 const fetchClickProduct = (props: ClickProductProps) => {
   return http.post(URL.CLICK_PRODUCT, props);

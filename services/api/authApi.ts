@@ -1,5 +1,15 @@
+import axios from "axios";
 import { LoginProps, LogoutProps, SignupProps } from "../model/authSchema";
-import { http, URL } from "./instance";
+
+const URL = {
+  LOGIN: "/login/",
+  SIGNUP: "/signup/",
+  LOGOUT: "/logout/",
+};
+
+const http = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_LS_URL,
+});
 
 const fetchLogin = (props: LoginProps) => {
   return http.post(URL.LOGIN, props);
