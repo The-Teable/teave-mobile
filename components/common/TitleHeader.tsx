@@ -4,10 +4,21 @@ import { color } from "../../styles/palette";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-const TitleHeader = ({ title }: { title: string }) => {
+type Props = {
+  title: string;
+  hasHomeCartButton?: boolean;
+};
+
+const TitleHeader = (props: Props) => {
+  const { title, hasHomeCartButton } = props;
+
   const router = useRouter();
 
   const handleGoBack = () => router.back();
+
+  const handleGoHome = () => router.push("/home");
+
+  const handleGoCart = () => router.push("/cart");
 
   return (
     <>
@@ -19,8 +30,25 @@ const TitleHeader = ({ title }: { title: string }) => {
             layout="fill"
           />
         </S.GoBackButton>
-
         <S.Title>{title}</S.Title>
+        {!hasHomeCartButton ? null : (
+          <>
+            <S.GoHomeButton>
+              <Image
+                onClick={handleGoHome}
+                src="/image/icon_home.svg"
+                layout="fill"
+              />
+            </S.GoHomeButton>
+            <S.GoCartButton>
+              <Image
+                onClick={handleGoCart}
+                src="/image/icon_cart.svg"
+                layout="fill"
+              />
+            </S.GoCartButton>
+          </>
+        )}
       </S.Header>
       <S.Padding />
     </>
@@ -44,11 +72,9 @@ S.Header = styled(CenteredContainer)`
   border-bottom: 1px solid ${color.gray200};
 `;
 
-S.GoBackButton = styled.div`
+S.Button = styled.div`
   position: absolute;
-  left: 2rem;
   border: 0px;
-  background: url() no-repeat center/contain;
   width: 2.5rem;
   height: 2.5rem;
   &:hover {
@@ -61,6 +87,18 @@ S.Title = styled.h1`
   line-height: 2.5rem;
   font-size: 1.6rem;
   font-weight: 500;
+`;
+
+S.GoBackButton = styled(S.Button)`
+  left: 2rem;
+`;
+
+S.GoHomeButton = styled(S.Button)`
+  right: 6rem;
+`;
+
+S.GoCartButton = styled(S.Button)`
+  right: 2rem;
 `;
 
 S.Padding = styled.div`
