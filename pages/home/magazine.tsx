@@ -1,10 +1,9 @@
 import HomeLayout from "../../components/layout/HomeLayout";
-import { HOME_HEADER_INDEX } from "../../components/layout/HomeHeader";
 import styled from "styled-components";
 
 const MagazinePage = () => {
   return (
-    <HomeLayout headerIndex={HOME_HEADER_INDEX.MAGAZINE}>
+    <HomeLayout>
       <S.Container>준비중입니다.</S.Container>
     </HomeLayout>
   );

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import useTeaQuery from "../services/hooks/useTeaQuery";
+import { MouseEvent } from "react";
+import { useRouter } from "next/router";
 
 interface TeaItemProps {
   id: number;
@@ -18,13 +20,22 @@ const TeaItem = ({
   name,
   price,
   width = "14rem",
-  height = "18.6rem",
+  height = "18.6rem"
 }: TeaItemProps) => {
-  const { handleClickProduct, handleWishProduct } = useTeaQuery();
+  const router = useRouter();
+
+  const { queryClickProduct, queryWishProduct } = useTeaQuery();
+
+  const handleClickProduct = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    queryClickProduct({ id });
+    router.push(`/product?id=${id}`);
+  };
+
   return (
-    <S.Container onClick={() => handleClickProduct({ id })}>
+    <S.Container onClick={handleClickProduct}>
       <S.Thumbnail url={url} width={width} height={height}>
-        <S.Favorite onClick={() => handleWishProduct({ id })} />
+        <S.Favorite onClick={() => queryWishProduct({ id })} />
       </S.Thumbnail>
       <S.DescribeContainer>
         <S.TitleWrapper>

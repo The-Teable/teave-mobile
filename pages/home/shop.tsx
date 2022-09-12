@@ -1,5 +1,4 @@
 import HomeLayout from "../../components/layout/HomeLayout";
-import { HOME_HEADER_INDEX } from "../../components/layout/HomeHeader";
 import styled from "styled-components";
 import { useState } from "react";
 import { color } from "../../styles/palette";
@@ -37,7 +36,7 @@ const ShopPage = () => {
   };
 
   return (
-    <HomeLayout headerIndex={HOME_HEADER_INDEX.SHOP}>
+    <HomeLayout>
       {modalFilter ? (
         <FilterModal
           title={"필터"}
@@ -77,7 +76,7 @@ const ShopPage = () => {
       </S.OptionContainer>
       <Margin size={2} />
       <S.Container>
-        {filteredTeas.map((props) => (
+        {filteredTeas.map(props => (
           <S.TeaItemWrapper key={props.id}>
             <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
           </S.TeaItemWrapper>
