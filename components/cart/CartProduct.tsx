@@ -6,10 +6,15 @@ import Margin from "../common/Margin";
 import { color } from "../../styles/palette";
 
 const CartProduct = ({
-  products,
+  products
 }: {
   products: Record<string, ProductInCart[]>;
 }) => {
+  /**
+   * TODO: 장바구니 삭제 api 연동
+   */
+  const handleDeleteProduct = () => {};
+
   return (
     <>
       {Object.entries(products).map(([brandName, items]) => (
@@ -33,6 +38,12 @@ const CartProduct = ({
                 </S.ContentWrapper>
               </S.ItemWrapper>
               <S.Price>{(price * count).toLocaleString()}원</S.Price>
+              <S.DeleteButton
+                src="/image/icon_exit.svg"
+                width={10}
+                height={10}
+                onClick={handleDeleteProduct}
+              />
             </S.ItemContainer>
           ))}
           <S.TotalPriceContainer>
@@ -102,6 +113,12 @@ S.Price = styled.div`
   align-items: center;
   padding-left: 2rem;
   border-left: 1px solid ${color.gray200};
+`;
+
+S.DeleteButton = styled(Image)`
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 S.TotalPriceContainer = styled.div`
