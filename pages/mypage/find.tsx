@@ -33,10 +33,7 @@ const FindPage = () => {
   };
   return (
     <>
-      <TitleHeader
-        title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"}
-        backlink="/mypage/login"
-      />
+      <TitleHeader title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"} />
       <S.Form onSubmit={handleSubmit}>
         <Margin size={2} />
         <S.Fieldset onChange={onChangeVerifyWay}>

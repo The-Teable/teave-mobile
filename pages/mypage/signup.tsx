@@ -46,7 +46,7 @@ const SignupPage = () => {
     }
 
     const {
-      data: { is_duplicate: isDuplicate },
+      data: { is_duplicate: isDuplicate }
     } = await fetchCheckDuplicateId({ user_id: userId });
 
     isDuplicate
@@ -108,13 +108,13 @@ const SignupPage = () => {
       name: userName,
       tel,
       birth,
-      gender,
+      gender
     });
   };
 
   return (
     <>
-      <TitleHeader title={"회원가입"} backlink={"/mypage/login/"} />
+      <TitleHeader title={"회원가입"} />
       <S.Form onSubmit={handleSubmit}>
         <Margin size={2} />
         <S.Label htmlFor="userId">아이디{markRequired}</S.Label>

@@ -1,23 +1,25 @@
-import Link from "next/link";
 import styled from "styled-components";
 import CenteredContainer from "../layout/CenteredContainer";
 import { color } from "../../styles/palette";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
-const TitleHeader = ({
-  title,
-  backlink = null,
-}: {
-  title: string;
-  backlink?: string | null;
-}) => {
+const TitleHeader = ({ title }: { title: string }) => {
+  const router = useRouter();
+
+  const handleGoBack = () => router.back();
+
   return (
     <>
       <S.Header>
-        {backlink ? (
-          <Link href={backlink} passHref>
-            <S.GoBackButton />
-          </Link>
-        ) : null}
+        <S.GoBackButton>
+          <Image
+            onClick={handleGoBack}
+            src="/image/icon_go_back.svg"
+            layout="fill"
+          />
+        </S.GoBackButton>
+
         <S.Title>{title}</S.Title>
       </S.Header>
       <S.Padding />
@@ -42,11 +44,11 @@ S.Header = styled(CenteredContainer)`
   border-bottom: 1px solid ${color.gray200};
 `;
 
-S.GoBackButton = styled.button`
+S.GoBackButton = styled.div`
   position: absolute;
   left: 2rem;
   border: 0px;
-  background: url("/image/icon_go_back.svg") no-repeat center/contain;
+  background: url() no-repeat center/contain;
   width: 2.5rem;
   height: 2.5rem;
   &:hover {
