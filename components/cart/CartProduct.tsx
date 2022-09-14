@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { ProductInCart } from "../../services/model/cartSchema";
-import ToggleSelector from "../cart/toggleSelector";
+import ToggleSelector from "./ToggleSelector";
 import Margin from "../common/Margin";
 import { color } from "../../styles/palette";
 

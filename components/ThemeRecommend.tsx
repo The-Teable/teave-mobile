@@ -19,7 +19,7 @@ const ThemeRecommend = ({ title, items }: ThemeRecommendProps) => {
       <S.Title>{title}</S.Title>
       <S.ItemsContainer itemWidth={150}>
         {items.map(({ id, url, brand, name, price }) => (
-          <S.ItemWrapper>
+          <S.ItemWrapper key={id}>
             <TeaItem
               id={id}
               url={url}

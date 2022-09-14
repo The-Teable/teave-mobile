@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ToggleSelector from "../components/cart/toggleSelector";
+import ToggleSelector from "../components/cart/ToggleSelector";
 import Margin from "../components/common/Margin";
 import TitleHeader from "../components/common/TitleHeader";
 import CenteredContainer from "../components/layout/CenteredContainer";
