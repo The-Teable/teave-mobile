@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import ToggleSelector from "../components/cart/ToggleSelector";
-import Margin from "../components/common/Margin";
-import TitleHeader from "../components/common/TitleHeader";
-import CenteredContainer from "../components/layout/CenteredContainer";
-import { productInCart as dummy } from "./api/dummy.json";
-import { ProductInCart } from "../services/model/cartSchema";
-import CartFooter from "../components/cart/CartFooter";
-import Bill from "../components/cart/Bill";
-import CartProduct from "../components/cart/CartProduct";
+import ToggleSelector from "./components/ToggleSelector";
+import Margin from "../../components/common/Margin";
+import TitleHeader from "../../components/common/TitleHeader";
+import CenteredContainer from "../../components/layout/CenteredContainer";
+import { productInCart } from "../../services/static/dummy.json";
+import { ProductInCart } from "../../services/model/cartSchema";
+import CartFooter from "./components/CartFooter";
+import Bill from "./components/Bill";
+import CartProduct from "./components/CartProduct";
 
 const CartPage = () => {
-  const productInCart = dummy;
   const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
     (acc, cur) => {
       acc[cur.brand] = cur.brand in acc ? [...acc[cur.brand], cur] : [cur];

@@ -2,7 +2,7 @@ import Modal from "./common/Modal";
 import styled, { css } from "styled-components";
 import { color } from "../styles/palette";
 import Margin from "./common/Margin";
-import teaFilter from "../pages/api/teaFilter.json";
+import teaFilter from "../services/static/teaFilter.json";
 import Button from "./common/Button";
 import Image from "next/image";
 import { FilterModalProps } from "../types/filter";

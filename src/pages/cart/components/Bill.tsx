@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CenteredContainer from "../layout/CenteredContainer";
+import CenteredContainer from "../../../components/layout/CenteredContainer";
 
 const Bill = () => {
   return (

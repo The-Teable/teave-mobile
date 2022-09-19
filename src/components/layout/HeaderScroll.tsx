@@ -1,18 +1,15 @@
 import React, { useState, useEffect, RefObject, useRef } from "react";
 import styled, { css } from "styled-components";
-import { useRouter } from "next/router";
 import CenteredContainer from "./CenteredContainer";
 
 type Props = {
   headerNavLinks: {
     title: string;
-    href: string;
     ref: RefObject<HTMLDivElement>;
   }[];
 };
 
 const HeaderScroll = ({ headerNavLinks }: Props) => {
-  const router = useRouter();
   const scrollYs = useRef<number[]>([]);
   const [scrollY, setScrollY] = useState(0);
   const HEADER_MARGIN = 80;
@@ -30,10 +27,12 @@ const HeaderScroll = ({ headerNavLinks }: Props) => {
 
   useEffect(() => {
     scrollYs.current = headerNavLinks.reduce<number[]>((acc, { ref }) => {
-      return [...acc, ref.current?.offsetTop - HEADER_MARGIN || 0];
+      return [
+        ...acc,
+        (ref.current && ref.current.offsetTop - HEADER_MARGIN) || 0
+      ];
     }, []);
     scrollYs.current.push(999999);
-    console.log(scrollYs.current);
   }, [headerNavLinks]);
 
   return (

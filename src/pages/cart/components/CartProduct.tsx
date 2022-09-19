@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../services/model/cartSchema";
+import { ProductInCart } from "../../../services/model/cartSchema";
 import ToggleSelector from "./ToggleSelector";
-import Margin from "../common/Margin";
-import { color } from "../../styles/palette";
+import Margin from "../../../components/common/Margin";
+import { color } from "../../../styles/palette";
+import { Fragment } from "react";
 
 const CartProduct = ({
   products
@@ -17,8 +18,8 @@ const CartProduct = ({
 
   return (
     <>
-      {Object.entries(products).map(([brandName, items]) => (
-        <>
+      {Object.entries(products).map(([brandName, items], i) => (
+        <Fragment key={i}>
           <Margin size={1} />
           <S.BrandTitle>{brandName} 배송</S.BrandTitle>
           {items.map(({ id, name, price, count, image_url }) => (
@@ -51,7 +52,7 @@ const CartProduct = ({
             <Margin size={0.5} row />
             <S.TotalPrice>합계 58,000원</S.TotalPrice>
           </S.TotalPriceContainer>
-        </>
+        </Fragment>
       ))}
     </>
   );

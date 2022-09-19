@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../common/Button";
-import { ReviewProps } from "../../services/model/articleSchema";
-import Margin from "../common/Margin";
+import Button from "../../../components/common/Button";
+import { ReviewProps } from "../../../services/model/articleSchema";
+import Margin from "../../../components/common/Margin";
 
 const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
   return (

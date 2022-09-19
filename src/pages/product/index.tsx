@@ -6,9 +6,9 @@ import HeaderScroll from "../../components/layout/HeaderScroll";
 import { useRef } from "react";
 import Margin from "../../components/common/Margin";
 import Button from "../../components/common/Button";
-import Review from "../../components/product/Review";
-import Question from "../../components/product/Question";
-import dummy from "../api/dummy.json";
+import Review from "./components/Review";
+import Question from "./components/Question";
+import { teaProductDetailInfo } from "../../services/static/dummy.json";
 
 const ProductPage = () => {
   const router = useRouter();
@@ -16,22 +16,18 @@ const ProductPage = () => {
   const $infoRef = useRef<HTMLDivElement>(null);
   const $reviewRef = useRef<HTMLDivElement>(null);
   const $questionRef = useRef<HTMLDivElement>(null);
-  const { teaProductDetailInfo } = dummy;
 
   const headerNavLinks = [
     {
       title: "상품정보",
-      href: `#info`,
       ref: $infoRef
     },
     {
       title: "리뷰",
-      href: `#review`,
       ref: $reviewRef
     },
     {
       title: "문의",
-      href: `#question`,
       ref: $questionRef
     }
   ];
@@ -42,12 +38,8 @@ const ProductPage = () => {
       <HeaderScroll headerNavLinks={headerNavLinks} />
       <Margin size={3} />
       <S.Container>
-        <img
-          src={teaProductDetailInfo.tea_image_urls[0]}
-          id="info"
-          ref={$infoRef}
-          width={"100%"}
-        />
+        <div id="info" ref={$infoRef} />
+        <img src={teaProductDetailInfo.tea_image_urls[0]} width={"100%"} />
         <S.BrandWrapper>
           <img src={teaProductDetailInfo.brand_logo_url} width="40" />
           <Margin row size={2} />

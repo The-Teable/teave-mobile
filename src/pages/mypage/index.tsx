@@ -6,7 +6,7 @@ import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
 import CenteredContainer from "../../components/layout/CenteredContainer";
 import { storage } from "../../util/storage";
-import tempUserInfo from "../api/tempUserInfo.json";
+import { userInfo } from "../../services/static/dummy.json";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
 import { useEffect } from "react";
 
@@ -23,7 +23,7 @@ const MyPage = () => {
     orderCount,
     deliveryCount,
     reviewCount
-  } = tempUserInfo;
+  } = userInfo;
 
   useEffect(() => {}, []);
 

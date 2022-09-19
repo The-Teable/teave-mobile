@@ -13,11 +13,9 @@ const PromotionBanner = ({ banners }: Props) => {
     <S.Container ref={$bannerRef}>
       <Slider itemWidth={width}>
         {banners.map(({ url, href }, i) => (
-          <>
-            <Link key={i} href={href} passHref>
-              <S.Item url={url} />
-            </Link>
-          </>
+          <Link key={i} href={href} passHref>
+            <S.Item url={url} />
+          </Link>
         ))}
       </Slider>
     </S.Container>

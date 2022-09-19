@@ -1,15 +1,14 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Margin from "../components/common/Margin";
-import TitleHeader from "../components/common/TitleHeader";
-import CenteredContainer from "../components/layout/CenteredContainer";
-import TabBar from "../components/layout/TabBar";
-import { WishResponseProps } from "../services/model/teaSchema";
-import { color } from "../styles/palette";
-import { wishList as dummy } from "./api/dummy.json";
+import Margin from "../../components/common/Margin";
+import TitleHeader from "../../components/common/TitleHeader";
+import CenteredContainer from "../../components/layout/CenteredContainer";
+import TabBar from "../../components/layout/TabBar";
+import { WishResponseProps } from "../../services/model/teaSchema";
+import { color } from "../../styles/palette";
+import { wishList } from "../../services/static/dummy.json";
 
 const WishPage = () => {
-  const wishList = dummy;
   return (
     <>
       <TitleHeader title={"찜한 상품"} />
@@ -21,25 +20,23 @@ const WishPage = () => {
           {wishList.map((props: WishResponseProps) => {
             const { id, name, brand, price, image_url } = props;
             return (
-              <>
-                <S.ItemContainer key={id}>
-                  <Image src={image_url} width={105} height={120} alt={name} />
-                  <Margin size={1.5} row />
-                  <S.ItemWrapper>
-                    <S.Title>
-                      [{brand}] {name}
-                    </S.Title>
-                    <Margin size={2} />
-                    <S.Price>{price.toLocaleString()}원</S.Price>
-                    <Margin size={4} />
-                    <S.ButtonContainer>
-                      <S.Button>삭제</S.Button>
-                      <Margin size={2} row />
-                      <S.GreenButton>장바구니</S.GreenButton>
-                    </S.ButtonContainer>
-                  </S.ItemWrapper>
-                </S.ItemContainer>
-              </>
+              <S.ItemContainer key={id}>
+                <Image src={image_url} width={105} height={120} alt={name} />
+                <Margin size={1.5} row />
+                <S.ItemWrapper>
+                  <S.Title>
+                    [{brand}] {name}
+                  </S.Title>
+                  <Margin size={2} />
+                  <S.Price>{price.toLocaleString()}원</S.Price>
+                  <Margin size={4} />
+                  <S.ButtonContainer>
+                    <S.Button>삭제</S.Button>
+                    <Margin size={2} row />
+                    <S.GreenButton>장바구니</S.GreenButton>
+                  </S.ButtonContainer>
+                </S.ItemWrapper>
+              </S.ItemContainer>
             );
           })}
         </S.Container>

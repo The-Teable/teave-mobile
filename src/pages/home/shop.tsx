@@ -4,9 +4,8 @@ import { useState } from "react";
 import { color } from "../../styles/palette";
 import Margin from "../../components/common/Margin";
 import TeaItem from "../../components/TeaItem";
-import { shopFilterdTeas as tempDummy } from "../api/dummy.json";
+import { shopFilterdTeas } from "../../services/static/dummy.json";
 import FilterModal from "../../components/FilterModal";
-
 import SortModal, { SORT_KEY, SortKey } from "../../components/SortModal";
 
 const ShopPage = () => {
@@ -15,10 +14,8 @@ const ShopPage = () => {
   >([]);
   const [modalSort, setModalSort] = useState(false);
   const [modalFilter, setModalFilter] = useState(false);
-  const [filteredTeas, setFilteredTeas] = useState(tempDummy);
+  const [filteredTeas, setFilteredTeas] = useState(shopFilterdTeas);
   const [sortKey, setSortKey] = useState<SortKey>(SORT_KEY.RECENT);
-
-  // 임시 더미파일 tempDummy
 
   const filterTeas = () => {
     // 필터 api 호출

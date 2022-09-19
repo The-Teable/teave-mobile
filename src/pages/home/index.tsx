@@ -1,7 +1,7 @@
 import HomeLayout from "../../components/layout/HomeLayout";
 import PromotionBanner from "../../components/PromotionBanner";
 import ThemeRecommend from "../../components/ThemeRecommend";
-import dummy from "../api/dummy.json";
+import dummy from "../../services/static/dummy.json";
 import TeaRecommend from "../../components/TeaRecommend";
 import Margin from "../../components/common/Margin";
 

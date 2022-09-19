@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredContainer from "../layout/CenteredContainer";
-import Button from "../common/Button";
+import CenteredContainer from "../../../components/layout/CenteredContainer";
+import Button from "../../../components/common/Button";
 
 const CartFooter = () => (
   <>

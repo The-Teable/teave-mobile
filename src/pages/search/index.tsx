@@ -1,22 +1,22 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import Margin from "../components/common/Margin";
-import TitleHeader from "../components/common/TitleHeader";
-import useInput from "../hooks/useInput";
-import CenteredContainer from "../components/layout/CenteredContainer";
-import TabBar from "../components/layout/TabBar";
-import SearchBar from "../components/search/SearchBar";
-import SortModal, { SortKey, SORT_KEY } from "../components/SortModal";
-import TeaItem from "../components/TeaItem";
-import { shopFilterdTeas as tempDummy } from "./api/dummy.json";
+import Margin from "../../components/common/Margin";
+import TitleHeader from "../../components/common/TitleHeader";
+import useInput from "../../hooks/useInput";
+import CenteredContainer from "../../components/layout/CenteredContainer";
+import TabBar from "../../components/layout/TabBar";
+import SearchBar from "./components/SearchBar";
+import SortModal, { SortKey, SORT_KEY } from "../../components/SortModal";
+import TeaItem from "../../components/TeaItem";
+import { shopFilterdTeas } from "../../services/static/dummy.json";
 
 const SearchPage = () => {
   const router = useRouter();
   const searchInput = useInput();
   const [modalSort, setModalSort] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>(SORT_KEY.RECENT);
-  const [searchedTeas, setFilteredTeas] = useState(tempDummy);
+  const [searchedTeas, setFilteredTeas] = useState(shopFilterdTeas);
   const { word } = Array.isArray(router.query) ? router.query[0] : router.query;
 
   const handleSort = () => {
