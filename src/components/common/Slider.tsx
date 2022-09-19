@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import useSlider from "../hooks/useSlider";
+import useSlider from "../../hooks/useSlider";
 import { ReactNode } from "react";
 
 interface SliderProps {
@@ -23,7 +23,7 @@ const Slider = ({ children, itemWidth }: SliderProps) => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDrag,
+    isDrag
   ] = useSlider(itemWidth);
 
   return (

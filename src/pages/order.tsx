@@ -21,7 +21,7 @@ const OrderPage = () => {
   const userInfo = {
     name: "김티브",
     tel: "010-1243-2343",
-    address: "서울시 성암로 8길 12번지",
+    address: "서울시 성암로 8길 12번지"
   };
 
   return (

@@ -6,7 +6,7 @@ import teaFilter from "../pages/api/teaFilter.json";
 import Button from "./common/Button";
 import Image from "next/image";
 import { FilterModalProps } from "../types/filter";
-import useFilterModal from "./hooks/useFilterModal";
+import useFilterModal from "../hooks/useFilterModal";
 
 const FilterModal = (props: FilterModalProps) => {
   const { title: modalTitle, onCancel } = props;
@@ -17,13 +17,13 @@ const FilterModal = (props: FilterModalProps) => {
     setTeaType,
     handleSelectItem,
     handleReset,
-    handleFilterSubmit,
+    handleFilterSubmit
   } = useFilterModal(props);
 
   return (
     <Modal title={modalTitle} onCancel={onCancel}>
       <S.Container>
-        <div onClick={(e) => e}></div>
+        <div onClick={e => e}></div>
         <S.Wrapper>
           <S.Title>카페인</S.Title>
           <Margin size={1} />
@@ -36,14 +36,14 @@ const FilterModal = (props: FilterModalProps) => {
                   itemName: "전체",
                   filter: caffeine,
                   setFilter: setCaffeine,
-                  isUnique: true,
+                  isUnique: true
                 })
               }
             >
               전체
             </S.Item>
             <>
-              {teaFilter.caffeine.filters.map((item) => (
+              {teaFilter.caffeine.filters.map(item => (
                 <>
                   <S.Item
                     selected={caffeine.some(({ value }) => value === item)}
@@ -53,7 +53,7 @@ const FilterModal = (props: FilterModalProps) => {
                         itemName: item,
                         filter: caffeine,
                         setFilter: setCaffeine,
-                        isUnique: true,
+                        isUnique: true
                       })
                     }
                   >
@@ -77,14 +77,14 @@ const FilterModal = (props: FilterModalProps) => {
                   itemName: "전체",
                   filter: teaType,
                   setFilter: setTeaType,
-                  isUnique: false,
+                  isUnique: false
                 })
               }
             >
               전체
             </S.Item>
             <>
-              {teaFilter.teaType.filters.map((item) => (
+              {teaFilter.teaType.filters.map(item => (
                 <>
                   <S.Item
                     selected={teaType.some(({ value }) => value === item)}
@@ -94,7 +94,7 @@ const FilterModal = (props: FilterModalProps) => {
                         itemName: item,
                         filter: teaType,
                         setFilter: setTeaType,
-                        isUnique: false,
+                        isUnique: false
                       })
                     }
                   >

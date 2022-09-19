@@ -22,7 +22,7 @@ const MyPage = () => {
     couponCount,
     orderCount,
     deliveryCount,
-    reviewCount,
+    reviewCount
   } = tempUserInfo;
 
   useEffect(() => {}, []);

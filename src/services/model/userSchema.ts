@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   user_id: string;
   password: string;
   name: string;
@@ -14,7 +14,7 @@ interface User {
   reviewCount: number;
 }
 
-type MypageUserInfo = Pick<
+export type MypageUserInfo = Pick<
   User,
   | "name"
   | "rank"
@@ -24,5 +24,3 @@ type MypageUserInfo = Pick<
   | "deliveryCount"
   | "reviewCount"
 >;
-
-export type { User, MypageUserInfo };

@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Margin from "../components/common/Margin";
 import TitleHeader from "../components/common/TitleHeader";
-import useInput from "../components/hooks/useInput";
+import useInput from "../hooks/useInput";
 import CenteredContainer from "../components/layout/CenteredContainer";
 import TabBar from "../components/layout/TabBar";
 import SearchBar from "../components/search/SearchBar";
@@ -33,7 +33,7 @@ const SearchPage = () => {
         />
       ) : null}
       <form
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault();
           if (!searchInput.value) return;
           router.push("/search/?word=" + searchInput.value);
@@ -67,7 +67,7 @@ const SearchPage = () => {
               </S.OptionContainer>
               <Margin size={2} />
               <S.Container>
-                {searchedTeas.map((props) => (
+                {searchedTeas.map(props => (
                   <S.TeaItemWrapper key={props.id}>
                     <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
                   </S.TeaItemWrapper>
