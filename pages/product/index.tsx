@@ -4,9 +4,11 @@ import CenteredContainer from "../../components/layout/CenteredContainer";
 import { useRouter } from "next/router";
 import HeaderScroll from "../../components/layout/HeaderScroll";
 import { useRef } from "react";
-import Image from "next/image";
 import Margin from "../../components/common/Margin";
 import Button from "../../components/common/Button";
+import Review from "../../components/product/Review";
+import Question from "../../components/product/Question";
+import dummy from "../api/dummy.json";
 
 const ProductPage = () => {
   const router = useRouter();
@@ -14,6 +16,7 @@ const ProductPage = () => {
   const $infoRef = useRef<HTMLDivElement>(null);
   const $reviewRef = useRef<HTMLDivElement>(null);
   const $questionRef = useRef<HTMLDivElement>(null);
+  const { teaProductDetailInfo } = dummy;
 
   const headerNavLinks = [
     {
@@ -33,16 +36,6 @@ const ProductPage = () => {
     }
   ];
 
-  const dummy = {
-    tea_image_urls: ["/image/dummy_product1.png"],
-    brand_logo_url: "/image/dummy_tea_logo.png",
-    brand_name: "티퍼블릭",
-    tea_name: "카라멜 티메리카노",
-    price: 15000,
-    delivery_info: "3만원 이상 구매시 무료배송",
-    tea_detail: "/image/dummy_product_detail.svg"
-  };
-
   return (
     <>
       <TitleHeader title="상품정보" hasHomeCartButton />
@@ -50,38 +43,43 @@ const ProductPage = () => {
       <Margin size={3} />
       <S.Container>
         <img
-          src={dummy.tea_image_urls[0]}
+          src={teaProductDetailInfo.tea_image_urls[0]}
           id="info"
           ref={$infoRef}
           width={"100%"}
         />
         <S.BrandWrapper>
-          <img src={dummy.brand_logo_url} width="40" />
+          <img src={teaProductDetailInfo.brand_logo_url} width="40" />
           <Margin row size={2} />
-          <div>{dummy.brand_name}</div>
+          <div>{teaProductDetailInfo.brand_name}</div>
         </S.BrandWrapper>
         <Margin size={2} />
         <div>
-          [{dummy.brand_name}] {dummy.tea_name}
+          [{teaProductDetailInfo.brand_name}] {teaProductDetailInfo.tea_name}
         </div>
         <Margin size={2} />
-        <S.Price>{dummy.price.toLocaleString()}원</S.Price>
+        <S.Price>{teaProductDetailInfo.price.toLocaleString()}원</S.Price>
         <Margin size={2} />
         <S.DeliveryInfoWrapper>
           <S.DeliveryInfoTitle>배송정보</S.DeliveryInfoTitle>
-          {dummy.delivery_info}
+          {teaProductDetailInfo.delivery_info}
         </S.DeliveryInfoWrapper>
 
-        <img src={dummy.tea_detail} width="100%" alt="제품상세이미지" />
-
-        <div id="review" ref={$reviewRef} style={{ height: 1000 }}>
-          review
-        </div>
-        <div id="question" ref={$questionRef} style={{ height: 1000 }}>
-          question
-        </div>
+        <img
+          src={teaProductDetailInfo.tea_detail}
+          width="100%"
+          alt="제품상세이미지"
+        />
+        <Margin size={5} />
+        <div id="review" ref={$reviewRef} />
+        <Margin size={2} />
+        <Review reviews={teaProductDetailInfo.reviews} />
+        <Margin size={5} />
+        <div id="question" ref={$questionRef} />
+        <Margin size={2} />
+        <Question questions={teaProductDetailInfo.questions} />
       </S.Container>
-      <Margin size={5} />
+      <Margin size={7.5} />
       <S.Footer>
         <img src="/image/icon_favorite_red_lined.png" width={25} height={25} />
 
