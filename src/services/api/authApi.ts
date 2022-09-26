@@ -1,4 +1,5 @@
 import axios from "axios";
+import { storage } from "../../util/storage";
 import { LoginProps, LogoutProps, SignupProps } from "../model/authSchema";
 
 const URL = {
@@ -20,6 +21,7 @@ const fetchSignup = (props: SignupProps) => {
 };
 
 const fetchLogout = (props: LogoutProps) => {
+  storage.remove("ACCESS_TOKEN");
   return http.post(URL.LOGOUT, props);
 };
 

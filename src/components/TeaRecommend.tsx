@@ -4,18 +4,13 @@ import { color } from "../styles/palette";
 import Slider from "./common/Slider";
 import useElementCurWidth from "../hooks/useElementCurWidth";
 import Margin from "./common/Margin";
+import { TeaRecommendProps } from "../types/mainPageProps";
 
-interface TeaRecommendProps {
-  items: {
-    url: string;
-    brand: string;
-    name: string;
-    features: string;
-    describe: string;
-  }[];
-}
+type Props = {
+  items: TeaRecommendProps;
+};
 
-const TeaRecommend = ({ items }: TeaRecommendProps) => {
+const TeaRecommend = ({ items }: Props) => {
   const [width, $container] = useElementCurWidth();
   return (
     <S.Container ref={$container}>

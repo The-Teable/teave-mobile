@@ -2,12 +2,18 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import { storage } from "../../util/storage";
-import { ClickProductProps, WishProductProps } from "../model/teaSchema";
-import { fetchRefreshToken } from "./validateApi";
+import {
+  ClickProductProps,
+  MainFilteringResults,
+  ThemeFiltering,
+  WishProductProps,
+} from "../model/teaSchema";
 
 const URL = {
+  REFRESH_TOKEN: "/token/refresh/",
   CLICK_PRODUCT: "/user-click-product/",
   WISH_PRODUCT: "/user-wish-product/",
+  MAIN_PRODUCTS: "/main-filtering-results/",
 };
 
 const http = axios.create({
@@ -28,13 +34,16 @@ http.interceptors.request.use(async (config) => {
     : true;
 
   if (isExpired) {
-    const response = await fetchRefreshToken();
+    const {
+      data: { token: refreshedToken },
+    } = await http.get(URL.REFRESH_TOKEN);
+    storage.set({ key: "ACCESS_TOKEN", value: refreshedToken });
     return {
       ...config,
-      headers: { HTTP_AUTHORIZATION: response.data.token },
+      headers: { Authorization: `Bearer ${refreshedToken}` },
     };
   }
-  return { ...config, headers: { HTTP_AUTHORIZATION: token } };
+  return { ...config, headers: { Authorization: `Bearer ${token}` } };
 });
 
 const fetchClickProduct = (props: ClickProductProps) => {
@@ -45,4 +54,17 @@ const fetchWishProduct = (props: WishProductProps) => {
   return http.post(URL.WISH_PRODUCT, props);
 };
 
-export { fetchClickProduct, fetchWishProduct };
+const fetchMainProducts = async () => {
+  return (await http.get<MainFilteringResults>(URL.MAIN_PRODUCTS)).data;
+};
+
+const fetchThemeProducts = async () => {
+  return (await http.get<ThemeFiltering>(URL.MAIN_PRODUCTS)).data;
+};
+
+export {
+  fetchClickProduct,
+  fetchWishProduct,
+  fetchMainProducts,
+  fetchThemeProducts,
+};

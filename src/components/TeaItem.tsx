@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useTeaQuery from "../services/hooks/useTeaQuery";
+import useTeaActionQuery from "../services/hooks/useTeaActionQuery";
 import { MouseEvent } from "react";
 import { useRouter } from "next/router";
 
@@ -20,11 +20,11 @@ const TeaItem = ({
   name,
   price,
   width = "14rem",
-  height = "18.6rem"
+  height = "18.6rem",
 }: TeaItemProps) => {
   const router = useRouter();
 
-  const { queryClickProduct, queryWishProduct } = useTeaQuery();
+  const { queryClickProduct, queryWishProduct } = useTeaActionQuery();
 
   const handleClickProduct = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();

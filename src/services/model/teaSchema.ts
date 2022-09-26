@@ -22,3 +22,30 @@ export type WishResponseProps = Pick<
   Tea,
   "id" | "name" | "brand" | "price" | "image_url"
 >;
+
+export type MainFilteringResults = {
+  id: number;
+  name: string;
+  brand: string;
+  type: string;
+  flavor: string;
+  caffeine: string;
+  efficacies: string;
+  price: number;
+  image_url: string;
+}[];
+
+export type ThemeFiltering = {
+  theme: string;
+  tea_info: {
+    id: number;
+    name: string;
+    brand: string;
+    type: string;
+    flavor: string;
+    caffeine: string;
+    efficacies: string;
+    price: number;
+    image_url: string;
+  }[];
+}[];
