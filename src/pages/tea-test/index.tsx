@@ -1,15 +1,15 @@
-import HomeLayout from "../../../components/layout/HomeLayout";
+import HomeLayout from "../../components/layout/HomeLayout";
 import styled from "styled-components";
-import Button from "../../../components/common/Button";
-import Margin from "../../../components/common/Margin";
+import Button from "../../components/common/Button";
+import Margin from "../../components/common/Margin";
 import { useState } from "react";
 import QuestionProvider from "./components/QuestionProvider";
-import questions from "../../../services/static//teaTestQuestions.json";
+import questions from "../../services/static/teaTestQuestions.json";
 
 const NAVIGATE = {
   WELCOME: "WELCOME",
   QUESTION: "QUESTION",
-  RESULT: "RESULT"
+  RESULT: "RESULT",
 };
 
 const TeaTestPage = () => {
