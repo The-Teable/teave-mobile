@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import Margin from "../../components/common/Margin";
-import TitleHeader from "../../components/common/TitleHeader";
-import useInput from "../../hooks/useInput";
-import CenteredContainer from "../../components/layout/CenteredContainer";
-import TabBar from "../../components/layout/TabBar";
-import SearchBar from "./components/SearchBar";
-import SortModal, { SortKey, SORT_KEY } from "../../components/SortModal";
-import TeaItem from "../../components/TeaItem";
-import { shopFilterdTeas } from "../../services/static/dummy.json";
+import Margin from "../components/common/Margin";
+import TitleHeader from "../components/common/TitleHeader";
+import useInput from "../hooks/useInput";
+import CenteredContainer from "../components/layout/CenteredContainer";
+import TabBar from "../components/layout/TabBar";
+import SearchBar from "../components/search/SearchBar";
+import SortModal, { SortKey, SORT_KEY } from "../components/SortModal";
+import TeaItem from "../components/TeaItem";
+import { shopFilterdTeas } from "../services/static/dummy.json";
 
 const SearchPage = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const SearchPage = () => {
         />
       ) : null}
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           if (!searchInput.value) return;
           router.push("/search/?word=" + searchInput.value);
@@ -67,7 +67,7 @@ const SearchPage = () => {
               </S.OptionContainer>
               <Margin size={2} />
               <S.Container>
-                {searchedTeas.map(props => (
+                {searchedTeas.map((props) => (
                   <S.TeaItemWrapper key={props.id}>
                     <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
                   </S.TeaItemWrapper>

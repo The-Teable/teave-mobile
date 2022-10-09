@@ -1,4 +1,4 @@
-import HomeLayout from "../../components/layout/HomeLayout";
+import HomeLayout from "../components/layout/HomeLayout";
 import styled from "styled-components";
 
 const MagazinePage = () => {

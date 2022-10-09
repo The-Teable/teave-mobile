@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import Margin from "../../components/common/Margin";
-import TitleHeader from "../../components/common/TitleHeader";
-import CenteredContainer from "../../components/layout/CenteredContainer";
-import { productInCart } from "../../services/static/dummy.json";
-import { ProductInCart } from "../../services/model/cartSchema";
-import DeliveryInfo from "./components/DeliveryInfo";
-import OrderProduct from "./components/OrderProduct";
-import Bill from "../cart/components/Bill";
-import Button from "../../components/common/Button";
+import Margin from "../components/common/Margin";
+import TitleHeader from "../components/common/TitleHeader";
+import CenteredContainer from "../components/layout/CenteredContainer";
+import { productInCart } from "../services/static/dummy.json";
+import { ProductInCart } from "../services/model/cartSchema";
+import DeliveryInfo from "../components/order/DeliveryInfo";
+import OrderProduct from "../components/order/OrderProduct";
+import Bill from "../components/cart/Bill";
+import Button from "../components/common/Button";
 
 const OrderPage = () => {
   const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
@@ -20,7 +20,7 @@ const OrderPage = () => {
   const userInfo = {
     name: "김티브",
     tel: "010-1243-2343",
-    address: "서울시 성암로 8길 12번지"
+    address: "서울시 성암로 8길 12번지",
   };
 
   return (

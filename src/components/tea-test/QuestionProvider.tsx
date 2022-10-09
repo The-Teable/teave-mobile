@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import QuestionCard from "./QuestionCard";
-import useQuestionProvider from "../../../hooks/useQustionProvider";
+import useQuestionProvider from "../../hooks/useQustionProvider";
 
 interface QuestionProviderProps {
   questions: {

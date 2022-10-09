@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../../services/model/cartSchema";
+import { ProductInCart } from "../../services/model/cartSchema";
 import ToggleSelector from "./ToggleSelector";
-import Margin from "../../../components/common/Margin";
-import { color } from "../../../styles/palette";
+import Margin from "../common/Margin";
+import { color } from "../../styles/palette";
 import { Fragment } from "react";
 
 const CartProduct = ({
-  products
+  products,
 }: {
   products: Record<string, ProductInCart[]>;
 }) => {

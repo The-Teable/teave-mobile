@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../../../components/common/Button";
-import { QuestionProps } from "../../../services/model/articleSchema";
-import Margin from "../../../components/common/Margin";
+import Button from "../common/Button";
+import { QuestionProps } from "../../services/model/articleSchema";
+import Margin from "../common/Margin";
 
 const Question = ({ questions }: { questions: QuestionProps[] }) => {
   return (

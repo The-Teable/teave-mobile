@@ -1,12 +1,12 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Margin from "../../components/common/Margin";
-import TitleHeader from "../../components/common/TitleHeader";
-import CenteredContainer from "../../components/layout/CenteredContainer";
-import TabBar from "../../components/layout/TabBar";
-import { WishResponseProps } from "../../services/model/teaSchema";
-import { color } from "../../styles/palette";
-import { wishList } from "../../services/static/dummy.json";
+import Margin from "../components/common/Margin";
+import TitleHeader from "../components/common/TitleHeader";
+import CenteredContainer from "../components/layout/CenteredContainer";
+import TabBar from "../components/layout/TabBar";
+import { color } from "../styles/palette";
+import { WishResponseProps } from "../services/model/teaSchema";
+import { wishList } from "../services/static/dummy.json";
 
 const WishPage = () => {
   return (

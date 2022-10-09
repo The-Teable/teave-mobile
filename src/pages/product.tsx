@@ -1,14 +1,14 @@
-import TitleHeader from "../../components/common/TitleHeader";
+import TitleHeader from "../components/common/TitleHeader";
 import styled from "styled-components";
-import CenteredContainer from "../../components/layout/CenteredContainer";
+import CenteredContainer from "../components/layout/CenteredContainer";
 import { useRouter } from "next/router";
-import HeaderScroll from "../../components/layout/HeaderScroll";
+import HeaderScroll from "../components/layout/HeaderScroll";
 import { useRef } from "react";
-import Margin from "../../components/common/Margin";
-import Button from "../../components/common/Button";
-import Review from "./components/Review";
-import Question from "./components/Question";
-import { teaProductDetailInfo } from "../../services/static/dummy.json";
+import Margin from "../components/common/Margin";
+import Button from "../components/common/Button";
+import Review from "../components/product/Review";
+import Question from "../components/product/Question";
+import { teaProductDetailInfo } from "../services/static/dummy.json";
 
 const ProductPage = () => {
   const router = useRouter();
@@ -20,16 +20,16 @@ const ProductPage = () => {
   const headerNavLinks = [
     {
       title: "상품정보",
-      ref: $infoRef
+      ref: $infoRef,
     },
     {
       title: "리뷰",
-      ref: $reviewRef
+      ref: $reviewRef,
     },
     {
       title: "문의",
-      ref: $questionRef
-    }
+      ref: $questionRef,
+    },
   ];
 
   return (
