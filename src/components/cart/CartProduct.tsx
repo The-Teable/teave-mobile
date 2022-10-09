@@ -22,9 +22,13 @@ const CartProduct = ({
         <Fragment key={i}>
           <Margin size={1} />
           <S.BrandTitle>{brandName} 배송</S.BrandTitle>
-          {items.map(({ id, name, price, count, image_url }) => (
+          {items.map(({ id, name, price, count, image_url, is_selected }) => (
             <S.ItemContainer key={id}>
-              <ToggleSelector id={id + ""} labelName="" />
+              <ToggleSelector
+                id={id + ""}
+                labelName=""
+                isChecked={is_selected}
+              />
               <S.ItemWrapper>
                 <Image src={image_url} width={75} height={90} alt={name} />
                 <S.ContentWrapper>

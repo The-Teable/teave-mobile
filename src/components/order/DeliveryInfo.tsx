@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { color } from "../../../styles/palette";
-import Margin from "../../../components/common/Margin";
+import { color } from "../../styles/palette";
+import Margin from "../common/Margin";
 
 const DeliveryInfo = ({ name, tel, address }: any) => {
   return (

@@ -3,14 +3,16 @@ import styled, { css } from "styled-components";
 const ToggleSelector = ({
   id,
   labelName,
+  isChecked = false,
 }: {
   id: string;
   labelName?: string;
+  isChecked?: boolean;
 }) => {
   return (
     <>
       <S.OptionContainer>
-        <S.Checkbox type="checkbox" id={id} />
+        <S.Checkbox type="checkbox" id={id} checked={isChecked} />
         <S.CustomCheckbox htmlFor={id} labelName={labelName}>
           {labelName}
         </S.CustomCheckbox>

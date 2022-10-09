@@ -9,6 +9,10 @@ import OrderProduct from "../components/order/OrderProduct";
 import Bill from "../components/cart/Bill";
 import Button from "../components/common/Button";
 
+/**
+ * TODO:
+ *  - productInCart 대신 주문할 물품들을 받아와야함
+ */
 const OrderPage = () => {
   const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
     (acc, cur) => {
@@ -23,6 +27,10 @@ const OrderPage = () => {
     address: "서울시 성암로 8길 12번지",
   };
 
+  const productPrice = productInCart
+    .filter(({ is_selected }: ProductInCart) => is_selected)
+    .reduce((totalPrice, { price }) => totalPrice + price, 0);
+
   return (
     <>
       <TitleHeader title={"주문 / 결제"} />
@@ -32,7 +40,7 @@ const OrderPage = () => {
         <Margin size={1} />
         <OrderProduct products={dividedByBrand} />
       </S.Container>
-      <Bill />
+      <Bill productPrice={productPrice} deliveryCost={3000} discountPrice={0} />
       <S.SubmitContainer>
         <S.Button>70,000원 결제하기</S.Button>
       </S.SubmitContainer>

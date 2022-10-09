@@ -1,26 +1,33 @@
 import styled from "styled-components";
 import CenteredContainer from "../layout/CenteredContainer";
 
-const Bill = () => {
+const Bill = (props: {
+  productPrice: number;
+  deliveryCost: number;
+  discountPrice: number;
+}) => {
+  const { productPrice, deliveryCost, discountPrice } = props;
   return (
     <>
       <CenteredContainer>
         <S.Container>
           <S.Wrapper>
             <S.ItemGray>총 상품 금액</S.ItemGray>
-            <S.Item>67,000원</S.Item>
+            <S.Item>{productPrice.toLocaleString()}원</S.Item>
           </S.Wrapper>
           <S.Wrapper>
             <S.ItemGray>총 배송비</S.ItemGray>
-            <S.Item>3,000원</S.Item>
+            <S.Item>{deliveryCost.toLocaleString()}원</S.Item>
           </S.Wrapper>
           <S.Wrapper>
             <S.ItemGray>총 할인 금액</S.ItemGray>
-            <S.Item>0원</S.Item>
+            <S.Item>{discountPrice.toLocaleString()}원</S.Item>
           </S.Wrapper>
           <S.Wrapper>
             <S.Result>결제 금액</S.Result>
-            <S.Result>70,000원</S.Result>
+            <S.Result>
+              {(productPrice + deliveryCost - discountPrice).toLocaleString()}원
+            </S.Result>
           </S.Wrapper>
         </S.Container>
       </CenteredContainer>

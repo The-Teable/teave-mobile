@@ -275,7 +275,8 @@
       "name": "홍차아람",
       "price": 25000,
       "count": 1,
-      "image_url": "/image/goods1.svg"
+      "image_url": "/image/goods1.svg",
+      "is_selected": true
     },
     {
       "id": 1,
@@ -283,7 +284,8 @@
       "name": "딸기 정원",
       "price": 15000,
       "count": 2,
-      "image_url": "/image/goods1.svg"
+      "image_url": "/image/goods1.svg",
+      "is_selected": true
     },
     {
       "id": 2,
@@ -291,7 +293,8 @@
       "name": "홍차아람",
       "price": 15000,
       "count": 1,
-      "image_url": "/image/goods1.svg"
+      "image_url": "/image/goods1.svg",
+      "is_selected": false
     }
   ],
   "teaProductDetailInfo": {

@@ -5,6 +5,7 @@ export type ProductInCart = Pick<
   "id" | "brand" | "name" | "price" | "image_url"
 > & {
   count: number;
+  is_selected: boolean;
 };
 
 export type Delivery = {

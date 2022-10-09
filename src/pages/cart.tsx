@@ -9,10 +9,14 @@ import CartFooter from "../components/cart/CartFooter";
 import Bill from "../components/cart/Bill";
 import CartProduct from "../components/cart/CartProduct";
 
+/**
+ * TODO :
+ *  - 서버 API 완성시 dividedByBrand를 react query에서 select하는 것으로 교체할 것
+ *  - discountPrice 일단 0으로 했는데 할인가를 어디서 정하는지? 서버에서 보내줄 때 할인가와 원가를 주는지?
+ *  - 모두 선택 클릭 시 dividedByBrand에서 is_selected가 false 인 아이템들을 true로 바꾸는 PUT요청
+ *  - delivery cost 산정 방식 협의 후 수정
+ */
 const CartPage = () => {
-  /**
-   * TODO : 서버 API 완성시 교체할 것
-   */
   const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
     (acc: Record<string, ProductInCart[]>, cur: ProductInCart) => {
       acc[cur.brand] = cur.brand in acc ? [...acc[cur.brand], cur] : [cur];
@@ -20,6 +24,9 @@ const CartPage = () => {
     },
     {}
   );
+  const productPrice = productInCart
+    .filter(({ is_selected }: ProductInCart) => is_selected)
+    .reduce((totalPrice, { price }) => totalPrice + price, 0);
 
   return (
     <>
@@ -29,7 +36,7 @@ const CartPage = () => {
         <CartProduct products={dividedByBrand} />
         <Margin size={2} />
       </S.Container>
-      <Bill />
+      <Bill productPrice={productPrice} deliveryCost={3000} discountPrice={0} />
       <CartFooter />
     </>
   );
