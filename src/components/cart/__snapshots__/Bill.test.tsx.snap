@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bill components matches snapshot 1`] = `
+<div>
+  <div
+    class="CenteredContainer-sc-1yuzjpv-0 fqZIID"
+  >
+    <div
+      class="Bill__Container-sc-gazs1n-0 MqvCF"
+    >
+      <div
+        class="Bill__Wrapper-sc-gazs1n-1 cjHyiK"
+      >
+        <div
+          class="Bill__ItemGray-sc-gazs1n-2 dQLWtA"
+        >
+          총 상품 금액
+        </div>
+        <div
+          class="Bill__Item-sc-gazs1n-3 curGih"
+        >
+          0원
+        </div>
+      </div>
+      <div
+        class="Bill__Wrapper-sc-gazs1n-1 cjHyiK"
+      >
+        <div
+          class="Bill__ItemGray-sc-gazs1n-2 dQLWtA"
+        >
+          총 배송비
+        </div>
+        <div
+          class="Bill__Item-sc-gazs1n-3 curGih"
+        >
+          0원
+        </div>
+      </div>
+      <div
+        class="Bill__Wrapper-sc-gazs1n-1 cjHyiK"
+      >
+        <div
+          class="Bill__ItemGray-sc-gazs1n-2 dQLWtA"
+        >
+          총 할인 금액
+        </div>
+        <div
+          class="Bill__Item-sc-gazs1n-3 curGih"
+        >
+          0원
+        </div>
+      </div>
+      <div
+        class="Bill__Wrapper-sc-gazs1n-1 cjHyiK"
+      >
+        <div
+          class="Bill__Result-sc-gazs1n-4 iQoUGo"
+        >
+          결제 금액
+        </div>
+        <div
+          class="Bill__Result-sc-gazs1n-4 iQoUGo"
+        >
+          0원
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

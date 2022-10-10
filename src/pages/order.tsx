@@ -54,7 +54,6 @@ const S: any = {};
 
 S.Container = styled(CenteredContainer)`
   background-color: #f4f4f4;
-  min-height: 92vh;
   padding: 0;
   font-size: 1.5rem;
 `;
