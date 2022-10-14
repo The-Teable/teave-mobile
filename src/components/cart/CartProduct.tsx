@@ -6,6 +6,8 @@ import Margin from "../common/Margin";
 import { color } from "../../styles/palette";
 import { Fragment } from "react";
 
+const TEMP_DELIVERY_FEE = 3000;
+
 const CartProduct = ({
   products,
 }: {
@@ -18,46 +20,56 @@ const CartProduct = ({
 
   return (
     <>
-      {Object.entries(products).map(([brandName, items], i) => (
-        <Fragment key={i}>
-          <Margin size={1} />
-          <S.BrandTitle>{brandName} 배송</S.BrandTitle>
-          {items.map(({ id, name, price, count, image_url, is_selected }) => (
-            <S.ItemContainer key={id}>
-              <ToggleSelector
-                id={id + ""}
-                labelName=""
-                isChecked={is_selected}
-              />
-              <S.ItemWrapper>
-                <Image src={image_url} width={75} height={90} alt={name} />
-                <S.ContentWrapper>
-                  <S.ItemTitle>{name}</S.ItemTitle>
-                  <Margin size={1} />
-                  <S.UnitPrice>{price.toLocaleString()}원</S.UnitPrice>
-                  <Margin size={1.5} />
-                  <S.CountWrapper>
-                    <S.Count type="number" min="1" defaultValue={count} />
-                    <Margin size={0.5} row />개
-                  </S.CountWrapper>
-                </S.ContentWrapper>
-              </S.ItemWrapper>
-              <S.Price>{(price * count).toLocaleString()}원</S.Price>
-              <S.DeleteButton
-                src="/image/icon_exit.svg"
-                width={10}
-                height={10}
-                onClick={handleDeleteProduct}
-              />
-            </S.ItemContainer>
-          ))}
-          <S.TotalPriceContainer>
-            <S.DeliveryCost>55,000원 + 배송비 3,000원 =</S.DeliveryCost>
-            <Margin size={0.5} row />
-            <S.TotalPrice>합계 58,000원</S.TotalPrice>
-          </S.TotalPriceContainer>
-        </Fragment>
-      ))}
+      {Object.entries(products).map(([brandName, brandProducts], i) => {
+        const totalPrice = brandProducts.reduce(
+          (acc, cur) => acc + (cur.is_selected ? cur.price * cur.count : 0),
+          0
+        );
+        return (
+          <Fragment key={i}>
+            <S.BrandTitle>{brandName} 배송</S.BrandTitle>
+            {brandProducts.map(
+              ({ id, name, price, count, image_url, is_selected }) => (
+                <S.ItemContainer key={id}>
+                  <ToggleSelector
+                    id={id + ""}
+                    labelName=""
+                    isChecked={is_selected}
+                  />
+                  <S.ItemWrapper>
+                    <Image src={image_url} width={75} height={90} alt={name} />
+                    <S.ContentWrapper>
+                      <S.ItemTitle>{name}</S.ItemTitle>
+                      <S.UnitPrice>{price.toLocaleString()}원</S.UnitPrice>
+                      <S.CountWrapper>
+                        <S.Count type="number" defaultValue={count} />개
+                      </S.CountWrapper>
+                    </S.ContentWrapper>
+                  </S.ItemWrapper>
+                  <S.Price>{(price * count).toLocaleString()}원</S.Price>
+                  <S.DeleteButton
+                    src="/image/icon_exit.svg"
+                    width={10}
+                    height={10}
+                    onClick={handleDeleteProduct}
+                  />
+                </S.ItemContainer>
+              )
+            )}
+            {totalPrice > 0 && (
+              <S.TotalPriceContainer>
+                <S.DeliveryCost>
+                  {totalPrice.toLocaleString()}원 + 배송비{" "}
+                  {TEMP_DELIVERY_FEE.toLocaleString()}원 =
+                </S.DeliveryCost>
+                <S.TotalPrice>
+                  합계 {(totalPrice + TEMP_DELIVERY_FEE).toLocaleString()}원
+                </S.TotalPrice>
+              </S.TotalPriceContainer>
+            )}
+          </Fragment>
+        );
+      })}
     </>
   );
 };
@@ -74,6 +86,7 @@ S.BrandTitle = styled.div`
   justify-content: center;
   height: 5rem;
   border-bottom: 1px solid ${color.gray200};
+  margin-top: 1rem;
 `;
 
 S.ItemContainer = styled.div`
@@ -95,10 +108,12 @@ S.ContentWrapper = styled.div`
 S.ItemTitle = styled.div`
   font-size: 1.3rem;
   font-weight: 500;
+  margin-bottom: 1rem;
 `;
 
 S.UnitPrice = styled.div`
   font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 `;
 
 S.CountWrapper = styled.div`
@@ -108,6 +123,7 @@ S.CountWrapper = styled.div`
 
 S.Count = styled.input`
   width: 5rem;
+  margin-right: 0.5rem;
 `;
 
 S.Price = styled.div`
@@ -138,6 +154,7 @@ S.TotalPriceContainer = styled.div`
 S.DeliveryCost = styled.div`
   font-size: 1.2rem;
   color: #808080;
+  margin-right: 0.5rem;
 `;
 
 S.TotalPrice = styled.div`

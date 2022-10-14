@@ -3,11 +3,11 @@ import Link from "next/link";
 import CenteredContainer from "../layout/CenteredContainer";
 import Button from "../common/Button";
 
-const CartFooter = () => (
+const CartFooter = ({ price }: { price: number }) => (
   <>
     <S.Padding />
     <S.Container>
-      <S.Price>총 70,000원</S.Price>
+      <S.Price>총 {price.toLocaleString()}원</S.Price>
       <Link href={"/order"} passHref>
         <Button>바로구매</Button>
       </Link>
