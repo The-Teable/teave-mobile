@@ -7,7 +7,7 @@ import { productInCart } from "../services/static/dummy.json";
 import { ProductInCart } from "../services/model/cartSchema";
 import CartFooter from "../components/cart/CartFooter";
 import Bill from "../components/cart/Bill";
-import CartProduct from "../components/cart/CartProduct";
+import CartProductsContainer from "../components/cart/CartProductsContainer";
 
 const TEMP_DELIVERY_FEE = 3000;
 
@@ -37,7 +37,7 @@ const CartPage = () => {
       <TitleHeader title={"장바구니"} />
       <S.Container>
         <ToggleSelector id="selectAll" labelName="모두선택" />
-        <CartProduct products={dividedByBrand} />
+        <CartProductsContainer products={dividedByBrand} />
         <Margin size={2} />
       </S.Container>
       <Bill
