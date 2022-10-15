@@ -12,6 +12,7 @@ const useAuthQuery = () => {
     },
     onError: (error) => {
       if (error instanceof AxiosError) alert(error.message);
+      console.error(error);
       // 에러 핸들링 해야함
     },
   }).mutate;
@@ -25,6 +26,7 @@ const useAuthQuery = () => {
     },
     onError: (error) => {
       if (error instanceof AxiosError) alert(error.response?.data.details);
+      console.error(error);
       // 에러 핸들링 해야함
     },
   }).mutate;
