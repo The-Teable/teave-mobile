@@ -8,9 +8,12 @@ import Margin from "../components/common/Margin";
 import Button from "../components/common/Button";
 import Review from "../components/product/Review";
 import Question from "../components/product/Question";
-import { teaProductDetailInfo } from "../services/static/dummy.json";
+import dummy from "../services/static/dummy.json";
+// import Image from "next/image";
+import Image from "next/future/image";
 
 const ProductPage = () => {
+  const { teaProductDetailInfo } = dummy;
   const router = useRouter();
   const id = router.query["id"];
   const $infoRef = useRef<HTMLDivElement>(null);
@@ -39,9 +42,20 @@ const ProductPage = () => {
       <Margin size={3} />
       <S.Container>
         <div id="info" ref={$infoRef} />
-        <img src={teaProductDetailInfo.tea_image_urls[0]} width={"100%"} />
+        <Image
+          src={teaProductDetailInfo.tea_image_urls[0]}
+          width={500}
+          height={500}
+          style={{ width: "100%", height: "auto" }}
+          alt="제품 미리보기"
+        />
         <S.BrandWrapper>
-          <img src={teaProductDetailInfo.brand_logo_url} width="40" />
+          <Image
+            src={teaProductDetailInfo.brand_logo_url}
+            width={40}
+            height={40}
+            alt="브랜드 로고"
+          />
           <Margin row size={2} />
           <div>{teaProductDetailInfo.brand_name}</div>
         </S.BrandWrapper>
@@ -57,10 +71,12 @@ const ProductPage = () => {
           {teaProductDetailInfo.delivery_info}
         </S.DeliveryInfoWrapper>
 
-        <img
+        <Image
           src={teaProductDetailInfo.tea_detail}
-          width="100%"
-          alt="제품상세이미지"
+          alt="제품 상세 설명"
+          width={1000}
+          height={1000}
+          style={{ width: "100%", height: "auto" }}
         />
         <Margin size={5} />
         <div id="review" ref={$reviewRef} />
@@ -73,7 +89,12 @@ const ProductPage = () => {
       </S.Container>
       <Margin size={7.5} />
       <S.Footer>
-        <img src="/image/icon_favorite_red_lined.png" width={25} height={25} />
+        <Image
+          src="/image/icon_favorite_red_lined.png"
+          width={25}
+          height={25}
+          alt="찜하기 아이콘"
+        />
 
         <S.Button>구매하기</S.Button>
       </S.Footer>
@@ -132,4 +153,10 @@ S.Button = styled(Button)`
   font-size: 1.5rem;
   height: 4rem;
   margin-left: 2rem;
+`;
+
+S.Ppap = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;

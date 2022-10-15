@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../common/Button";
 import { ReviewProps } from "../../services/model/articleSchema";
 import Margin from "../common/Margin";
+import Image from "next/image";
 
 const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
   return (
@@ -13,7 +14,9 @@ const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
           <Margin size={2} />
           <div>
             {title}{" "}
-            {image_url && <img src="/image/icon_has_image.png" width="12" />}
+            {image_url && (
+              <Image src="/image/icon_has_image.png" width={12} height={12} />
+            )}
           </div>
           <Margin size={1.5} />
           <AuthorWrapper>

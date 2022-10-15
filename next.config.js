@@ -17,6 +17,11 @@ module.exports = (phase) => {
   return {
     env,
     reactStrictMode: false,
+    experimental: {
+      images: {
+        allowFutureImage: true,
+      },
+    },
     redirects: async () => [
       {
         source: "/",
