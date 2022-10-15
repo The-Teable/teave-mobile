@@ -11,4 +11,5 @@
 | docs     | Modify the document           |
 | services | Change about server API       |
 | test     | Make the test file            |
+| BREACKING CHANGE| Breaking changes such as library version upgrade    |
 | chore    | etc.                          |
