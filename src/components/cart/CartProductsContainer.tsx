@@ -22,7 +22,7 @@ const CartProductsContainer = ({
           <Fragment key={i}>
             <S.BrandTitle>{brandName} 배송</S.BrandTitle>
             {brandProducts.map((brandProduct) => (
-              <CartProduct brandProduct={brandProduct} />
+              <CartProduct brandProduct={brandProduct} key={brandProduct.id} />
             ))}
             {totalPrice > 0 && (
               <S.TotalPriceContainer>

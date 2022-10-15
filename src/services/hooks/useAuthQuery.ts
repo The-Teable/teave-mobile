@@ -11,7 +11,7 @@ const useAuthQuery = () => {
       router.push("/");
     },
     onError: (error) => {
-      if (error instanceof AxiosError) alert(error.response?.data.details);
+      if (error instanceof AxiosError) alert(error.message);
       // 에러 핸들링 해야함
     },
   }).mutate;

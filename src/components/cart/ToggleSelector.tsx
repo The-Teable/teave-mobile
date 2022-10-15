@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled, { css } from "styled-components";
 
 const ToggleSelector = ({
@@ -9,10 +10,16 @@ const ToggleSelector = ({
   labelName?: string;
   isChecked?: boolean;
 }) => {
+  const [toggle, setToggle] = useState(isChecked);
   return (
     <>
       <S.OptionContainer>
-        <S.Checkbox type="checkbox" id={id} checked={isChecked} />
+        <S.Checkbox
+          type="checkbox"
+          id={id}
+          checked={toggle}
+          onChange={() => setToggle(!toggle)}
+        />
         <S.CustomCheckbox htmlFor={id} labelName={labelName}>
           {labelName}
         </S.CustomCheckbox>
