@@ -1,0 +1,12 @@
+{
+  "caffeine": {
+    "title": "카페인",
+    "filters": ["카페인 포함", "무카페인"],
+    "isUnique": true
+  },
+  "teaType": {
+    "title": "티 종류",
+    "filters": ["홍차", "녹차", "블랜딩", "꽃차", "과일차", "전통차", "허브차"],
+    "isUnique": false
+  }
+}
