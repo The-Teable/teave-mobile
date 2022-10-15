@@ -7,9 +7,9 @@ import HeaderTemplate from "./HeaderTemplate";
 
 const items = [
   { title: "메인", href: "/home" },
-  { title: "샵", href: "/home/shop" },
-  { title: "테스트", href: "/home/tea-test" },
-  { title: "매거진", href: "/home/magazine" }
+  { title: "샵", href: "/shop" },
+  { title: "테스트", href: "/tea-test" },
+  { title: "매거진", href: "/magazine" },
 ];
 
 const Header = () => {
