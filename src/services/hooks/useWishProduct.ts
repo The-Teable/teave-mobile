@@ -11,6 +11,10 @@ const URL = {
   WISH: "/user-wish-product/",
 };
 
+const queryKeys = {
+  GET_WISH: "getWish",
+};
+
 const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
@@ -18,23 +22,27 @@ const http = axios.create({
 const useWishProduct = () => {
   const queryClient = useQueryClient();
 
-  const { data, ...results } = useQuery(["getWish"], () => http.get(URL.WISH), {
-    select: () => {
-      return data?.data.data;
-    },
-  });
+  const { data, ...results } = useQuery(
+    [queryKeys.GET_WISH],
+    () => http.get(URL.WISH),
+    {
+      select: (data) => {
+        return data?.data;
+      },
+    }
+  );
 
   const addWish = useMutation((tea_id) => http.post(URL.WISH, { tea_id }), {
     onSuccess: () => {
-      queryClient.invalidateQueries(["getWish"]);
+      queryClient.invalidateQueries([queryKeys.GET_WISH]);
     },
   }).mutate;
 
   const removeWish = useMutation(
-    (tea_id) => http.post(`${URL.WISH}/delete`, { tea_id }),
+    (tea_id) => http.post(`${URL.WISH}delete/`, { tea_id }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["getWish"]);
+        queryClient.invalidateQueries([queryKeys.GET_WISH]);
       },
     }
   ).mutate;

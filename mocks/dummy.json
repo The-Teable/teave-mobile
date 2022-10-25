@@ -243,6 +243,10 @@
       "id": 0,
       "name": "카라멜 티메리카노 ",
       "brand": "큐앤리브리즈",
+      "type": "",
+      "flavor": "",
+      "caffeine": "",
+      "efficacies": "",
       "price": 15000,
       "image_url": "/image/goods1.svg"
     },
@@ -250,6 +254,10 @@
       "id": 1,
       "name": "카라멜 티메리카노 ",
       "brand": "큐앤리브리즈",
+      "type": "",
+      "flavor": "",
+      "caffeine": "",
+      "efficacies": "",
       "price": 15000,
       "image_url": "/image/goods2.svg"
     },
@@ -257,6 +265,10 @@
       "id": 2,
       "name": "카라멜 티메리카노 ",
       "brand": "큐앤리브리즈",
+      "type": "",
+      "flavor": "",
+      "caffeine": "",
+      "efficacies": "",
       "price": 15000,
       "image_url": "/image/goods3.svg"
     },
@@ -264,6 +276,10 @@
       "id": 3,
       "name": "카라멜 티메리카노 ",
       "brand": "큐앤리브리즈",
+      "type": "",
+      "flavor": "",
+      "caffeine": "",
+      "efficacies": "",
       "price": 15000,
       "image_url": "/image/goods1.svg"
     }

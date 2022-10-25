@@ -5,41 +5,51 @@ import TitleHeader from "../components/common/TitleHeader";
 import CenteredContainer from "../components/layout/CenteredContainer";
 import TabBar from "../components/layout/TabBar";
 import { color } from "../styles/palette";
-import { WishResponseProps } from "../services/model/teaSchema";
-import { wishList } from "../services/static/dummy.json";
+import { useWishProduct } from "../services/hooks/useWishProduct";
+import { UserWishProduct } from "../services/model/wishSchema";
 
 const WishPage = () => {
+  const { wishProducts, removeWish } = useWishProduct();
+
   return (
     <>
       <TitleHeader title={"찜한 상품"} />
       <CenteredContainer>
-        <Margin size={2} />
-        <S.Counter>전체 {wishList.length}개</S.Counter>
-        <Margin size={2} />
-        <S.Container>
-          {wishList.map((props: WishResponseProps) => {
-            const { id, name, brand, price, image_url } = props;
-            return (
-              <S.ItemContainer key={id}>
-                <Image src={image_url} width={105} height={120} alt={name} />
-                <Margin size={1.5} row />
-                <S.ItemWrapper>
-                  <S.Title>
-                    [{brand}] {name}
-                  </S.Title>
-                  <Margin size={2} />
-                  <S.Price>{price.toLocaleString()}원</S.Price>
-                  <Margin size={4} />
-                  <S.ButtonContainer>
-                    <S.Button>삭제</S.Button>
-                    <Margin size={2} row />
-                    <S.GreenButton>장바구니</S.GreenButton>
-                  </S.ButtonContainer>
-                </S.ItemWrapper>
-              </S.ItemContainer>
-            );
-          })}
-        </S.Container>
+        {wishProducts && (
+          <>
+            <StyledCounter>전체 {wishProducts.length}개</StyledCounter>
+            <StyledContainer>
+              {wishProducts.map((props: UserWishProduct) => {
+                const { id, name, brand, price, image_url } = props;
+                return (
+                  <StyledItemContainer key={id}>
+                    <Image
+                      src={image_url}
+                      width={105}
+                      height={120}
+                      alt={name}
+                    />
+                    <StyledItemWrapper>
+                      <StyledTitle>
+                        [{brand}] {name}
+                      </StyledTitle>
+                      <Margin size={2} />
+                      <StyledPrice>{price.toLocaleString()}원</StyledPrice>
+                      <Margin size={4} />
+                      <StyledButtonContainer>
+                        <StyledButton onClick={() => removeWish(id)}>
+                          삭제
+                        </StyledButton>
+                        <Margin size={2} row />
+                        <StyledGreenButton>장바구니</StyledGreenButton>
+                      </StyledButtonContainer>
+                    </StyledItemWrapper>
+                  </StyledItemContainer>
+                );
+              })}
+            </StyledContainer>
+          </>
+        )}
       </CenteredContainer>
       <TabBar />
     </>
@@ -48,37 +58,39 @@ const WishPage = () => {
 
 export default WishPage;
 
-const S: any = {};
-S.Container = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `;
-S.Counter = styled.div`
+const StyledCounter = styled.div`
   text-align: right;
   color: #808080;
   font-size: 1.2rem;
+  margin: 2rem 0;
 `;
 
-S.ItemContainer = styled.div`
+const StyledItemContainer = styled.div`
   display: flex;
   margin: 0 3rem 3rem 0;
 `;
-S.ItemWrapper = styled.div``;
-
-S.Title = styled.h3`
-  font-size: 1.2rem;
+const StyledItemWrapper = styled.div`
+  margin-left: 1.5rem;
 `;
-S.Price = styled.p`
+
+const StyledTitle = styled.h3`
+  font-size: 12px;
+`;
+const StyledPrice = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
 `;
 
-S.ButtonContainer = styled.div`
+const StyledButtonContainer = styled.div`
   display: flex;
 `;
 
-S.Button = styled.button`
+const StyledButton = styled.button`
   font-size: 1.2rem;
   border-radius: 2rem;
   width: 8rem;
@@ -88,7 +100,7 @@ S.Button = styled.button`
   border: 1px solid #808080;
 `;
 
-S.GreenButton = styled(S.Button)`
+const StyledGreenButton = styled(StyledButton)`
   color: ${color.teaveGreen};
   border: 1px solid ${color.teaveGreen};
 `;

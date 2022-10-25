@@ -1,4 +1,4 @@
-export type wishProduct = {
+export type UserWishProduct = {
   id: number;
   name: string;
   brand: string;
