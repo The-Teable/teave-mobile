@@ -36,6 +36,12 @@ export const handlers = [
       return res(ctx.json(dummy.themeRecommends));
     }
   ),
+  rest.get(
+    process.env.NEXT_PUBLIC_LS_URL + teaApiUrls.RECOMMEND_PRODUCTS,
+    (_req, res, ctx) => {
+      return res(ctx.json(dummy.mainFilteringResults));
+    }
+  ),
 ];
 
 const dummy = {
@@ -361,31 +367,46 @@ const dummy = {
       ],
     },
   ],
-  teaRecommends: [
+  mainFilteringResults: [
     {
-      url: "/image/sample.svg",
-      brand: "알디프",
+      id: 0,
       name: "비포선셋",
-      features:
+      brand: "알디프",
+      type: "",
+      flavor: "",
+      caffeine: "",
+      efficacies:
         "블랜딩 티, 무카페인, 매운/민트, 시트러스, 안정/숙면, 다이어트/피부",
-      describe:
+      price: 0,
+      description:
         "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티 빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해",
+      image_url: "/image/sample.svg",
     },
     {
-      url: "/image/goods2.svg",
-      brand: "알디프",
+      id: 1,
       name: "비포선셋",
-      features: "루이보스, 베리, 상큼",
-      describe:
+      brand: "알디프",
+      type: "",
+      flavor: "",
+      caffeine: "",
+      efficacies: "루이보스, 베리, 상큼",
+      price: 0,
+      description:
         "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티",
+      image_url: "/image/goods2.svg",
     },
     {
-      url: "/image/goods3.svg",
-      brand: "알디프",
+      id: 2,
       name: "비포선셋",
-      features: "루이보스, 베리, 상큼",
-      describe:
+      brand: "알디프",
+      type: "",
+      flavor: "",
+      caffeine: "",
+      efficacies: "루이보스, 베리, 상큼",
+      price: 0,
+      description:
         "빨간 루이보스에 각종 베리류를 듬뿍 블랜딩해 상큼하고 달콤한, 따뜻하고 편안한 오후같은 무카페인 티",
+      image_url: "/image/goods3.svg",
     },
   ],
   shopFilterdTeas: [

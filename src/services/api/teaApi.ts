@@ -7,7 +7,7 @@ import { ClickProductProps, MainFilteringResults } from "../model/teaSchema";
 export const teaApiUrls = {
   REFRESH_TOKEN: "/token/refresh/",
   CLICK_PRODUCT: "/user-click-product/",
-  MAIN_PRODUCTS: "/main-filtering-results/",
+  RECOMMEND_PRODUCTS: "/main-filtering-results/",
   THEME_PRODUCTS: "/theme-filtering/",
 };
 
@@ -46,7 +46,8 @@ const fetchClickProduct = (props: ClickProductProps) => {
 };
 
 const fetchMainProducts = async () => {
-  return (await http.get<MainFilteringResults>(teaApiUrls.MAIN_PRODUCTS)).data;
+  return (await http.get<MainFilteringResults>(teaApiUrls.RECOMMEND_PRODUCTS))
+    .data;
 };
 
 export { fetchClickProduct, fetchMainProducts };

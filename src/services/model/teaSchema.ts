@@ -27,6 +27,7 @@ export type MainFilteringResults = {
   caffeine: string;
   efficacies: string;
   price: number;
+  description: string;
   image_url: string;
 }[];
 
