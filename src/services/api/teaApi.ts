@@ -2,13 +2,9 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import { storage } from "../../util/storage";
-import {
-  ClickProductProps,
-  MainFilteringResults,
-  ThemeFiltering,
-} from "../model/teaSchema";
+import { ClickProductProps, MainFilteringResults } from "../model/teaSchema";
 
-const URL = {
+export const teaApiUrls = {
   REFRESH_TOKEN: "/token/refresh/",
   CLICK_PRODUCT: "/user-click-product/",
   MAIN_PRODUCTS: "/main-filtering-results/",
@@ -35,7 +31,7 @@ http.interceptors.request.use(async (config) => {
   if (isExpired) {
     const {
       data: { token: refreshedToken },
-    } = await http.get(URL.REFRESH_TOKEN);
+    } = await http.get(teaApiUrls.REFRESH_TOKEN);
     storage.set({ key: "ACCESS_TOKEN", value: refreshedToken });
     return {
       ...config,
@@ -46,15 +42,11 @@ http.interceptors.request.use(async (config) => {
 });
 
 const fetchClickProduct = (props: ClickProductProps) => {
-  return http.post(URL.CLICK_PRODUCT, props);
+  return http.post(teaApiUrls.CLICK_PRODUCT, props);
 };
 
 const fetchMainProducts = async () => {
-  return (await http.get<MainFilteringResults>(URL.MAIN_PRODUCTS)).data;
+  return (await http.get<MainFilteringResults>(teaApiUrls.MAIN_PRODUCTS)).data;
 };
 
-const fetchThemeProducts = () => {
-  return http.get<ThemeFiltering>(URL.THEME_PRODUCTS);
-};
-
-export { fetchClickProduct, fetchMainProducts, fetchThemeProducts };
+export { fetchClickProduct, fetchMainProducts };

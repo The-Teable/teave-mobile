@@ -28,7 +28,7 @@ const useWishProduct = () => {
     () => http.get<UserWishProduct>(URL.WISH),
     {
       select: (data) => {
-        return data?.data;
+        return data.data;
       },
     }
   );
@@ -40,7 +40,7 @@ const useWishProduct = () => {
   }).mutate;
 
   const removeWish = useMutation(
-    (tea_id) => http.post(`${URL.WISH}delete/`, { tea_id }),
+    (tea_id: number) => http.post(`${URL.WISH}delete/`, { tea_id }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKeys.GET_WISH]);
