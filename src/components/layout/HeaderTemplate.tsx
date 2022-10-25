@@ -18,7 +18,7 @@ const HeaderTemplate = ({ headerNavLinks }: Props) => {
       <S.NavWrapper>
         {headerNavLinks.map(({ title, href }) => (
           <Link key={href} href={href} passHref>
-            <S.NavItemContainer isSelected={router.pathname === href}>
+            <S.NavItemContainer isSelected={router && router.pathname === href}>
               <span>{title}</span>
             </S.NavItemContainer>
           </Link>

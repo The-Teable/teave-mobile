@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home page matches snapshot 1`] = `
+<div>
+  <header
+    class="CenteredContainer-sc-1yuzjpv-0 HomeHeader__Container-sc-iazqo1-0 fqZIID brYkJu"
+  >
+    <div
+      class="HomeHeader__TopWrapper-sc-iazqo1-1 hzLrko"
+    >
+      <div
+        class="HomeHeader__Logo-sc-iazqo1-2 bAkOIZ"
+        href="/"
+      />
+    </div>
+    <div
+      class="HeaderTemplate__NavWrapper-sc-1n2n33l-0 jVERha"
+    >
+      <div
+        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        href="/home"
+      >
+        <span>
+          메인
+        </span>
+      </div>
+      <div
+        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        href="/shop"
+      >
+        <span>
+          샵
+        </span>
+      </div>
+      <div
+        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        href="/tea-test"
+      >
+        <span>
+          테스트
+        </span>
+      </div>
+      <div
+        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        href="/magazine"
+      >
+        <span>
+          매거진
+        </span>
+      </div>
+    </div>
+  </header>
+  <div
+    class="HomeHeader__Padding-sc-iazqo1-3 kbpwBT"
+  />
+  <div
+    class="CenteredContainer-sc-1yuzjpv-0 fqZIID"
+  >
+    <section
+      class="PromotionBanner__Container-sc-blfoty-0"
+    >
+      <div
+        class="Slider__Container-sc-1q9eb3v-1 eiYngw"
+      >
+        <div
+          class="Slider__Wrapper-sc-1q9eb3v-2 SbVIJ"
+        >
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 wTEau"
+            href="/"
+          />
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 jBFeFR"
+            href="/"
+          />
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 jlszkE"
+            href="/"
+          />
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 wTEau"
+            href="/"
+          />
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 jBFeFR"
+            href="/"
+          />
+          <div
+            class="PromotionBanner__Item-sc-blfoty-1 jlszkE"
+            href="/"
+          />
+        </div>
+        <button
+          class="Slider__MoveButton-sc-1q9eb3v-0 Slider__PrevButton-sc-1q9eb3v-3 gYpBHl fZbAJT"
+          disabled=""
+        />
+        <button
+          class="Slider__MoveButton-sc-1q9eb3v-0 Slider__NextButton-sc-1q9eb3v-4 gYpBHl cQRexj"
+          disabled=""
+        />
+      </div>
+    </section>
+    <div
+      class="Margin-sc-dj7vsz-0 esohVP"
+      size="3"
+    />
+    <div
+      class="Margin-sc-dj7vsz-0 esohVP"
+      size="3"
+    />
+    <div
+      class="Margin-sc-dj7vsz-0 esohVP"
+      size="3"
+    />
+  </div>
+  <div
+    class="TabBar__Padding-sc-wdzu00-4 iUwhbr"
+  />
+  <nav
+    class="CenteredContainer-sc-1yuzjpv-0 TabBar__Container-sc-wdzu00-0 fqZIID gVFLHI"
+  >
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/home"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 dVOLca"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        홈
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/search"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 bPGhcH"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        검색
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/wish"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 jZLMVx"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        찜
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/cart"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 zuHol"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        장바구니
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/mypage"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 ksYoco"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        마이페이지
+      </p>
+    </div>
+  </nav>
+</div>
+`;
