@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { UserWishProduct } from "../model/wishSchema";
 
 /**
  * TODO
@@ -24,7 +25,7 @@ const useWishProduct = () => {
 
   const { data, ...results } = useQuery(
     [queryKeys.GET_WISH],
-    () => http.get(URL.WISH),
+    () => http.get<UserWishProduct>(URL.WISH),
     {
       select: (data) => {
         return data?.data;

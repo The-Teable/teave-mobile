@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wish page matches snapshot 1`] = `
+<div>
+  <div
+    class="CenteredContainer-sc-1yuzjpv-0 TitleHeader__Header-sc-11tys1g-0 fqZIID kzEIQl"
+  >
+    <div
+      class="TitleHeader__Button-sc-11tys1g-1 TitleHeader__GoBackButton-sc-11tys1g-3 giDEjW iuJpAG"
+    >
+      <span
+        style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+      >
+        <img
+          data-nimg="fill"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+    </div>
+    <h1
+      class="TitleHeader__Title-sc-11tys1g-2 ixFut"
+    >
+      찜한 상품
+    </h1>
+  </div>
+  <div
+    class="TitleHeader__Padding-sc-11tys1g-6 bmtQFo"
+  />
+  <div
+    class="CenteredContainer-sc-1yuzjpv-0 fqZIID"
+  />
+  <div
+    class="TabBar__Padding-sc-wdzu00-4 iUwhbr"
+  />
+  <nav
+    class="CenteredContainer-sc-1yuzjpv-0 TabBar__Container-sc-wdzu00-0 fqZIID gVFLHI"
+  >
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/home"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 dVOLca"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        홈
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/search"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 bPGhcH"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        검색
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/wish"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 jZLMVx"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        찜
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/cart"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 zuHol"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        장바구니
+      </p>
+    </div>
+    <div
+      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      href="/mypage"
+    >
+      <div
+        class="TabBar__Icon-sc-wdzu00-2 ksYoco"
+      />
+      <p
+        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+      >
+        마이페이지
+      </p>
+    </div>
+  </nav>
+</div>
+`;

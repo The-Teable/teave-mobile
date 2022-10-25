@@ -1,6 +1,12 @@
 import { rest } from "msw";
 import { UserWishProduct } from "../src/services/model/wishSchema";
 
+type UserWishProductRequsetBody = {
+  body: {
+    tea_id: number;
+  };
+};
+
 let wishProducts = [
   {
     id: 0,
@@ -47,6 +53,7 @@ let wishProducts = [
     image_url: "/image/goods1.svg",
   },
 ];
+
 export const handlers = [
   rest.get(
     process.env.NEXT_PUBLIC_LS_URL + "/user-wish-product/",
@@ -63,7 +70,7 @@ export const handlers = [
   ),
   rest.post(
     process.env.NEXT_PUBLIC_LS_URL + "/user-wish-product/delete",
-    (req: any, res, ctx) => {
+    (req: UserWishProductRequsetBody, res, ctx) => {
       const { tea_id } = req.body;
       wishProducts = wishProducts.filter(({ id }) => tea_id !== id);
       return res(ctx.status(204));

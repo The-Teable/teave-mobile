@@ -18,11 +18,6 @@ export type ClickProductProps = Pick<Tea, "id">;
 
 export type WishProductProps = Pick<Tea, "id">;
 
-export type WishResponseProps = Pick<
-  Tea,
-  "id" | "name" | "brand" | "price" | "image_url"
->;
-
 export type MainFilteringResults = {
   id: number;
   name: string;

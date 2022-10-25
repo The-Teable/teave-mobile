@@ -8,4 +8,4 @@ export type UserWishProduct = {
   efficacies: string;
   price: number;
   image_url: string;
-};
+}[];
