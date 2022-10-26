@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../common/Button";
-import { ReviewProps } from "../../services/model/articleSchema";
-import Margin from "../common/Margin";
+import Button from "../../common/Button";
+import { ReviewProps } from "../../../services/model/articleSchema";
+import Margin from "../../common/Margin";
 import Image from "next/image";
 
 const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
@@ -15,7 +15,12 @@ const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
           <div>
             {title}{" "}
             {image_url && (
-              <Image src="/image/icon_has_image.png" width={12} height={12} />
+              <Image
+                src="/image/icon_has_image.png"
+                width={12}
+                height={12}
+                alt="사진 있음 아이콘"
+              />
             )}
           </div>
           <Margin size={1.5} />

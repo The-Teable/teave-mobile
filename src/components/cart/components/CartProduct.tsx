@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../services/model/cartSchema";
+import { ProductInCart } from "../../../services/model/cartSchema";
 import ToggleSelector from "./ToggleSelector";
-import { color } from "../../styles/palette";
+import { color } from "../../../styles/palette";
 
 const CartProducts = ({
   brandProduct: { id, name, price, count, image_url, is_selected },

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ProductInCart } from "../../services/model/cartSchema";
-import { color } from "../../styles/palette";
+import { ProductInCart } from "../../../services/model/cartSchema";
+import { color } from "../../../styles/palette";
 import { Fragment } from "react";
 import CartProduct from "./CartProduct";
 
@@ -20,20 +20,20 @@ const CartProductsContainer = ({
         );
         return (
           <Fragment key={i}>
-            <S.BrandTitle>{brandName} 배송</S.BrandTitle>
+            <StyledBrandTitle>{brandName} 배송</StyledBrandTitle>
             {brandProducts.map((brandProduct) => (
               <CartProduct brandProduct={brandProduct} key={brandProduct.id} />
             ))}
             {totalPrice > 0 && (
-              <S.TotalPriceContainer>
-                <S.DeliveryCost>
+              <StyledTotalPriceContainer>
+                <StyledDeliveryCost>
                   {totalPrice.toLocaleString()}원 + 배송비{" "}
                   {TEMP_DELIVERY_FEE.toLocaleString()}원 =
-                </S.DeliveryCost>
-                <S.TotalPrice>
+                </StyledDeliveryCost>
+                <StyledTotalPrice>
                   합계 {(totalPrice + TEMP_DELIVERY_FEE).toLocaleString()}원
-                </S.TotalPrice>
-              </S.TotalPriceContainer>
+                </StyledTotalPrice>
+              </StyledTotalPriceContainer>
             )}
           </Fragment>
         );
@@ -44,9 +44,7 @@ const CartProductsContainer = ({
 
 export default CartProductsContainer;
 
-const S: any = {};
-
-S.BrandTitle = styled.div`
+const StyledBrandTitle = styled.div`
   display: flex;
   font-weight: 500;
   background-color: #ffffff;
@@ -57,7 +55,7 @@ S.BrandTitle = styled.div`
   margin-top: 1rem;
 `;
 
-S.TotalPriceContainer = styled.div`
+const StyledTotalPriceContainer = styled.div`
   display: flex;
   background-color: #ffffff;
   align-items: center;
@@ -66,12 +64,12 @@ S.TotalPriceContainer = styled.div`
   border-top: 1px solid ${color.gray200};
 `;
 
-S.DeliveryCost = styled.div`
+const StyledDeliveryCost = styled.div`
   font-size: 1.2rem;
   color: #808080;
   margin-right: 0.5rem;
 `;
 
-S.TotalPrice = styled.div`
+const StyledTotalPrice = styled.div`
   font-weight: bold;
 `;

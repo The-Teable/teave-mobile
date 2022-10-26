@@ -1,8 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import TitleHeader from "../common/TitleHeader";
-import CenteredContainer from "../layout/CenteredContainer";
-import TabBar from "../layout/TabBar";
 import { color } from "../../styles/palette";
 import { useWishProduct } from "../../services/hooks/useWishProduct";
 import { WishProduct } from "../../types/wish";
@@ -12,42 +9,33 @@ const WishPage = () => {
 
   return (
     <>
-      <TitleHeader title={"찜한 상품"} />
-      <CenteredContainer>
-        {wishProducts && (
-          <>
-            <StyledCounter>전체 {wishProducts.length}개</StyledCounter>
-            <StyledContainer>
-              {wishProducts.map((props: WishProduct) => {
-                const { id, name, brand, price, image_url } = props;
-                return (
-                  <StyledItemContainer key={id}>
-                    <Image
-                      src={image_url}
-                      width={105}
-                      height={120}
-                      alt={name}
-                    />
-                    <StyledItemWrapper>
-                      <StyledTitle>
-                        [{brand}] {name}
-                      </StyledTitle>
-                      <StyledPrice>{price.toLocaleString()}원</StyledPrice>
-                      <StyledButtonContainer>
-                        <StyledButton onClick={() => removeWish(id)}>
-                          삭제
-                        </StyledButton>
-                        <StyledGreenButton>장바구니</StyledGreenButton>
-                      </StyledButtonContainer>
-                    </StyledItemWrapper>
-                  </StyledItemContainer>
-                );
-              })}
-            </StyledContainer>
-          </>
-        )}
-      </CenteredContainer>
-      <TabBar />
+      {wishProducts && (
+        <>
+          <StyledCounter>전체 {wishProducts.length}개</StyledCounter>
+          <StyledContainer>
+            {wishProducts.map((props: WishProduct) => {
+              const { id, name, brand, price, image_url } = props;
+              return (
+                <StyledItemContainer key={id}>
+                  <Image src={image_url} width={105} height={120} alt={name} />
+                  <StyledItemWrapper>
+                    <StyledTitle>
+                      [{brand}] {name}
+                    </StyledTitle>
+                    <StyledPrice>{price.toLocaleString()}원</StyledPrice>
+                    <StyledButtonContainer>
+                      <StyledButton onClick={() => removeWish(id)}>
+                        삭제
+                      </StyledButton>
+                      <StyledGreenButton>장바구니</StyledGreenButton>
+                    </StyledButtonContainer>
+                  </StyledItemWrapper>
+                </StyledItemContainer>
+              );
+            })}
+          </StyledContainer>
+        </>
+      )}
     </>
   );
 };

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../services/model/cartSchema";
-import Margin from "../common/Margin";
-import { color } from "../../styles/palette";
+import { ProductInCart } from "../../../services/model/cartSchema";
+import Margin from "../../common/Margin";
+import { color } from "../../../styles/palette";
 
 const OrderProduct = ({
   products,
