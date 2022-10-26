@@ -1,4 +1,4 @@
-import PromotionBanner from "../PromotionBanner";
+import PromotionBanner from "./components/PromotionBanner";
 import ThemeRecommend from "../ThemeRecommend";
 import dummy from "../../services/static/dummy.json";
 import TeaRecommend from "../TeaRecommend";

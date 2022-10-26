@@ -3,21 +3,21 @@
 exports[`home page matches snapshot 1`] = `
 <div>
   <header
-    class="CenteredContainer-sc-1yuzjpv-0 HomeHeader__Container-sc-iazqo1-0 fqZIID brYkJu"
+    class="CenteredContainer-sc-1ke3txs-0 MainNavigator__StyledContainer-sc-h3wd6x-0 kQHoXj kEKSRG"
   >
     <div
-      class="HomeHeader__TopWrapper-sc-iazqo1-1 hzLrko"
+      class="MainNavigator__StyledTopWrapper-sc-h3wd6x-1 iecMkI"
     >
       <div
-        class="HomeHeader__Logo-sc-iazqo1-2 bAkOIZ"
+        class="MainNavigator__StyledLogo-sc-h3wd6x-2 dcKXUp"
         href="/"
       />
     </div>
     <div
-      class="HeaderTemplate__NavWrapper-sc-1n2n33l-0 jVERha"
+      class="MainNavigator__StyledNavWrapper-sc-h3wd6x-4 deEPaj"
     >
       <div
-        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
         href="/home"
       >
         <span>
@@ -25,7 +25,7 @@ exports[`home page matches snapshot 1`] = `
         </span>
       </div>
       <div
-        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
         href="/shop"
       >
         <span>
@@ -33,7 +33,7 @@ exports[`home page matches snapshot 1`] = `
         </span>
       </div>
       <div
-        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
         href="/tea-test"
       >
         <span>
@@ -41,7 +41,7 @@ exports[`home page matches snapshot 1`] = `
         </span>
       </div>
       <div
-        class="HeaderTemplate__NavItemContainer-sc-1n2n33l-1 fMWpcF"
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
         href="/magazine"
       >
         <span>
@@ -51,13 +51,13 @@ exports[`home page matches snapshot 1`] = `
     </div>
   </header>
   <div
-    class="HomeHeader__Padding-sc-iazqo1-3 kbpwBT"
+    class="MainNavigator__StyledPadding-sc-h3wd6x-3 fsWIPX"
   />
   <div
-    class="CenteredContainer-sc-1yuzjpv-0 fqZIID"
+    class="CenteredContainer-sc-1ke3txs-0 kQHoXj"
   >
     <section
-      class="PromotionBanner__Container-sc-blfoty-0"
+      class="PromotionBanner__Container-sc-1po6ejf-0"
     >
       <div
         class="Slider__Container-sc-1q9eb3v-1 eiYngw"
@@ -66,27 +66,27 @@ exports[`home page matches snapshot 1`] = `
           class="Slider__Wrapper-sc-1q9eb3v-2 SbVIJ"
         >
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 wTEau"
+            class="PromotionBanner__Item-sc-1po6ejf-1 kYGlYx"
             href="/"
           />
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 jBFeFR"
+            class="PromotionBanner__Item-sc-1po6ejf-1 bTULta"
             href="/"
           />
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 jlszkE"
+            class="PromotionBanner__Item-sc-1po6ejf-1 ckhqOn"
             href="/"
           />
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 wTEau"
+            class="PromotionBanner__Item-sc-1po6ejf-1 kYGlYx"
             href="/"
           />
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 jBFeFR"
+            class="PromotionBanner__Item-sc-1po6ejf-1 bTULta"
             href="/"
           />
           <div
-            class="PromotionBanner__Item-sc-blfoty-1 jlszkE"
+            class="PromotionBanner__Item-sc-1po6ejf-1 ckhqOn"
             href="/"
           />
         </div>
@@ -114,72 +114,72 @@ exports[`home page matches snapshot 1`] = `
     />
   </div>
   <div
-    class="TabBar__Padding-sc-wdzu00-4 iUwhbr"
+    class="TabBar__StyledPadding-sc-11yfmuf-4 cGpoVV"
   />
   <nav
-    class="CenteredContainer-sc-1yuzjpv-0 TabBar__Container-sc-wdzu00-0 fqZIID gVFLHI"
+    class="CenteredContainer-sc-1yuzjpv-0 TabBar__StyledContainer-sc-11yfmuf-0 fqZIID glnRBC"
   >
     <div
-      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
       href="/home"
     >
       <div
-        class="TabBar__Icon-sc-wdzu00-2 dVOLca"
+        class="TabBar__StyledIcon-sc-11yfmuf-2 hEQrTc"
       />
       <p
-        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
       >
         홈
       </p>
     </div>
     <div
-      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
       href="/search"
     >
       <div
-        class="TabBar__Icon-sc-wdzu00-2 bPGhcH"
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cEoaeN"
       />
       <p
-        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
       >
         검색
       </p>
     </div>
     <div
-      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
       href="/wish"
     >
       <div
-        class="TabBar__Icon-sc-wdzu00-2 jZLMVx"
+        class="TabBar__StyledIcon-sc-11yfmuf-2 jTYZLz"
       />
       <p
-        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
       >
         찜
       </p>
     </div>
     <div
-      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
       href="/cart"
     >
       <div
-        class="TabBar__Icon-sc-wdzu00-2 zuHol"
+        class="TabBar__StyledIcon-sc-11yfmuf-2 ecdHuD"
       />
       <p
-        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
       >
         장바구니
       </p>
     </div>
     <div
-      class="TabBar__Item-sc-wdzu00-1 hrEikW"
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
       href="/mypage"
     >
       <div
-        class="TabBar__Icon-sc-wdzu00-2 ksYoco"
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cTUley"
       />
       <p
-        class="TabBar__Text-sc-wdzu00-3 hhdEZh"
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
       >
         마이페이지
       </p>

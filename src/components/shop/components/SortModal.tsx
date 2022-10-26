@@ -1,8 +1,8 @@
-import Modal from "./common/Modal";
-import styled, { css } from "styled-components";
-import { color } from "../styles/palette";
 import { Dispatch, SetStateAction } from "react";
+import styled, { css } from "styled-components";
 import Image from "next/image";
+import Modal from "../../common/Modal";
+import { color } from "../../../styles/palette";
 
 export const SORT_KEY = {
   RECENT: "최신순",
@@ -34,9 +34,9 @@ const SortModal = ({
 
   return (
     <Modal title={title} onCancel={onCancel}>
-      <S.Container>
+      <StyledContainer>
         {Object.values(SORT_KEY).map((e, i) => (
-          <S.Item
+          <StyledItem
             key={i}
             onClick={() => handleSelectItem(e)}
             selected={e === sortKey}
@@ -50,22 +50,20 @@ const SortModal = ({
                 alt="check icon"
               />
             ) : null}
-          </S.Item>
+          </StyledItem>
         ))}
-      </S.Container>
+      </StyledContainer>
     </Modal>
   );
 };
 
 export default SortModal;
 
-const S: any = {};
-
-S.Container = styled.div`
+const StyledContainer = styled.div`
   width: 36rem;
 `;
 
-S.Item = styled.div<{ selected: boolean }>`
+const StyledItem = styled.div<{ selected: boolean }>`
   font-size: 1.4rem;
   padding: 1.5rem 2rem;
   border-bottom: solid 1px ${color.gray300};

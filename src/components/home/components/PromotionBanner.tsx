@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-import useElementCurWidth from "../hooks/useElementCurWidth";
-import Slider from "./common/Slider";
+import useElementCurWidth from "../../../hooks/useElementCurWidth";
+import Slider from "../../common/Slider";
 
 interface Props {
   banners: { url: string; href: string }[];
