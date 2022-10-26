@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "./layout";
 
-describe("shop page", () => {
+describe("wish page", () => {
   if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
     require("../../mocks");
   }

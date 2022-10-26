@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useTeaActionQuery from "../services/hooks/useTeaActionQuery";
+import useTeaActionQuery from "../../services/hooks/useTeaActionQuery";
 import { MouseEvent } from "react";
 import { useRouter } from "next/router";
 

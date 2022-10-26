@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { color } from "../styles/palette";
-import Slider from "./common/Slider";
-import useElementCurWidth from "../hooks/useElementCurWidth";
-import Margin from "./common/Margin";
-import { TeaRecommendProps } from "../types/mainPageProps";
+import { color } from "../../../styles/palette";
+import Slider from "../../common/Slider";
+import useElementCurWidth from "../../../hooks/useElementCurWidth";
+import Margin from "../../common/Margin";
+import { TeaRecommendProps } from "../../../types/mainPageProps";
 
 type Props = {
   items: TeaRecommendProps;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { color } from "../../styles/palette";
 import Margin from "../common/Margin";
-import TeaItem from "../TeaItem";
+import TeaItem from "../common/TeaItem";
 import { shopFilterdTeas } from "../../services/static/dummy.json";
 import FilterModal from "../common/FilterModal";
 import SortModal, { SORT_KEY, SortKey } from "../common/SortModal";

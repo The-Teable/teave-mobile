@@ -8,7 +8,7 @@ import CenteredContainer from "../layout/CenteredContainer";
 import TabBar from "../layout/TabBar";
 import SearchBar from "./components/SearchBar";
 import SortModal, { SortKey, SORT_KEY } from "../common/SortModal";
-import TeaItem from "../TeaItem";
+import TeaItem from "../common/TeaItem";
 import { shopFilterdTeas } from "../../services/static/dummy.json";
 
 const SearchPage = () => {

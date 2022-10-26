@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Slider from "./common/Slider";
-import TeaItem from "./TeaItem";
+import Slider from "../../common/Slider";
+import TeaItem from "../../common/TeaItem";
 
 interface ThemeRecommendProps {
   title: string;
