@@ -1,22 +1,12 @@
-import HomeLayout from "../components/layout/HomeLayout";
-import styled from "styled-components";
+import Page from "../components/magazine/page";
+import Layout from "../components/magazine/layout";
 
-const MagazinePage = () => {
+const magazine = () => {
   return (
-    <HomeLayout>
-      <S.Container>준비중입니다.</S.Container>
-    </HomeLayout>
+    <Layout>
+      <Page />
+    </Layout>
   );
 };
 
-export default MagazinePage;
-
-const S: any = {};
-
-S.Container = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  font-size: 2rem;
-`;
+export default magazine;
