@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tea-test page matches snapshot 1`] = `
+<div>
+  <header
+    class="CenteredContainer-sc-1ke3txs-0 MainNavigator__StyledContainer-sc-h3wd6x-0 kQHoXj kEKSRG"
+  >
+    <div
+      class="MainNavigator__StyledTopWrapper-sc-h3wd6x-1 iecMkI"
+    >
+      <div
+        class="MainNavigator__StyledLogo-sc-h3wd6x-2 dcKXUp"
+        href="/"
+      />
+    </div>
+    <div
+      class="MainNavigator__StyledNavWrapper-sc-h3wd6x-4 deEPaj"
+    >
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/home"
+      >
+        <span>
+          메인
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/shop"
+      >
+        <span>
+          샵
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/tea-test"
+      >
+        <span>
+          테스트
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/magazine"
+      >
+        <span>
+          매거진
+        </span>
+      </div>
+    </div>
+  </header>
+  <div
+    class="MainNavigator__StyledPadding-sc-h3wd6x-3 fsWIPX"
+  />
+  <div
+    class="CenteredContainer-sc-1ke3txs-0 kQHoXj"
+  >
+    <section
+      class="page__Container-sc-167adg8-0 igjTpz"
+    >
+      <p
+        class="page__Text-sc-167adg8-1 ibZzLC"
+      >
+        내 취향에 꼭 맞는 티와 함께
+        <br />
+        여유로운 하루를 보내고 싶지 않으신가요?
+      </p>
+      <div
+        class="Margin-sc-dj7vsz-0 fzkHhP"
+        size="2"
+      />
+      <p
+        class="page__SubText-sc-167adg8-2 cjeKXw"
+      >
+        간단한 테스트를 통해
+        <br />
+        여러분의 취향에 맞는 티를 찾아드릴게요!
+      </p>
+      <div
+        class="Margin-sc-dj7vsz-0 jNavvr"
+        size="5"
+      />
+      <button
+        class="Button-sc-rcstvv-0 page__Button-sc-167adg8-3 fRrkqd HRLWT"
+      >
+        티 테스트 시작
+      </button>
+    </section>
+  </div>
+  <div
+    class="TabBar__StyledPadding-sc-11yfmuf-4 cGpoVV"
+  />
+  <nav
+    class="CenteredContainer-sc-1yuzjpv-0 TabBar__StyledContainer-sc-11yfmuf-0 fqZIID glnRBC"
+  >
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/home"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 hEQrTc"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        홈
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/search"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cEoaeN"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        검색
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/wish"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 jTYZLz"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        찜
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/cart"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 ecdHuD"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        장바구니
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/mypage"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cTUley"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        마이페이지
+      </p>
+    </div>
+  </nav>
+</div>
+`;

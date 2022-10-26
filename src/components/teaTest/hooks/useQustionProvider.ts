@@ -19,7 +19,7 @@ const useQuestionProvider = ({ questions }: UseQuestionProviderProps) => {
     movePrev,
     moveNext,
     setDisableNext,
-    checkGoNext
+    checkGoNext,
   } = useSliderButton({ endIndex: questions.length - 1 });
 
   const checkReciveAnswer = () =>
@@ -57,7 +57,7 @@ const useQuestionProvider = ({ questions }: UseQuestionProviderProps) => {
     disableNext,
     onClickPrev,
     onClickNext,
-    handleChoice
+    handleChoice,
   };
 };
 
