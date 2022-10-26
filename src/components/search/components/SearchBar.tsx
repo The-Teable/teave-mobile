@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { searchBarProps } from "../../types/search";
-import Margin from "../common/Margin";
+import { searchBarProps } from "../../../types/search";
+import Margin from "../../common/Margin";
 
 const SearchBar = ({ searchInput }: searchBarProps) => {
   return (

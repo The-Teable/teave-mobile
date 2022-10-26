@@ -4,8 +4,8 @@ import { color } from "../../styles/palette";
 import Margin from "../common/Margin";
 import TeaItem from "../TeaItem";
 import { shopFilterdTeas } from "../../services/static/dummy.json";
-import FilterModal from "./components/FilterModal";
-import SortModal, { SORT_KEY, SortKey } from "./components/SortModal";
+import FilterModal from "../common/FilterModal";
+import SortModal, { SORT_KEY, SortKey } from "../common/SortModal";
 
 const ShopPage = () => {
   const [selectedFilters, setSelectedFilters] = useState<

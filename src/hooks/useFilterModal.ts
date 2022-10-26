@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  FilterModalProps,
-  HandleSelectFilterItemProps,
-} from "../../../types/filter";
+import { FilterModalProps, HandleSelectFilterItemProps } from "../types/filter";
 
 const useFilterModal = (props: FilterModalProps) => {
   const { onCancel, selectedFilters, setSelectedFilters } = props;

@@ -1,5 +1,142 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`magazine page matches snapshot 1`] = `
+<div>
+  <header
+    class="CenteredContainer-sc-1ke3txs-0 MainNavigator__StyledContainer-sc-h3wd6x-0 kQHoXj kEKSRG"
+  >
+    <div
+      class="MainNavigator__StyledTopWrapper-sc-h3wd6x-1 iecMkI"
+    >
+      <div
+        class="MainNavigator__StyledLogo-sc-h3wd6x-2 dcKXUp"
+        href="/"
+      />
+    </div>
+    <div
+      class="MainNavigator__StyledNavWrapper-sc-h3wd6x-4 deEPaj"
+    >
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/home"
+      >
+        <span>
+          메인
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/shop"
+      >
+        <span>
+          샵
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/tea-test"
+      >
+        <span>
+          테스트
+        </span>
+      </div>
+      <div
+        class="MainNavigator__StyledNavItemContainer-sc-h3wd6x-5 lfkUxM"
+        href="/magazine"
+      >
+        <span>
+          매거진
+        </span>
+      </div>
+    </div>
+  </header>
+  <div
+    class="MainNavigator__StyledPadding-sc-h3wd6x-3 fsWIPX"
+  />
+  <div
+    class="CenteredContainer-sc-1ke3txs-0 kQHoXj"
+  >
+    <section
+      class="page__StyledContainer-sc-1j20m7-0 ejbKuf"
+    >
+      준비중입니다.
+    </section>
+  </div>
+  <div
+    class="TabBar__StyledPadding-sc-11yfmuf-4 cGpoVV"
+  />
+  <nav
+    class="CenteredContainer-sc-1yuzjpv-0 TabBar__StyledContainer-sc-11yfmuf-0 fqZIID glnRBC"
+  >
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/home"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 hEQrTc"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        홈
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/search"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cEoaeN"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        검색
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/wish"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 jTYZLz"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        찜
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/cart"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 ecdHuD"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        장바구니
+      </p>
+    </div>
+    <div
+      class="TabBar__StyledItem-sc-11yfmuf-1 jWfOSM"
+      href="/mypage"
+    >
+      <div
+        class="TabBar__StyledIcon-sc-11yfmuf-2 cTUley"
+      />
+      <p
+        class="TabBar__StyledText-sc-11yfmuf-3 caIgVb"
+      >
+        마이페이지
+      </p>
+    </div>
+  </nav>
+</div>
+`;
+
 exports[`shop page matches snapshot 1`] = `
 <div>
   <header

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
 import Image from "next/image";
-import Modal from "../../common/Modal";
-import { color } from "../../../styles/palette";
+import Modal from "./Modal";
+import { color } from "../../styles/palette";
 
 export const SORT_KEY = {
   RECENT: "최신순",

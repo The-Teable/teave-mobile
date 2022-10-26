@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
-import Modal from "../../common/Modal";
-import Margin from "../../common/Margin";
-import Button from "../../common/Button";
-import { color } from "../../../styles/palette";
-import teaFilter from "../../../services/static/teaFilter.json";
-import { FilterModalProps } from "../../../types/filter";
-import useFilterModal from "../hooks/useFilterModal";
+import Modal from "./Modal";
+import Margin from "./Margin";
+import Button from "./Button";
+import { color } from "../../styles/palette";
+import teaFilter from "../../services/static/teaFilter.json";
+import { FilterModalProps } from "../../types/filter";
+import useFilterModal from "../../hooks/useFilterModal";
 
 const FilterModal = (props: FilterModalProps) => {
   const { title: modalTitle, onCancel } = props;
