@@ -1,4 +1,3 @@
-import HomeLayout from "../layout/HomeLayout";
 import PromotionBanner from "../PromotionBanner";
 import ThemeRecommend from "../ThemeRecommend";
 import dummy from "../../services/static/dummy.json";
@@ -14,7 +13,7 @@ const MainPage = () => {
   const { themeProducts } = useThemeProductsQuery();
 
   return (
-    <HomeLayout>
+    <>
       <PromotionBanner banners={promotionBanners} />
       <Margin size={3} />
       {recommendProducts && <TeaRecommend items={recommendProducts} />}
@@ -24,7 +23,7 @@ const MainPage = () => {
           <ThemeRecommend key={i} title={title} items={goods} />
         ))}
       <Margin size={3} />
-    </HomeLayout>
+    </>
   );
 };
 
