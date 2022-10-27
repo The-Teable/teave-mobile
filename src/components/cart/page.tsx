@@ -1,10 +1,10 @@
 import ToggleSelector from "./components/ToggleSelector";
 import Margin from "../common/Margin";
-import { productInCart } from "../../services/static/dummy.json";
-import { ProductInCart } from "../../services/model/cartSchema";
+import { CartProduct } from "../../services/model/cartSchema";
 import CartFooter from "./components/CartFooter";
 import Bill from "../common/Bill";
 import CartProductsContainer from "./components/CartProductsContainer";
+import useCartQuery from "../../services/hooks/useCartQuery";
 
 const TEMP_DELIVERY_FEE = 3000;
 
@@ -16,15 +16,16 @@ const TEMP_DELIVERY_FEE = 3000;
  *  - delivery cost 산정 방식 협의 후 TEMP_DELIVERY_FEE수정
  */
 const CartPage = () => {
-  const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
-    (acc: Record<string, ProductInCart[]>, cur: ProductInCart) => {
+  const { cartProducts, removeCart } = useCartQuery();
+  const dividedByBrand = cartProducts?.reduce<Record<string, CartProduct[]>>(
+    (acc: Record<string, CartProduct[]>, cur: CartProduct) => {
       acc[cur.brand] = cur.brand in acc ? [...acc[cur.brand], cur] : [cur];
       return acc;
     },
     {}
   );
 
-  const productPrice = productInCart.reduce(
+  const productPrice = cartProducts?.reduce(
     (acc, cur) => acc + (cur.is_selected ? cur.price * cur.count : 0),
     0
   );

@@ -1,6 +1,6 @@
 import { Tea } from "./teaSchema";
 
-export type ProductInCart = Pick<
+export type CartProduct = Pick<
   Tea,
   "id" | "brand" | "name" | "price" | "image_url"
 > & {

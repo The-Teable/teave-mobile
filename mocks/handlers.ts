@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import { cartApiUrls } from "../src/services/api/cartApi";
 import { teaApiUrls } from "../src/services/api/teaApi";
 import { UserWishProduct } from "../src/services/model/wishSchema";
 
@@ -40,6 +41,29 @@ export const handlers = [
     process.env.NEXT_PUBLIC_LS_URL + teaApiUrls.RECOMMEND_PRODUCTS,
     (_req, res, ctx) => {
       return res(ctx.json(dummy.mainFilteringResults));
+    }
+  ),
+  rest.get(
+    process.env.NEXT_PUBLIC_LS_URL + cartApiUrls.CART_PRODUCT,
+    (_req, res, ctx) => {
+      return res(ctx.json(dummy.cartProducts));
+    }
+  ),
+  rest.post(
+    `${process.env.NEXT_PUBLIC_LS_URL + cartApiUrls.CART_PRODUCT}:tea_id`,
+    (req, res, ctx) => {
+      // const { authToken } = req.cookies;
+      return res(ctx.status(201));
+    }
+  ),
+  rest.delete(
+    `${process.env.NEXT_PUBLIC_LS_URL + cartApiUrls.CART_PRODUCT}:tea_id`,
+    (req, res, ctx) => {
+      const { tea_id } = req.params;
+      dummy.cartProducts = dummy.cartProducts.filter(
+        ({ id }) => tea_id !== id + ""
+      );
+      return res(ctx.json(dummy.cartProducts));
     }
   ),
 ];
@@ -499,7 +523,7 @@ const dummy = {
       image_url: "/image/goods1.svg",
     },
   ],
-  productInCart: [
+  cartProducts: [
     {
       id: 0,
       brand: "보향다원",
