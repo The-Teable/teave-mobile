@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
-import CenteredContainer from "../../components/layout/CenteredContainer";
+import CenteredContainer from "../../components/common/CenteredContainer";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
 
 const LoginPage = () => {

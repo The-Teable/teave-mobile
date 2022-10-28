@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CenteredContainer from "../../components/layout/CenteredContainer";
+import CenteredContainer from "../../components/common/CenteredContainer";
 import styled, { css } from "styled-components";
 import InputText from "../../components/common/InputText";
 import Button from "../../components/common/Button";
@@ -46,7 +46,7 @@ const SignupPage = () => {
     }
 
     const {
-      data: { is_duplicate: isDuplicate }
+      data: { is_duplicate: isDuplicate },
     } = await fetchCheckDuplicateId({ user_id: userId });
 
     isDuplicate
@@ -108,7 +108,7 @@ const SignupPage = () => {
       name: userName,
       tel,
       birth,
-      gender
+      gender,
     });
   };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, RefObject, useRef } from "react";
 import styled, { css } from "styled-components";
-import CenteredContainer from "./CenteredContainer";
+import CenteredContainer from "../../common/CenteredContainer";
 
 type Props = {
   headerNavLinks: {
@@ -29,7 +29,7 @@ const HeaderScroll = ({ headerNavLinks }: Props) => {
     scrollYs.current = headerNavLinks.reduce<number[]>((acc, { ref }) => {
       return [
         ...acc,
-        (ref.current && ref.current.offsetTop - HEADER_MARGIN) || 0
+        (ref.current && ref.current.offsetTop - HEADER_MARGIN) || 0,
       ];
     }, []);
     scrollYs.current.push(999999);

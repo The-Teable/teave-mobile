@@ -1,8 +1,8 @@
 import TitleHeader from "../common/TitleHeader";
 import styled from "styled-components";
-import CenteredContainer from "../layout/CenteredContainer";
+import CenteredContainer from "../common/CenteredContainer";
 import { useRouter } from "next/router";
-import HeaderScroll from "../layout/HeaderScroll";
+import HeaderScroll from "./components/HeaderScroll";
 import { useRef } from "react";
 import Margin from "../common/Margin";
 import Button from "../common/Button";

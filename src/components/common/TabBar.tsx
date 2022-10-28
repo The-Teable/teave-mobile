@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import CenteredContainer from "../layout/CenteredContainer";
+import CenteredContainer from "./CenteredContainer";
 
 const items = [
   { url: "/image/icon_home.svg", text: "홈", href: "/home" },

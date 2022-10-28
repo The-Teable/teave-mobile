@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import CenteredContainer from "../layout/CenteredContainer";
 
 const Bill = (props: {
   productPrice: number;

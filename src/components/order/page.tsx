@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Margin from "../common/Margin";
-import CenteredContainer from "../layout/CenteredContainer";
+import CenteredContainer from "../common/CenteredContainer";
 import { productInCart } from "../../services/static/dummy.json";
-import { ProductInCart } from "../../services/model/cartSchema";
+import { CartProductProps } from "../../services/model/cartSchema";
 import DeliveryInfo from "./components/DeliveryInfo";
 import OrderProduct from "./components/OrderProduct";
 import Bill from "../common/Bill";
@@ -13,13 +13,12 @@ import Button from "../common/Button";
  *  - productInCart 대신 주문할 물품들을 받아와야함
  */
 const OrderPage = () => {
-  const dividedByBrand = productInCart.reduce<Record<string, ProductInCart[]>>(
-    (acc, cur) => {
-      acc[cur.brand] = cur.brand in acc ? [...acc[cur.brand], cur] : [cur];
-      return acc;
-    },
-    {}
-  );
+  const dividedByBrand = productInCart.reduce<
+    Record<string, CartProductProps[]>
+  >((acc, cur) => {
+    acc[cur.brand] = cur.brand in acc ? [...acc[cur.brand], cur] : [cur];
+    return acc;
+  }, {});
   const userInfo = {
     name: "김티브",
     tel: "010-1243-2343",
@@ -27,7 +26,7 @@ const OrderPage = () => {
   };
 
   const productPrice = productInCart
-    .filter(({ is_selected }: ProductInCart) => is_selected)
+    .filter(({ is_selected }: CartProductProps) => is_selected)
     .reduce((totalPrice, { price }) => totalPrice + price, 0);
 
   return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CenteredContainer from "../layout/CenteredContainer";
+import CenteredContainer from "../common/CenteredContainer";
 import { color } from "../../styles/palette";
 import { useRouter } from "next/router";
 import Image from "next/image";

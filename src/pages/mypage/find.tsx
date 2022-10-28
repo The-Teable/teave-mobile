@@ -5,11 +5,11 @@ import Button from "../../components/common/Button";
 import InputText from "../../components/common/InputText";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
-import CenteredContainer from "../../components/layout/CenteredContainer";
+import CenteredContainer from "../../components/common/CenteredContainer";
 
 const VERIFYWAY = {
   EMAIL: "EMAIL",
-  PHONE: "PHONE"
+  PHONE: "PHONE",
 };
 
 const FindPage = () => {

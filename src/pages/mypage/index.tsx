@@ -1,10 +1,10 @@
 import Link from "next/link";
-import TabBar from "../../components/layout/TabBar";
+import TabBar from "../../components/common/TabBar";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Margin from "../../components/common/Margin";
 import TitleHeader from "../../components/common/TitleHeader";
-import CenteredContainer from "../../components/layout/CenteredContainer";
+import CenteredContainer from "../../components/common/CenteredContainer";
 import { storage } from "../../util/storage";
 import { userInfo } from "../../services/static/dummy.json";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
@@ -22,7 +22,7 @@ const MyPage = () => {
     couponCount,
     orderCount,
     deliveryCount,
-    reviewCount
+    reviewCount,
   } = userInfo;
 
   useEffect(() => {}, []);
