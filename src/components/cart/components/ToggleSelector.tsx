@@ -1,16 +1,28 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
+import useCartQuery from "../../../services/hooks/useCartQuery";
 
 const ToggleSelector = ({
   id,
   labelName,
   isChecked = false,
+  isAll = false,
 }: {
   id: string;
   labelName?: string;
   isChecked?: boolean;
+  isAll?: boolean;
 }) => {
+  const { selectProduct } = useCartQuery();
   const [toggle, setToggle] = useState(isChecked);
+  const handdleToggle = () => {
+    setToggle(!toggle);
+    if (isAll) {
+      /**
+       * TODO: 전체선택시 어떤 API 날릴지 협의
+       */
+    } else selectProduct({ teaId: parseInt(id), isSelected: isChecked });
+  };
   return (
     <>
       <S.OptionContainer>
@@ -18,7 +30,7 @@ const ToggleSelector = ({
           type="checkbox"
           id={id}
           checked={toggle}
-          onChange={() => setToggle(!toggle)}
+          onChange={handdleToggle}
         />
         <S.CustomCheckbox htmlFor={id} labelName={labelName}>
           {labelName}

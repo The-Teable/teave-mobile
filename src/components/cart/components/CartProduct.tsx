@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../../services/model/cartSchema";
+import { CartProductProps } from "../../../services/model/cartSchema";
 import ToggleSelector from "./ToggleSelector";
 import { color } from "../../../styles/palette";
+import useCartQuery from "../../../services/hooks/useCartQuery";
 
 const CartProducts = ({
   brandProduct: { id, name, price, count, image_url, is_selected },
 }: {
-  brandProduct: ProductInCart;
+  brandProduct: CartProductProps;
 }) => {
-  /**
-   * TODO: 장바구니 삭제 api 연동
-   */
-  const handleDeleteProduct = () => {};
+  const { removeCart } = useCartQuery();
+  const handleDeleteProduct = () => {
+    removeCart(id);
+  };
 
   return (
     <S.ItemContainer key={id}>

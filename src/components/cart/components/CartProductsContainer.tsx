@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ProductInCart } from "../../../services/model/cartSchema";
+import { CartProductProps } from "../../../services/model/cartSchema";
 import { color } from "../../../styles/palette";
 import { Fragment } from "react";
 import CartProduct from "./CartProduct";
@@ -9,7 +9,7 @@ const TEMP_DELIVERY_FEE = 3000;
 const CartProductsContainer = ({
   products,
 }: {
-  products: Record<string, ProductInCart[]>;
+  products: Record<string, CartProductProps[]>;
 }) => {
   return (
     <>

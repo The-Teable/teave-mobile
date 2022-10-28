@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CartProduct } from "../model/cartSchema";
+import { CartProductProps } from "../model/cartSchema";
 
 export const cartApiUrls = {
   CART_PRODUCT: "/cart_product/",
@@ -10,15 +10,28 @@ const http = axios.create({
 });
 
 const getCartProducts = () => {
-  return http.get<CartProduct[]>(cartApiUrls.CART_PRODUCT);
+  return http.get<CartProductProps[]>(cartApiUrls.CART_PRODUCT);
 };
 
-const addCartProduct = (teaId: number) => {
-  return http.post(`${cartApiUrls.CART_PRODUCT}/${teaId}`);
+const postAddCartProduct = (teaId: number) => {
+  return http.post(`${cartApiUrls.CART_PRODUCT}${teaId}`);
 };
 
-const removeCartProduct = (teaId: number) => {
-  return http.delete(`${cartApiUrls.CART_PRODUCT}/${teaId}`);
+const deleteCartProduct = (teaId: number) => {
+  return http.delete(`${cartApiUrls.CART_PRODUCT}${teaId}`);
+};
+/**
+ * TODO: 단일 선택, 전체 선택, 수량 변경 api 협의
+ */
+const patchSelectCartProduct = (teaId: number, isSelected: boolean) => {
+  return http.patch(`${cartApiUrls.CART_PRODUCT}${teaId}`, {
+    is_selected: !isSelected,
+  });
 };
 
-export { getCartProducts, addCartProduct, removeCartProduct };
+export {
+  getCartProducts,
+  postAddCartProduct,
+  deleteCartProduct,
+  patchSelectCartProduct,
+};

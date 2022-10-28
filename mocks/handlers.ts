@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import product from "../src/pages/product";
 import { cartApiUrls } from "../src/services/api/cartApi";
 import { teaApiUrls } from "../src/services/api/teaApi";
 import { UserWishProduct } from "../src/services/model/wishSchema";
@@ -63,7 +64,19 @@ export const handlers = [
       dummy.cartProducts = dummy.cartProducts.filter(
         ({ id }) => tea_id !== id + ""
       );
-      return res(ctx.json(dummy.cartProducts));
+      return res(ctx.status(204));
+    }
+  ),
+  rest.patch(
+    `${process.env.NEXT_PUBLIC_LS_URL + cartApiUrls.CART_PRODUCT}:tea_id`,
+    (req: any, res, ctx) => {
+      const { tea_id } = req.params;
+      const { is_selected } = req.body;
+      dummy.cartProducts = dummy.cartProducts.map((product) => {
+        if (tea_id === product.id + "") product.is_selected = is_selected;
+        return product;
+      });
+      return res(ctx.status(204));
     }
   ),
 ];
