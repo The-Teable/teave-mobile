@@ -10,6 +10,7 @@ const http = axios.create({
 
 /**
  * 테마 추천은 프론트 서버에 정적으로 있어도 될 듯
+ * 백엔드와 협의 후 삭제할 쿼리
  */
 const useThemeProductsQuery = () => {
   const { data, ...results } = useQuery(
@@ -35,7 +36,6 @@ const useThemeProductsQuery = () => {
       },
     }
   );
-  console.log(data);
   return {
     themeProducts: data,
     ...results,

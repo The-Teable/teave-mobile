@@ -8,6 +8,7 @@ import CenteredContainer from "../common/CenteredContainer";
 import { storage } from "../../util/storage";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
 import UserInfoContainer from "./components/UserInfoContainer";
+import useMypageInfoQuery from "../../services/hooks/useMypageInfoQuery";
 
 const MyPage = () => {
   const isAuthorized = storage.get("ACCESS_TOKEN") ? false : true;
@@ -31,20 +32,20 @@ const MyPage = () => {
           </StyledNotLoginContainer>
         )}
         <Margin size={1} />
-        <StyledItemWrapper>배송지 관리</StyledItemWrapper>
-        <StyledItemWrapper>개인정보 수정</StyledItemWrapper>
-        <StyledItemWrapper>알림 설정</StyledItemWrapper>
+        <StyledItem>배송지 관리</StyledItem>
+        <StyledItem>개인정보 수정</StyledItem>
+        <StyledItem>알림 설정</StyledItem>
         <Margin size={1} />
-        <StyledItemWrapper>1:1 문의</StyledItemWrapper>
-        <StyledItemWrapper>티브 소개</StyledItemWrapper>
-        <StyledItemWrapper>배송 안내</StyledItemWrapper>
-        <StyledItemWrapper>공지사항</StyledItemWrapper>
-        <StyledItemWrapper>자주하는 질문</StyledItemWrapper>
-        <StyledItemWrapper>고객센터 (앱 문의, 건의)</StyledItemWrapper>
-        <StyledItemWrapper>이용안내</StyledItemWrapper>
-        {isAuthorized ? (
-          <StyledItemWrapper onClick={logout}>로그아웃</StyledItemWrapper>
-        ) : null}
+        <StyledItem>1:1 문의</StyledItem>
+        <StyledItem>티브 소개</StyledItem>
+        <StyledItem>배송 안내</StyledItem>
+        <StyledItem>공지사항</StyledItem>
+        <StyledItem>자주하는 질문</StyledItem>
+        <StyledItem>고객센터 (앱 문의, 건의)</StyledItem>
+        <StyledItem>이용안내</StyledItem>
+        {isAuthorized && (
+          <StyledItem onClick={() => logout()}>로그아웃</StyledItem>
+        )}
       </StyledContainer>
       <TabBar />
     </>
@@ -66,7 +67,7 @@ const StyledNotLoginContainer = styled.div`
   padding: 3.4rem;
 `;
 
-const StyledItemWrapper = styled.div`
+const StyledItem = styled.div`
   padding: 1.8rem;
   background-color: #ffffff;
   margin: 0.1rem;

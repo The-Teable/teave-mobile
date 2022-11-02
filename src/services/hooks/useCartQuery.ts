@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  postAddCartProduct,
-  getCartProducts,
-  deleteCartProduct,
-  patchSelectCartProduct,
+  addCartProductApi,
+  getCartProductsApi,
+  removeCartProductApi,
+  selectCartProductApi,
 } from "../api/cartApi";
 import { CartProductProps } from "../model/cartSchema";
 
@@ -14,7 +14,7 @@ const useCartQuery = () => {
 
   const { data: cartProducts, ...results } = useQuery(
     [QUERY_KEY],
-    getCartProducts,
+    getCartProductsApi,
     {
       select: ({ data }) => data,
     }
@@ -32,29 +32,24 @@ const useCartQuery = () => {
     return acc;
   }, {});
 
-  const addCart = useMutation((teaId: number) => postAddCartProduct(teaId), {
+  const addCart = useMutation(addCartProductApi, {
     onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
   }).mutate;
 
-  const removeCart = useMutation((teaId: number) => deleteCartProduct(teaId), {
-    onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
-  }).mutate;
-
-  const selectProduct = useMutation(
-    ({ teaId, isSelected }: { teaId: number; isSelected: boolean }) =>
-      patchSelectCartProduct(teaId, isSelected),
+  const removeCart = useMutation(
+    (teaId: number) => removeCartProductApi(teaId),
     {
       onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
     }
   ).mutate;
 
-  const selectAllProduct = useMutation(
-    ({ teaId, isSelected }: { teaId: number; isSelected: boolean }) =>
-      patchSelectCartProduct(teaId, isSelected),
-    {
-      onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
-    }
-  ).mutate;
+  const selectProduct = useMutation(selectCartProductApi, {
+    onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
+  }).mutate;
+
+  const selectAllProduct = useMutation(selectCartProductApi, {
+    onSuccess: () => queryClient.invalidateQueries([QUERY_KEY]),
+  }).mutate;
 
   return {
     productPrice,

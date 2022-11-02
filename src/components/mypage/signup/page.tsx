@@ -6,7 +6,7 @@ import Button from "../../common/Button";
 import Margin from "../../common/Margin";
 import TitleHeader from "../../common/TitleHeader";
 import useAuthQuery from "../../../services/hooks/useAuthQuery";
-import { fetchCheckDuplicateId } from "../../../services/api/validateApi";
+import { checkDuplicateIdApi } from "../../../services/api/validateApi";
 
 const SignupPage = () => {
   const [userId, setUserId] = useState("");
@@ -47,7 +47,7 @@ const SignupPage = () => {
 
     const {
       data: { is_duplicate: isDuplicate },
-    } = await fetchCheckDuplicateId({ user_id: userId });
+    } = await checkDuplicateIdApi({ user_id: userId });
 
     isDuplicate
       ? alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.")

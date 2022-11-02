@@ -1,7 +1,8 @@
 import { rest } from "msw";
-import product from "../src/pages/product";
 import { cartApiUrls } from "../src/services/api/cartApi";
+import { mypageApiUrls } from "../src/services/api/myPageApi";
 import { teaApiUrls } from "../src/services/api/teaApi";
+import { wishApiUrls } from "../src/services/api/wishApi";
 import { UserWishProduct } from "../src/services/model/wishSchema";
 
 type UserWishProductRequsetBody = {
@@ -12,20 +13,20 @@ type UserWishProductRequsetBody = {
 
 export const handlers = [
   rest.get(
-    process.env.NEXT_PUBLIC_LS_URL + "/user-wish-product/",
+    process.env.NEXT_PUBLIC_LS_URL + wishApiUrls.WISH,
     (_req, res, ctx) => {
       return res(ctx.json<UserWishProduct>(dummy.wishProducts));
     }
   ),
   rest.post(
-    process.env.NEXT_PUBLIC_LS_URL + "/user-wish-product/",
+    process.env.NEXT_PUBLIC_LS_URL + wishApiUrls.WISH,
     (_req, res, ctx) => {
       // const { authToken } = req.cookies;
       return res(ctx.status(201));
     }
   ),
   rest.post(
-    process.env.NEXT_PUBLIC_LS_URL + "/user-wish-product/delete",
+    process.env.NEXT_PUBLIC_LS_URL + wishApiUrls.WISH_DELETE,
     (req: UserWishProductRequsetBody, res, ctx) => {
       const { tea_id } = req.body;
       dummy.wishProducts = dummy.wishProducts.filter(({ id }) => tea_id !== id);
@@ -77,6 +78,13 @@ export const handlers = [
         return product;
       });
       return res(ctx.status(204));
+    }
+  ),
+  rest.get(
+    process.env.NEXT_PUBLIC_LS_URL + mypageApiUrls.MYPAGE_INFO,
+    (_req, res, ctx) => {
+      console.log("hi");
+      return res(ctx.json(dummy.userInfo));
     }
   ),
 ];

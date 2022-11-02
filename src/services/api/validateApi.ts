@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CheckDuplicateIdProps } from "../model/validateSchema";
 
-const URL = {
+export const validateApiUrls = {
   CHECK_DUPLICATE_ID: "/signup/check/?user_id=",
   REFRESH_TOKEN: "/token/refresh/",
 };
@@ -10,8 +10,8 @@ const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
 
-const fetchCheckDuplicateId = ({ user_id }: CheckDuplicateIdProps) => {
-  return http.get(`${URL.CHECK_DUPLICATE_ID}${user_id}`);
+const checkDuplicateIdApi = ({ user_id }: CheckDuplicateIdProps) => {
+  return http.get(`${validateApiUrls.CHECK_DUPLICATE_ID}${user_id}`);
 };
 
-export { fetchCheckDuplicateId };
+export { checkDuplicateIdApi };

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { userInfo } from "../../../services/static/dummy.json";
+import useMypageInfoQuery from "../../../services/hooks/useMypageInfoQuery";
 
 const UserInfoContainer = () => {
-  // api 임시 방편
+  const { mypageInfo } = useMypageInfoQuery();
   const {
     name,
     rank,
@@ -12,7 +12,7 @@ const UserInfoContainer = () => {
     orderCount,
     deliveryCount,
     reviewCount,
-  } = userInfo;
+  } = mypageInfo;
 
   return (
     <>

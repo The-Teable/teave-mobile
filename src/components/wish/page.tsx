@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { color } from "../../styles/palette";
-import { useWishProduct } from "../../services/hooks/useWishProduct";
+import { useWishProductQuery } from "../../services/hooks/useWishProductQuery";
 import { WishProduct } from "../../types/wish";
 
 const WishPage = () => {
-  const { wishProducts, removeWish } = useWishProduct();
+  const { wishProducts, removeWish } = useWishProductQuery();
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { fetchMainProducts, teaApiUrls } from "../api/teaApi";
+import { getMainProductsApi, teaApiUrls } from "../api/teaApi";
 import { MainFilteringResults } from "../model/teaSchema";
 
 const http = axios.create({

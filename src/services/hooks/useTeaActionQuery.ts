@@ -1,12 +1,10 @@
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
-import { fetchClickProduct, fetchWishProduct } from "../api/teaApi";
+import { clickProductApi } from "../api/teaApi";
 
 const useTeaActionQuery = () => {
-  const queryClickProduct = useMutation(fetchClickProduct).mutate;
+  const queryClickProduct = useMutation(clickProductApi).mutate;
 
-  const queryWishProduct = useMutation(fetchWishProduct).mutate;
-
-  return { queryClickProduct, queryWishProduct };
+  return { queryClickProduct };
 };
 
 export default useTeaActionQuery;

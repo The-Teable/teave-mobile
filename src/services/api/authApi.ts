@@ -1,8 +1,8 @@
 import axios from "axios";
-import { storage } from "../../util/storage";
-import { LoginProps, LogoutProps, SignupProps } from "../model/authSchema";
+import { LoginProps, SignupProps } from "../model/authSchema";
+import { removeToken } from "./_handleToken";
 
-const URL = {
+export const authApiUrls = {
   LOGIN: "/login/",
   SIGNUP: "/signup/",
   LOGOUT: "/logout/",
@@ -12,17 +12,17 @@ const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
 
-const fetchLogin = (props: LoginProps) => {
-  return http.post(URL.LOGIN, props);
+const loginApi = (props: LoginProps) => {
+  return http.post(authApiUrls.LOGIN, props);
 };
 
-const fetchSignup = (props: SignupProps) => {
-  return http.post(URL.SIGNUP, props);
+const signupApi = (props: SignupProps) => {
+  return http.post(authApiUrls.SIGNUP, props);
 };
 
-const fetchLogout = () => {
-  storage.remove("ACCESS_TOKEN");
-  return http.post(URL.LOGOUT);
+const logoutApi = () => {
+  removeToken();
+  return http.post(authApiUrls.LOGOUT);
 };
 
-export { fetchLogin, fetchSignup, fetchLogout };
+export { loginApi, signupApi, logoutApi };
