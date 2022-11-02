@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./_handleToken";
+// import { getToken } from "./_handleToken";
 
 /**
  * 아직 안 만들어진 API임
@@ -19,7 +19,6 @@ const http = axios.create({
 // });
 
 const getMypageInfo = () => {
-  console.log("fetch ");
   return http.get(mypageApiUrls.MYPAGE_INFO);
 };
 

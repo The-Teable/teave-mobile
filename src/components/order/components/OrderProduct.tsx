@@ -1,50 +1,49 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { ProductInCart } from "../../../services/model/cartSchema";
+import { CartProductProps } from "../../../services/model/cartSchema";
 import Margin from "../../common/Margin";
 import { color } from "../../../styles/palette";
 
 const OrderProduct = ({
   products,
 }: {
-  products: Record<string, ProductInCart[]>;
+  products: Record<string, CartProductProps[]> | undefined;
 }) => {
+  if (!products) return null;
   return (
-    <S.Container>
-      <S.Title>주문상품</S.Title>
+    <StyledContainer>
+      <StyledTitle>주문상품</StyledTitle>
       {Object.entries(products).map(([brandName, items]) => (
         <>
-          <S.BrandTitle>{brandName}</S.BrandTitle>
+          <StyledBrandTitle>{brandName}</StyledBrandTitle>
           {items.map(({ id, name, price, count, image_url }) => (
-            <S.ItemContainer key={id}>
-              <S.ItemWrapper>
+            <StyledItemContainer key={id}>
+              <StyledItemWrapper>
                 <Image src={image_url} width={60} height={60} alt={name} />
                 <Margin size={1} row />
-                <S.ItemTitle>{name}</S.ItemTitle>
+                <StyledItemTitle>{name}</StyledItemTitle>
                 <Margin size={1} row />
                 <div>{count} 개</div>
-              </S.ItemWrapper>
-              <S.Price>{(price * count).toLocaleString()}원</S.Price>
-            </S.ItemContainer>
+              </StyledItemWrapper>
+              <StyledPrice>{(price * count).toLocaleString()}원</StyledPrice>
+            </StyledItemContainer>
           ))}
-          <S.DeliveryCost>배송비 3,000원</S.DeliveryCost>
+          <StyledDeliveryCost>배송비 3,000원</StyledDeliveryCost>
           <Margin size={0.5} row />
           <Margin size={1} />
         </>
       ))}
-    </S.Container>
+    </StyledContainer>
   );
 };
 
 export default OrderProduct;
 
-const S: any = {};
-
-S.Container = styled.div`
+const StyledContainer = styled.div`
   font-size: 1.2rem;
 `;
 
-S.Title = styled.div`
+const StyledTitle = styled.div`
   display: flex;
   font-size: 1.6rem;
   font-weight: bold;
@@ -55,7 +54,7 @@ S.Title = styled.div`
   padding: 0 2rem;
 `;
 
-S.BrandTitle = styled.div`
+const StyledBrandTitle = styled.div`
   display: flex;
   font-weight: 500;
   background-color: #ffffff;
@@ -65,7 +64,7 @@ S.BrandTitle = styled.div`
   padding: 0 2rem;
 `;
 
-S.ItemContainer = styled.div`
+const StyledItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,25 +73,25 @@ S.ItemContainer = styled.div`
   font-size: 1.2rem;
 `;
 
-S.ItemWrapper = styled.div`
+const StyledItemWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-S.ItemTitle = styled.div`
+const StyledItemTitle = styled.div`
   font-size: 1.2rem;
 `;
 
-S.Count = styled.input`
+const StyledCount = styled.input`
   width: 5rem;
 `;
 
-S.Price = styled.div`
+const StyledPrice = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
 `;
 
-S.DeliveryCost = styled.div`
+const StyledDeliveryCost = styled.div`
   display: flex;
   background-color: #ffffff;
   align-items: center;

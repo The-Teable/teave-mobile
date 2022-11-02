@@ -11,14 +11,14 @@ interface ModalProps {
 const Modal = ({ title, onCancel, children }: ModalProps) => {
   return (
     <>
-      <S.Overlay onClick={onCancel}></S.Overlay>
-      <S.Container>
-        <S.Header>
-          <S.Title>{title}</S.Title>
-          <S.ExitButton onClick={onCancel} />
-        </S.Header>
+      <StyledOverlay onClick={onCancel}></StyledOverlay>
+      <StyledContainer>
+        <StyledHeader>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledExitButton onClick={onCancel} />
+        </StyledHeader>
         {children}
-      </S.Container>
+      </StyledContainer>
     </>
   );
 };
@@ -27,7 +27,7 @@ export default Modal;
 
 const S: any = {};
 
-S.Overlay = styled.div`
+const StyledOverlay = styled.div`
   z-index: 1;
   width: 100vw;
   height: 100vh;
@@ -39,7 +39,7 @@ S.Overlay = styled.div`
   backdrop-filter: blur(3px);
 `;
 
-S.Container = styled.div`
+const StyledContainer = styled.div`
   z-index: 2;
   position: fixed;
   left: 50%;
@@ -53,7 +53,7 @@ S.Container = styled.div`
   border-radius: 0.5rem;
 `;
 
-S.Header = styled.div`
+const StyledHeader = styled.div`
   width: 100%;
   position: relative;
   display: flex;
@@ -63,12 +63,12 @@ S.Header = styled.div`
   padding: 2rem;
 `;
 
-S.Title = styled.h1`
+const StyledTitle = styled.h1`
   font-size: 1.7rem;
   font-weight: bold;
 `;
 
-S.ExitButton = styled.button`
+const StyledExitButton = styled.button`
   position: absolute;
   right: 4rem;
   background: url("/image/icon_exit.svg") no-repeat center/contain;

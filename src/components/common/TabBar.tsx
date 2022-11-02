@@ -28,8 +28,6 @@ const TabBar = () => (
 
 export default TabBar;
 
-const S: any = {};
-
 const StyledContainer = styled(CenteredContainer).attrs({ as: "nav" })`
   display: flex;
   justify-content: space-around;

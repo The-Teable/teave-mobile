@@ -4,6 +4,8 @@ import useMypageInfoQuery from "../../../services/hooks/useMypageInfoQuery";
 
 const UserInfoContainer = () => {
   const { mypageInfo } = useMypageInfoQuery();
+  if (!mypageInfo) return null;
+
   const {
     name,
     rank,
@@ -68,7 +70,7 @@ export default UserInfoContainer;
 const StyledLoginContainer = styled.div`
   background-color: #ffffff;
   font-size: 1.5rem;
-  padding: 0 1.8rem;
+  padding: 0 1.8rem 1.8rem 2rem;
 `;
 
 const StyledUserContainer = styled.div`
@@ -103,9 +105,6 @@ const StyledRankInfo = styled.div`
 
 const StyledMileageConainer = styled.div`
   display: flex;
-  &:first-child {
-    margin-right: 5rem;
-  }
 `;
 
 const StyledMileageWrapper = styled.div`
@@ -116,6 +115,9 @@ const StyledMileageWrapper = styled.div`
   padding: 2rem;
   &:hover {
     cursor: pointer;
+  }
+  &:first-child {
+    margin-right: 1.5rem;
   }
 `;
 const StyledMileageTitle = styled.h3`
@@ -140,7 +142,7 @@ const StyledPurchaseContainer = styled.div`
   display: flex;
   border: 0.1rem solid #dddddd;
   border-radius: 1.2rem;
-  margin: 2rem 0;
+  margin-top: 2rem;
 `;
 const StyledPurchaseWrapper = styled.div`
   width: 100%;

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import useTeaActionQuery from "../../services/hooks/useTeaActionQuery";
 import { MouseEvent } from "react";
 import { useRouter } from "next/router";
+import { useWishProductQuery } from "../../services/hooks/useWishProductQuery";
+import Image from "next/image";
 
 interface TeaItemProps {
   id: number;
@@ -9,8 +11,8 @@ interface TeaItemProps {
   brand: string;
   name: string;
   price: number;
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 
 const TeaItem = ({
@@ -19,76 +21,81 @@ const TeaItem = ({
   brand,
   name,
   price,
-  width = "14rem",
-  height = "18.6rem",
+  width = 140,
+  height = 186,
 }: TeaItemProps) => {
   const router = useRouter();
 
-  const { queryClickProduct, queryWishProduct } = useTeaActionQuery();
+  const { queryClickProduct } = useTeaActionQuery();
+  const { addWish } = useWishProductQuery();
 
-  const handleClickProduct = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
+  const handleClickProduct = () => {
     queryClickProduct({ id });
     router.push(`/product?id=${id}`);
   };
 
   return (
-    <S.Container onClick={handleClickProduct}>
-      <S.Thumbnail url={url} width={width} height={height}>
-        <S.Favorite onClick={() => queryWishProduct({ id })} />
-      </S.Thumbnail>
-      <S.DescribeContainer>
-        <S.TitleWrapper>
-          <S.Brand>[{brand}] </S.Brand>
-          <S.Name>{name}</S.Name>
-        </S.TitleWrapper>
-        <S.Price>{price.toLocaleString()}원</S.Price>
-      </S.DescribeContainer>
-    </S.Container>
+    <StyledContainer onClick={() => handleClickProduct()}>
+      <div style={{ position: "relative", width, height }}>
+        <StyledThumbnail
+          src={url}
+          layout="fill"
+          objectFit="cover"
+          alt="thumbnail"
+        />
+
+        <StyledWishIconWrapper onClick={() => addWish({ tea_id: id })}>
+          <Image
+            src={"/image/icon_favorite.svg"}
+            width={width / 7}
+            height={width / 7}
+            alt="wish icon"
+          />
+        </StyledWishIconWrapper>
+      </div>
+      <StyledDescribeContainer>
+        <StyledTitleWrapper>
+          <StyledBrand>[{brand}] </StyledBrand>
+          <StyledName>{name}</StyledName>
+        </StyledTitleWrapper>
+        <StyledPrice>{price.toLocaleString()}원</StyledPrice>
+      </StyledDescribeContainer>
+    </StyledContainer>
   );
 };
 
 export default TeaItem;
 
-const S: any = {};
-
-S.Container = styled.div`
+const StyledContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
 `;
 
-S.Thumbnail = styled.div<{ url: string; width: number; height: number }>`
-  position: relative;
-  background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
-  width: ${({ width }: { width: number }) => width};
-  height: ${({ height }: { height: number }) => height};
+const StyledThumbnail = styled(Image)`
   border-radius: 0.5rem;
 `;
 
-S.Favorite = styled.div`
-  background: url("/image/icon_favorite.svg") no-repeat center/cover;
-  width: 2rem;
-  height: 2rem;
+const StyledWishIconWrapper = styled.div`
   position: absolute;
   right: 1rem;
   bottom: 1rem;
 `;
 
-S.DescribeContainer = styled.div`
+const StyledDescribeContainer = styled.div`
   padding-top: 1.5rem;
   font-size: 1.2rem;
 `;
 
-S.TitleWrapper = styled.div`
+const StyledTitleWrapper = styled.div`
   height: 4.5rem;
   line-height: 1.5rem;
 `;
 
-S.Brand = styled.span``;
+const StyledBrand = styled.span``;
 
-S.Name = styled.span``;
+const StyledName = styled.span``;
 
-S.Price = styled.p`
+const StyledPrice = styled.p`
   font-weight: bold;
 `;

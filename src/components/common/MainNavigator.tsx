@@ -4,6 +4,7 @@ import Link from "next/link";
 import CenteredContainer from "./CenteredContainer";
 import { color } from "../../styles/palette";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const items = [
   { title: "메인", href: "/home" },
@@ -19,7 +20,7 @@ const MainNavigator = () => {
       <StyledContainer>
         <StyledTopWrapper>
           <Link href="/" passHref>
-            <StyledLogo />
+            <StyledLogo src="/image/logo_text.png" width={63} height={17} />
           </Link>
         </StyledTopWrapper>
         <StyledNavWrapper>
@@ -59,10 +60,7 @@ const StyledTopWrapper = styled.div`
   height: 5rem;
 `;
 
-const StyledLogo = styled.div`
-  background: url("/image/logo_text.png") no-repeat center/contain;
-  width: 6.3rem;
-  height: 1.7rem;
+const StyledLogo = styled(Image)`
   padding: 0 0.5rem;
   &:hover {
     cursor: pointer;

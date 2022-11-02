@@ -19,23 +19,23 @@ const TeaTestPage = () => {
   return (
     <>
       {navigate === NAVIGATE.WELCOME ? (
-        <S.Container>
-          <S.Text>
+        <StyledContainer>
+          <StyledText>
             내 취향에 꼭 맞는 티와 함께
             <br />
             여유로운 하루를 보내고 싶지 않으신가요?
-          </S.Text>
+          </StyledText>
           <Margin size={2} />
-          <S.SubText>
+          <StyledSubText>
             간단한 테스트를 통해
             <br />
             여러분의 취향에 맞는 티를 찾아드릴게요!
-          </S.SubText>
+          </StyledSubText>
           <Margin size={5} />
-          <S.Button onClick={() => setNavigate(NAVIGATE.QUESTION)}>
+          <StyledButton onClick={() => setNavigate(NAVIGATE.QUESTION)}>
             티 테스트 시작
-          </S.Button>
-        </S.Container>
+          </StyledButton>
+        </StyledContainer>
       ) : navigate === NAVIGATE.QUESTION ? (
         <QuestionProvider questions={questions} handleSubmit={handleSubmit} />
       ) : navigate === NAVIGATE.RESULT ? (
@@ -47,9 +47,7 @@ const TeaTestPage = () => {
   );
 };
 
-const S: any = {};
-
-S.Container = styled.section`
+const StyledContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,18 +55,18 @@ S.Container = styled.section`
   height: 80vh;
 `;
 
-S.Text = styled.p`
+const StyledText = styled.p`
   font-size: 1.6rem;
   text-align: center;
 `;
 
-S.SubText = styled.p`
+const StyledSubText = styled.p`
   font-size: 1.2rem;
   text-align: center;
   color: #424242;
 `;
 
-S.Button = styled(Button)`
+const StyledButton = styled(Button)`
   width: 25rem;
 `;
 

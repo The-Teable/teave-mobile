@@ -27,32 +27,32 @@ const QuestionProvider = ({
   } = useQuestionProvider({ questions });
 
   return (
-    <S.Container providerWidth={providerWidth}>
-      <S.Wrapper transitionX={questionIndex * providerWidth}>
+    <StyledContainer providerWidth={providerWidth}>
+      <StyledWrapper transitionX={questionIndex * providerWidth}>
         {questions.map(({ title, choices, multiChoicable }, i) => (
-          <S.QuestionCardWrapper key={i}>
-            <S.QuestionCounter>
+          <StyledQuestionCardWrapper key={i}>
+            <StyledQuestionCounter>
               {questionIndex + 1} / {questions.length}
-            </S.QuestionCounter>
+            </StyledQuestionCounter>
             <QuestionCard
               title={title}
               choices={choices}
               multiChoicable={multiChoicable}
               handleChoice={handleChoice}
             />
-          </S.QuestionCardWrapper>
+          </StyledQuestionCardWrapper>
         ))}
         <button onClick={handleSubmit}>결과 보기</button>
-      </S.Wrapper>
-      <S.PrevButton onClick={onClickPrev} disabled={disablePrev} />
-      <S.NextButton onClick={onClickNext} disabled={disableNext} />
-    </S.Container>
+      </StyledWrapper>
+      <StyledPrevButton onClick={onClickPrev} disabled={disablePrev} />
+      <StyledNextButton onClick={onClickNext} disabled={disableNext} />
+    </StyledContainer>
   );
 };
 
 const S: any = {};
 
-S.Container = styled.div<{ providerWidth: number }>`
+const StyledContainer = styled.div<{ providerWidth: number }>`
   display: flex;
   position: relative;
   align-items: center;
@@ -63,7 +63,7 @@ S.Container = styled.div<{ providerWidth: number }>`
   overflow: hidden;
 `;
 
-S.Wrapper = styled.div<{ transitionX: number }>`
+const StyledWrapper = styled.div<{ transitionX: number }>`
   display: flex;
   align-items: center;
   width: 400px;
@@ -74,27 +74,27 @@ S.Wrapper = styled.div<{ transitionX: number }>`
   transition-delay: 0.1s;
 `;
 
-S.QuestionCardWrapper = styled.div`
+const StyledQuestionCardWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 `;
 
-S.QuestionCounter = styled.div`
+const StyledQuestionCounter = styled.div`
   text-align: center;
 `;
 
-S.TeaTestButton = styled.button`
+const StyledTeaTestButton = styled.button`
   position: absolute;
   top: 48%;
   width: 30px;
   height: 80px;
 `;
 
-S.PrevButton = styled(S.TeaTestButton)`
+const StyledPrevButton = styled(StyledTeaTestButton)`
   left: 0;
 `;
 
-S.NextButton = styled(S.TeaTestButton)`
+const StyledNextButton = styled(StyledTeaTestButton)`
   right: 0;
 `;
 

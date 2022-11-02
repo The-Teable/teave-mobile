@@ -42,7 +42,7 @@ const ProductPage = () => {
       <TitleHeader title="상품정보" hasHomeCartButton />
       <HeaderScroll headerNavLinks={headerNavLinks} />
       <Margin size={3} />
-      <S.Container>
+      <StyledContainer>
         <div id="info" ref={$infoRef} />
         <Image
           src={teaProductDetailInfo.tea_image_urls[0]}
@@ -51,7 +51,7 @@ const ProductPage = () => {
           style={{ width: "100%", height: "auto" }}
           alt="제품 미리보기"
         />
-        <S.BrandWrapper>
+        <StyledBrandWrapper>
           <Image
             src={teaProductDetailInfo.brand_logo_url}
             width={40}
@@ -60,18 +60,20 @@ const ProductPage = () => {
           />
           <Margin row size={2} />
           <div>{teaProductDetailInfo.brand_name}</div>
-        </S.BrandWrapper>
+        </StyledBrandWrapper>
         <Margin size={2} />
         <div>
           [{teaProductDetailInfo.brand_name}] {teaProductDetailInfo.tea_name}
         </div>
         <Margin size={2} />
-        <S.Price>{teaProductDetailInfo.price.toLocaleString()}원</S.Price>
+        <StyledPrice>
+          {teaProductDetailInfo.price.toLocaleString()}원
+        </StyledPrice>
         <Margin size={2} />
-        <S.DeliveryInfoWrapper>
-          <S.DeliveryInfoTitle>배송정보</S.DeliveryInfoTitle>
+        <StyledDeliveryInfoWrapper>
+          <StyledDeliveryInfoTitle>배송정보</StyledDeliveryInfoTitle>
           {teaProductDetailInfo.delivery_info}
-        </S.DeliveryInfoWrapper>
+        </StyledDeliveryInfoWrapper>
 
         <Image
           src={teaProductDetailInfo.tea_detail}
@@ -88,9 +90,9 @@ const ProductPage = () => {
         <div id="question" ref={$questionRef} />
         <Margin size={2} />
         <Question questions={teaProductDetailInfo.questions} />
-      </S.Container>
+      </StyledContainer>
       <Margin size={7.5} />
-      <S.Footer>
+      <StyledFooter>
         <Image
           src="/image/icon_favorite_red_lined.png"
           width={25}
@@ -98,21 +100,19 @@ const ProductPage = () => {
           alt="찜하기 아이콘"
         />
 
-        <S.Button>구매하기</S.Button>
-      </S.Footer>
+        <StyledButton>구매하기</StyledButton>
+      </StyledFooter>
     </>
   );
 };
 
 export default ProductPage;
 
-const S: any = {};
-
-S.Container = styled(CenteredContainer)`
+const StyledContainer = styled(CenteredContainer)`
   font-size: 1.4rem;
 `;
 
-S.BrandWrapper = styled.div`
+const StyledBrandWrapper = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #e7e7e7;
@@ -120,24 +120,24 @@ S.BrandWrapper = styled.div`
   padding: 1rem;
 `;
 
-S.Price = styled.div`
+const StyledPrice = styled.div`
   font-size: 1.6rem;
   font-weight: bold;
 `;
 
-S.DeliveryInfoWrapper = styled.div`
+const StyledDeliveryInfoWrapper = styled.div`
   padding: 2rem 0;
   border: 1px solid #e7e7e7;
   border-width: 1px 0;
   font-size: 1.2rem;
 `;
 
-S.DeliveryInfoTitle = styled.span`
+const StyledDeliveryInfoTitle = styled.span`
   color: #808080;
   padding-right: 2rem;
 `;
 
-S.Footer = styled(CenteredContainer)`
+const StyledFooter = styled(CenteredContainer)`
   position: fixed;
   display: flex;
   justify-content: space-around;
@@ -151,14 +151,8 @@ S.Footer = styled(CenteredContainer)`
   background-color: #ffffff;
 `;
 
-S.Button = styled(Button)`
+const StyledButton = styled(Button)`
   font-size: 1.5rem;
   height: 4rem;
   margin-left: 2rem;
-`;
-
-S.Ppap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
 `;

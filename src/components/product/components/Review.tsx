@@ -7,10 +7,10 @@ import Image from "next/image";
 const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
   return (
     <>
-      <WriteReviewButton reverse>리뷰 쓰기</WriteReviewButton>
+      <StyledWriteReviewButton reverse>리뷰 쓰기</StyledWriteReviewButton>
       <Margin size={2} />
       {reviews.map(({ id, title, author, create_date, image_url }) => (
-        <Item key={id}>
+        <StyledItem key={id}>
           <Margin size={2} />
           <div>
             {title}{" "}
@@ -24,11 +24,11 @@ const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
             )}
           </div>
           <Margin size={1.5} />
-          <AuthorWrapper>
+          <StyledAuthorWrapper>
             {author} | {new Date(create_date).toTimeString()}
-          </AuthorWrapper>
+          </StyledAuthorWrapper>
           <Margin size={2} />
-        </Item>
+        </StyledItem>
       ))}
     </>
   );
@@ -36,16 +36,16 @@ const Review = ({ reviews }: { reviews: ReviewProps[] }) => {
 
 export default Review;
 
-const WriteReviewButton = styled(Button)``;
+const StyledWriteReviewButton = styled(Button)``;
 
-const Item = styled.div`
+const StyledItem = styled.div`
   border-top: 1px solid #e6e6e6;
   &:last-child {
     border-bottom: 1px solid #e6e6e6;
   }
 `;
 
-const AuthorWrapper = styled.div`
+const StyledAuthorWrapper = styled.div`
   font-size: 1rem;
   color: #808080;
 `;

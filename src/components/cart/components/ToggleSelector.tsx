@@ -25,17 +25,17 @@ const ToggleSelector = ({
   };
   return (
     <>
-      <S.OptionContainer>
-        <S.Checkbox
+      <StyledOptionContainer>
+        <StyledCheckbox
           type="checkbox"
           id={id}
           checked={toggle}
           onChange={handdleToggle}
         />
-        <S.CustomCheckbox htmlFor={id} labelName={labelName}>
+        <StyledCustomCheckbox htmlFor={id} labelName={labelName}>
           {labelName}
-        </S.CustomCheckbox>
-      </S.OptionContainer>
+        </StyledCustomCheckbox>
+      </StyledOptionContainer>
     </>
   );
 };
@@ -44,21 +44,21 @@ export default ToggleSelector;
 
 const S: any = {};
 
-S.OptionContainer = styled.div`
+const StyledOptionContainer = styled.div`
   display: flex;
   align-items: center;
   background: #ffffff;
   padding: 1.5rem;
 `;
 
-S.Checkbox = styled.input`
+const StyledCheckbox = styled.input`
   display: none;
   &:checked + label {
     background: url("/image/icon_toggle_true.svg") no-repeat left/2rem 2rem;
   }
 `;
 
-S.CustomCheckbox = styled.label<{ labelName?: string }>`
+const StyledCustomCheckbox = styled.label<{ labelName?: string }>`
   user-select: none;
   cursor: pointer;
   height: 2rem;

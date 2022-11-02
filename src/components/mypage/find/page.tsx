@@ -34,10 +34,10 @@ const FindPage = () => {
   return (
     <>
       <TitleHeader title={target === "id" ? "아이디 찾기" : "비밀번호 찾기"} />
-      <S.Form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={(e: any) => handleSubmit(e)}>
         <Margin size={2} />
-        <S.Fieldset onChange={onChangeVerifyWay}>
-          <S.Legend>인증 방법</S.Legend>
+        <StyledFieldset onChange={(e: any) => onChangeVerifyWay(e)}>
+          <StyledLegend>인증 방법</StyledLegend>
           <Margin size={1} />
           <input
             name="way"
@@ -53,55 +53,53 @@ const FindPage = () => {
             type="radio"
           />
           <label htmlFor="wayPhone">휴대폰번호로 인증하기</label>
-        </S.Fieldset>
+        </StyledFieldset>
         <Margin size={3} />
         {target === "pw" ? (
           <>
-            <S.Label htmlFor="userId">아이디</S.Label>
-            <S.InputText id="userId" />
+            <StyledLabel htmlFor="userId">아이디</StyledLabel>
+            <StyledInputText id="userId" />
           </>
         ) : null}
-        <S.Label htmlFor="name">이름</S.Label>
-        <S.InputText id="name" />
+        <StyledLabel htmlFor="name">이름</StyledLabel>
+        <StyledInputText id="name" />
         {choiceVerifyWay === VERIFYWAY.EMAIL ? (
           <>
-            <S.Label htmlFor="email">이메일</S.Label>
-            <S.InputText id="email" />
+            <StyledLabel htmlFor="email">이메일</StyledLabel>
+            <StyledInputText id="email" />
           </>
         ) : choiceVerifyWay === VERIFYWAY.PHONE ? (
           <>
-            <S.Label htmlFor="phone">휴대폰 번호</S.Label>
-            <S.InputText id="phone" type="tel" />
+            <StyledLabel htmlFor="phone">휴대폰 번호</StyledLabel>
+            <StyledInputText id="phone" type="tel" />
           </>
         ) : null}
         <Margin size={2} />
-        <S.Button type={"submit"}>제출하기</S.Button>
-      </S.Form>
+        <StyledButton type={"submit"}>제출하기</StyledButton>
+      </StyledForm>
     </>
   );
 };
 
 export default FindPage;
 
-const S: any = {};
-
-S.Form = styled(CenteredContainer).attrs({ as: "form" })`
+const StyledForm = styled(CenteredContainer).attrs({ as: "form" })`
   font-size: 1.2rem;
 `;
 
-S.Fieldset = styled.fieldset``;
+const StyledFieldset = styled.fieldset``;
 
-S.Legend = styled.legend`
+const StyledLegend = styled.legend`
   font-size: 1.3rem;
 `;
 
-S.Label = styled.label`
+const StyledLabel = styled.label`
   display: inline-block;
   margin: 0 0 1rem;
 `;
 
-S.InputText = styled(InputText)`
+const StyledInputText = styled(InputText)`
   margin: 0 0 2rem;
 `;
 
-S.Button = styled(Button)``;
+const StyledButton = styled(Button)``;

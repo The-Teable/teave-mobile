@@ -19,27 +19,27 @@ const LoginPage = () => {
   };
   return (
     <CenteredContainer>
-      <S.Container>
+      <StyledContainer>
         <Link href={`/${returnUrl ? returnUrl : ""}`} passHref>
-          <S.ExitIcon />
+          <StyledExitIcon />
         </Link>
         <Margin size={9} />
-        <S.SNSContainer>
-          <S.SNSIcon url={"/image/icon_kakao.svg"} />
-          <S.SNSIcon url={"/image/icon_google.svg"} />
-          <S.SNSIcon url={"/image/icon_apple.svg"} />
-        </S.SNSContainer>
+        <StyledSNSContainer>
+          <StyledSNSIcon url={"/image/icon_kakao.svg"} />
+          <StyledSNSIcon url={"/image/icon_google.svg"} />
+          <StyledSNSIcon url={"/image/icon_apple.svg"} />
+        </StyledSNSContainer>
         <Margin size={5} />
-        <S.Division />
+        <StyledDivision />
         <Margin size={5} />
         <form onSubmit={handleSubmit}>
-          <S.InputText
+          <StyledInputText
             id={"userid"}
             placeholder={"아이디를 입력해주세요"}
             required
           />
           <Margin size={1} />
-          <S.InputText
+          <StyledInputText
             id={"password"}
             placeholder={"비밀번호를 입력해주세요"}
             type={"password"}
@@ -51,10 +51,10 @@ const LoginPage = () => {
             <label htmlFor={"autoLogin"}>자동 로그인</label>
           </div>
           <Margin size={1} />
-          <S.Button>로그인</S.Button>
+          <StyledButton>로그인</StyledButton>
         </form>
         <Margin size={2} />
-        <S.FindIDPWContainer>
+        <StyledFindIDPWContainer>
           <Link href={"/mypage/find?target=id"} passHref>
             <span>아이디 찾기</span>
           </Link>
@@ -62,23 +62,21 @@ const LoginPage = () => {
           <Link href={"/mypage/find?target=pw"} passHref>
             <span>비밀번호 찾기</span>
           </Link>
-        </S.FindIDPWContainer>
+        </StyledFindIDPWContainer>
         <Margin size={2} />
         <Link href="/mypage/signup">
-          <S.Button type={"submit"} reverse>
+          <StyledButton type={"submit"} reverse>
             회원가입
-          </S.Button>
+          </StyledButton>
         </Link>
-      </S.Container>
+      </StyledContainer>
     </CenteredContainer>
   );
 };
 
 export default LoginPage;
 
-const S: any = {};
-
-S.Container = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 40rem;
@@ -86,7 +84,7 @@ S.Container = styled.div`
   margin: 0 auto;
 `;
 
-S.ExitIcon = styled.div`
+const StyledExitIcon = styled.div`
   background: url("/image/icon_exit.svg") no-repeat center/contain;
   width: 1.7rem;
   height: 1.7rem;
@@ -95,12 +93,12 @@ S.ExitIcon = styled.div`
   }
 `;
 
-S.SNSContainer = styled.div`
+const StyledSNSContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-S.SNSIcon = styled.div<{ url: string }>`
+const StyledSNSIcon = styled.div<{ url: string }>`
   background: url(${({ url }: { url: string }) => url}) no-repeat center/contain;
   width: 5rem;
   height: 5rem;
@@ -109,18 +107,18 @@ S.SNSIcon = styled.div<{ url: string }>`
   }
 `;
 
-S.Division = styled.div`
+const StyledDivision = styled.div`
   background: url("/image/icon_division.svg") no-repeat center/contain;
   width: 14.5rem;
   height: 2rem;
   margin: 0 auto;
 `;
 
-S.InputText = styled(InputText)``;
+const StyledInputText = styled(InputText)``;
 
-S.Button = styled(Button)``;
+const StyledButton = styled(Button)``;
 
-S.FindIDPWContainer = styled.div`
+const StyledFindIDPWContainer = styled.div`
   margin: 0 auto;
   color: #b3b3b3;
   &:hover {

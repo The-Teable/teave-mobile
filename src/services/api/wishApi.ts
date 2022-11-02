@@ -11,10 +11,10 @@ const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
 
-http.interceptors.request.use(async (config) => {
-  const token = await getToken();
-  return { ...config, headers: { Authorization: `Bearer ${token}` } };
-});
+// http.interceptors.request.use(async (config) => {
+//   const token = await getToken();
+//   return { ...config, headers: { Authorization: `Bearer ${token}` } };
+// });
 
 const getWishApi = () => {
   return http.get<UserWishProduct>(wishApiUrls.WISH);

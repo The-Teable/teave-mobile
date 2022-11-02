@@ -8,10 +8,9 @@ import CenteredContainer from "../common/CenteredContainer";
 import { storage } from "../../util/storage";
 import useAuthQuery from "../../services/hooks/useAuthQuery";
 import UserInfoContainer from "./components/UserInfoContainer";
-import useMypageInfoQuery from "../../services/hooks/useMypageInfoQuery";
 
 const MyPage = () => {
-  const isAuthorized = storage.get("ACCESS_TOKEN") ? false : true;
+  const isAuthorized = storage.get("ACCESS_TOKEN") ? true : false;
   const { logout } = useAuthQuery();
 
   return (

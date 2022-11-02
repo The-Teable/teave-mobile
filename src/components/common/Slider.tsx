@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import useSlider from "../../hooks/useSlider";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 interface SliderProps {
   children: ReactNode;
@@ -13,8 +14,8 @@ interface SliderProps {
  */
 
 const Slider = ({ children, itemWidth }: SliderProps) => {
-  const [
-    $wrapperRef,
+  const {
+    $sliderRef,
     transitionX,
     prevDisable,
     nextDisable,
@@ -23,35 +24,36 @@ const Slider = ({ children, itemWidth }: SliderProps) => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDrag
-  ] = useSlider(itemWidth);
-
+    isDragging,
+  } = useSlider(itemWidth);
   return (
-    <S.Container>
-      <S.Wrapper
-        ref={$wrapperRef}
+    <StyledContainer>
+      <StyledWrapper
+        ref={$sliderRef}
+        onMouseDown={(e: any) => onDragStart(e)}
+        onMouseMove={(e: any) => onDragMove(e)}
+        onMouseUp={(e: any) => onDragEnd(e)}
+        onMouseLeave={(e: any) => onDragEnd(e)}
+        onTouchStart={(e: any) => onDragStart(e)}
+        onTouchEnd={(e: any) => onDragEnd(e)}
         transitionX={transitionX}
-        onMouseDown={onDragStart}
-        onMouseMove={onDragMove}
-        onMouseUp={onDragEnd}
-        onMouseLeave={onDragEnd}
-        onTouchStart={onDragStart}
-        onTouchEnd={onDragEnd}
-        isDrag={isDrag}
+        isDragging={isDragging}
       >
         {children}
-      </S.Wrapper>
-      <S.PrevButton onClick={onPrevClick} disabled={prevDisable} />
-      <S.NextButton onClick={onNextClick} disabled={nextDisable} />
-    </S.Container>
+      </StyledWrapper>
+      <StyledPrevButton onClick={onPrevClick} disabled={prevDisable}>
+        <Image src="/image/icon_go_prev.svg" alt="prev icon" layout="fill" />
+      </StyledPrevButton>
+      <StyledNextButton onClick={onNextClick} disabled={nextDisable}>
+        <Image src="/image/icon_go_next.svg" alt="prev icon" layout="fill" />
+      </StyledNextButton>
+    </StyledContainer>
   );
 };
 
 export default Slider;
 
-const S: any = {};
-
-S.MoveButton = styled.button`
+const StyledMoveButton = styled.button`
   opacity: 0;
   position: absolute;
   top: 50%;
@@ -59,16 +61,17 @@ S.MoveButton = styled.button`
   width: 3rem;
   height: 8rem;
   border: 0px;
+  background-color: transparent;
   &:hover {
     cursor: pointer;
   }
 `;
 
-S.Container = styled.div`
+const StyledContainer = styled.div`
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
-  &:hover ${S.MoveButton} {
+  &:hover ${StyledMoveButton} {
     opacity: 1;
   }
   &::-webkit-scrollbar {
@@ -76,18 +79,17 @@ S.Container = styled.div`
   }
 `;
 
-S.Wrapper = styled.div<{ transitionX: number; isDrag: boolean }>`
+const StyledWrapper = styled.div<{ transitionX: number; isDragging: boolean }>`
   display: flex;
   transform: translate(
     ${({ transitionX }: { transitionX: number }) => -transitionX}px
   );
   transition: transform
-    ${({ isDrag }: { isDrag: boolean }) => (isDrag ? 0 : 0.5)}s;
+    ${({ isDragging }: { isDragging: boolean }) => (isDragging ? 0 : 0.5)}s;
   user-select: none;
 `;
 
-S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
-  background: url("/image/icon_go_prev.svg") no-repeat center/contain;
+const StyledPrevButton = styled(StyledMoveButton)<{ disabled: boolean }>`
   left: 0.5rem;
   ${({ disabled }: { disabled: boolean }) =>
     disabled
@@ -97,8 +99,7 @@ S.PrevButton = styled(S.MoveButton)<{ disabled: boolean }>`
       : null}
 `;
 
-S.NextButton = styled(S.MoveButton)<{ disabled: boolean }>`
-  background: url("/image/icon_go_next.svg") no-repeat center/contain;
+const StyledNextButton = styled(StyledMoveButton)<{ disabled: boolean }>`
   right: 0.5rem;
   ${({ disabled }: { disabled: boolean }) =>
     disabled

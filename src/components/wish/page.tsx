@@ -24,7 +24,7 @@ const WishPage = () => {
                     </StyledTitle>
                     <StyledPrice>{price.toLocaleString()}원</StyledPrice>
                     <StyledButtonContainer>
-                      <StyledButton onClick={() => removeWish(id)}>
+                      <StyledButton onClick={() => removeWish({ tea_id: id })}>
                         삭제
                       </StyledButton>
                       <StyledGreenButton>장바구니</StyledGreenButton>

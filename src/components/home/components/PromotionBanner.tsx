@@ -10,23 +10,21 @@ interface Props {
 const PromotionBanner = ({ banners }: Props) => {
   const [width, $bannerRef] = useElementCurWidth();
   return (
-    <S.Container ref={$bannerRef}>
+    <StyledContainer ref={$bannerRef}>
       <Slider itemWidth={width}>
         {banners.map(({ url, href }, i) => (
           <Link key={i} href={href} passHref>
-            <S.Item url={url} />
+            <StyledItem url={url} />
           </Link>
         ))}
       </Slider>
-    </S.Container>
+    </StyledContainer>
   );
 };
 
-const S: any = {};
+const StyledContainer = styled.section``;
 
-S.Container = styled.section``;
-
-S.Item = styled.div<{ url: string }>`
+const StyledItem = styled.div<{ url: string }>`
   background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
   height: 18rem;
   flex-shrink: 0;

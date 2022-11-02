@@ -22,44 +22,45 @@ const TitleHeader = (props: Props) => {
 
   return (
     <>
-      <S.Header>
-        <S.GoBackButton>
+      <StyledHeader>
+        <StyledGoBackButton>
           <Image
             onClick={handleGoBack}
             src="/image/icon_go_back.svg"
             layout="fill"
+            alt="go back"
           />
-        </S.GoBackButton>
-        <S.Title>{title}</S.Title>
+        </StyledGoBackButton>
+        <StyledTitle>{title}</StyledTitle>
         {!hasHomeCartButton ? null : (
           <>
-            <S.GoHomeButton>
+            <StyledGoHomeButton>
               <Image
                 onClick={handleGoHome}
                 src="/image/icon_home.svg"
                 layout="fill"
+                alt="go home"
               />
-            </S.GoHomeButton>
-            <S.GoCartButton>
+            </StyledGoHomeButton>
+            <StyledGoCartButton>
               <Image
                 onClick={handleGoCart}
                 src="/image/icon_cart.svg"
                 layout="fill"
+                alt="go cart"
               />
-            </S.GoCartButton>
+            </StyledGoCartButton>
           </>
         )}
-      </S.Header>
-      <S.Padding />
+      </StyledHeader>
+      <StyledPadding />
     </>
   );
 };
 
 export default TitleHeader;
 
-const S: any = {};
-
-S.Header = styled(CenteredContainer)`
+const StyledHeader = styled(CenteredContainer)`
   position: fixed;
   right: 0;
   top: 0;
@@ -72,7 +73,7 @@ S.Header = styled(CenteredContainer)`
   border-bottom: 1px solid ${color.gray200};
 `;
 
-S.Button = styled.div`
+const StyledButton = styled.div`
   position: absolute;
   border: 0px;
   width: 2.5rem;
@@ -82,25 +83,25 @@ S.Button = styled.div`
   }
 `;
 
-S.Title = styled.h1`
+const StyledTitle = styled.h1`
   margin: 0 auto;
   line-height: 2.5rem;
   font-size: 1.6rem;
   font-weight: 500;
 `;
 
-S.GoBackButton = styled(S.Button)`
+const StyledGoBackButton = styled(StyledButton)`
   left: 2rem;
 `;
 
-S.GoHomeButton = styled(S.Button)`
+const StyledGoHomeButton = styled(StyledButton)`
   right: 6rem;
 `;
 
-S.GoCartButton = styled(S.Button)`
+const StyledGoCartButton = styled(StyledButton)`
   right: 2rem;
 `;
 
-S.Padding = styled.div`
+const StyledPadding = styled.div`
   height: 5rem;
 `;

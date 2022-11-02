@@ -16,34 +16,32 @@ const CartProducts = ({
   };
 
   return (
-    <S.ItemContainer key={id}>
+    <StyledItemContainer key={id}>
       <ToggleSelector id={id + ""} labelName="" isChecked={is_selected} />
-      <S.ItemWrapper>
+      <StyledItemWrapper>
         <Image src={image_url} width={75} height={90} alt={name} />
-        <S.ContentWrapper>
-          <S.ItemTitle>{name}</S.ItemTitle>
-          <S.UnitPrice>{price.toLocaleString()}원</S.UnitPrice>
-          <S.CountWrapper>
-            <S.Count type="number" defaultValue={count} />개
-          </S.CountWrapper>
-        </S.ContentWrapper>
-      </S.ItemWrapper>
-      <S.Price>{(price * count).toLocaleString()}원</S.Price>
-      <S.DeleteButton
+        <StyledContentWrapper>
+          <StyledItemTitle>{name}</StyledItemTitle>
+          <StyledUnitPrice>{price.toLocaleString()}원</StyledUnitPrice>
+          <StyledCountWrapper>
+            <StyledCount type="number" defaultValue={count} />개
+          </StyledCountWrapper>
+        </StyledContentWrapper>
+      </StyledItemWrapper>
+      <StyledPrice>{(price * count).toLocaleString()}원</StyledPrice>
+      <StyledDeleteButton
         src="/image/icon_exit.svg"
         width={10}
         height={10}
         onClick={handleDeleteProduct}
       />
-    </S.ItemContainer>
+    </StyledItemContainer>
   );
 };
 
 export default CartProducts;
 
-const S: any = {};
-
-S.ItemContainer = styled.div`
+const StyledItemContainer = styled.div`
   display: flex;
   background-color: #ffffff;
   justify-content: space-around;
@@ -51,36 +49,36 @@ S.ItemContainer = styled.div`
   font-size: 1.2rem;
 `;
 
-S.ItemWrapper = styled.div`
+const StyledItemWrapper = styled.div`
   display: flex;
 `;
 
-S.ContentWrapper = styled.div`
+const StyledContentWrapper = styled.div`
   padding: 1.8rem;
 `;
 
-S.ItemTitle = styled.div`
+const StyledItemTitle = styled.div`
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 1rem;
 `;
 
-S.UnitPrice = styled.div`
+const StyledUnitPrice = styled.div`
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 `;
 
-S.CountWrapper = styled.div`
+const StyledCountWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-S.Count = styled.input`
+const StyledCount = styled.input`
   width: 5rem;
   margin-right: 0.5rem;
 `;
 
-S.Price = styled.div`
+const StyledPrice = styled.div`
   display: flex;
   font-size: 1.2rem;
   width: 8rem;
@@ -90,7 +88,7 @@ S.Price = styled.div`
   border-left: 1px solid ${color.gray200};
 `;
 
-S.DeleteButton = styled(Image)`
+const StyledDeleteButton = styled(Image)`
   &:hover {
     cursor: pointer;
   }

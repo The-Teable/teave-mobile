@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMypageInfo } from "../api/myPageApi";
+import { getMypageInfo } from "../api/mypageApi";
 
 export const mypageInfoQueryKeys = {
   GET_MYPAGE_INFO: "GET_MYPAGE_INFO",

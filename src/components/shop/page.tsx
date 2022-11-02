@@ -50,48 +50,46 @@ const ShopPage = () => {
         />
       ) : null}
       {selectedFilters.length > 0 ? (
-        <S.SelectedFilter onClick={handleFilter}>
+        <StyledSelectedFilter onClick={handleFilter}>
           {selectedFilters.map(({ value }: any) => (
             <>
-              <S.FilterItem>{value}</S.FilterItem>
+              <StyledFilterItem>{value}</StyledFilterItem>
             </>
           ))}
-        </S.SelectedFilter>
+        </StyledSelectedFilter>
       ) : null}
       <Margin size={1} />
-      <S.OptionContainer>
-        <S.Option onClick={handleSort}>
+      <StyledOptionContainer>
+        <StyledOption onClick={handleSort}>
           {sortKey}
-          <S.SortIcon />
-        </S.Option>
+          <StyledSortIcon />
+        </StyledOption>
         <Margin row size={1.3} />
-        <S.Option onClick={handleFilter}>
+        <StyledOption onClick={handleFilter}>
           필터
-          <S.FilterIcon />
-        </S.Option>
-      </S.OptionContainer>
+          <StyledFilterIcon />
+        </StyledOption>
+      </StyledOptionContainer>
       <Margin size={2} />
-      <S.Container>
+      <StyledContainer>
         {filteredTeas.map((props) => (
-          <S.TeaItemWrapper key={props.id}>
-            <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
-          </S.TeaItemWrapper>
+          <StyledTeaItemWrapper key={props.id}>
+            <TeaItem {...props} width={165} height={210} />
+          </StyledTeaItemWrapper>
         ))}
-      </S.Container>
+      </StyledContainer>
     </>
   );
 };
 
 export default ShopPage;
 
-const S: any = {};
-
-S.SelectedFilter = styled.div`
+const StyledSelectedFilter = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-S.FilterItem = styled.div`
+const StyledFilterItem = styled.div`
   border-radius: 1.5rem;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
@@ -105,13 +103,13 @@ S.FilterItem = styled.div`
   }
 `;
 
-S.OptionContainer = styled.div`
+const StyledOptionContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: end;
 `;
 
-S.Option = styled.div`
+const StyledOption = styled.div`
   font-size: 1.2rem;
   &:hover,
   &:hover * {
@@ -119,27 +117,27 @@ S.Option = styled.div`
   }
 `;
 
-S.OptionIcon = styled.button`
+const StyledOptionIcon = styled.button`
   width: 1.2rem;
   height: 1.2rem;
   border: 0px;
   margin-left: 0.5rem;
 `;
 
-S.FilterIcon = styled(S.OptionIcon)`
+const StyledFilterIcon = styled(StyledOptionIcon)`
   background: url("/image/icon_filter.svg") no-repeat center/contain;
 `;
 
-S.SortIcon = styled(S.OptionIcon)`
+const StyledSortIcon = styled(StyledOptionIcon)`
   background: url("/image/icon_sort.svg") no-repeat center/contain;
 `;
 
-S.Container = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-S.TeaItemWrapper = styled.div`
+const StyledTeaItemWrapper = styled.div`
   width: 16.4rem;
   margin-bottom: 2.5rem;
   margin-right: 1rem;

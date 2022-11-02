@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { searchBarProps } from "../../../types/search";
 import Margin from "../../common/Margin";
 
-const SearchBar = ({ searchInput }: searchBarProps) => {
+const SearchBar = (props: searchBarProps) => {
+  const { searchInput, initialWord } = props;
   return (
     <>
-      <S.SearchBarContainer>
+      <StyledContainer>
         <Margin size={0.5} row />
         <Image
           src={"/image/icon_search_bar.svg"}
@@ -15,7 +16,11 @@ const SearchBar = ({ searchInput }: searchBarProps) => {
           alt={"search Icon"}
         />
         <Margin size={1} row />
-        <S.SearchBar placeholder={"검색어를 입력해주세요"} {...searchInput} />
+        <StyledSearchBar
+          placeholder={initialWord || "검색어를 입력해주세요"}
+          value={searchInput.value}
+          onChange={searchInput.onChange}
+        />
         <Margin size={1} row />
         <Image
           src={"/image/icon_cancel.svg"}
@@ -24,7 +29,7 @@ const SearchBar = ({ searchInput }: searchBarProps) => {
           alt={"cancel Icon"}
           onClick={() => searchInput.reset()}
         />
-      </S.SearchBarContainer>
+      </StyledContainer>
     </>
   );
 };
@@ -33,7 +38,7 @@ export default SearchBar;
 
 const S: any = {};
 
-S.SearchBarContainer = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: #f1f1f1;
@@ -41,7 +46,7 @@ S.SearchBarContainer = styled.div`
   padding: 1rem;
 `;
 
-S.SearchBar = styled.input`
+const StyledSearchBar = styled.input`
   background-color: #f1f1f1;
   height: 2rem;
   width: 100%;

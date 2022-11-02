@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, MouseEvent } from "react";
 
 const useSlider = (itemWidth: number) => {
   const $sliderRef = useRef<HTMLDivElement>(null);
@@ -9,13 +9,13 @@ const useSlider = (itemWidth: number) => {
   const [prevDisable, setPrevDisable] = useState(false);
   const [nextDisable, setNextDisable] = useState(false);
 
-  const onDragStart = (e: React.MouseEvent) => {
+  const onDragStart = (e: MouseEvent<Element, MouseEvent>) => {
     setIsDragging(true);
     setOriginClientX(e.clientX);
     setOriginTransitionX(transitionX);
   };
 
-  const onDragMove = (e: React.MouseEvent) => {
+  const onDragMove = (e: MouseEvent<Element, MouseEvent>) => {
     if (isDragging) {
       setTransitionX(
         dragBoundary(
@@ -27,7 +27,7 @@ const useSlider = (itemWidth: number) => {
     }
   };
 
-  const onDragEnd = (e: React.MouseEvent) => {
+  const onDragEnd = (e: MouseEvent<Element, MouseEvent>) => {
     if (isDragging) {
       setTransitionX(
         getFitTransitionX(
@@ -102,7 +102,7 @@ const useSlider = (itemWidth: number) => {
       )
     );
   }, [transitionX]);
-  return [
+  return {
     $sliderRef,
     transitionX,
     prevDisable,
@@ -112,8 +112,8 @@ const useSlider = (itemWidth: number) => {
     onDragStart,
     onDragMove,
     onDragEnd,
-    isDragging
-  ];
+    isDragging,
+  };
 };
 
 export default useSlider;

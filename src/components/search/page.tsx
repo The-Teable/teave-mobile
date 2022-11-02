@@ -45,34 +45,34 @@ const SearchPage = () => {
           <SearchBar searchInput={searchInput} />
           {!word ? (
             <>
-              <S.Wrapper>
-                <S.Title>최근 검색어</S.Title>
-                <S.ItemContainer>
-                  <S.Item>꽃차</S.Item>
-                  <S.Item>초코맛</S.Item>
-                  <S.Item>꽃차</S.Item>
-                </S.ItemContainer>
-              </S.Wrapper>
+              <StyledWrapper>
+                <StyledTitle>최근 검색어</StyledTitle>
+                <StyledItemContainer>
+                  <StyledItem>꽃차</StyledItem>
+                  <StyledItem>초코맛</StyledItem>
+                  <StyledItem>꽃차</StyledItem>
+                </StyledItemContainer>
+              </StyledWrapper>
               <TabBar />
             </>
           ) : (
             <>
               <Margin size={2} />
-              <S.OptionContainer>
-                <S.Count>전체 {searchedTeas.length}개</S.Count>
-                <S.Option onClick={handleSort}>
+              <StyledOptionContainer>
+                <StyledCount>전체 {searchedTeas.length}개</StyledCount>
+                <StyledOption onClick={handleSort}>
                   {sortKey}
-                  <S.SortIcon />
-                </S.Option>
-              </S.OptionContainer>
+                  <StyledSortIcon />
+                </StyledOption>
+              </StyledOptionContainer>
               <Margin size={2} />
-              <S.Container>
+              <StyledContainer>
                 {searchedTeas.map((props) => (
-                  <S.TeaItemWrapper key={props.id}>
-                    <TeaItem {...props} width={"16.5rem"} height={"21rem"} />
-                  </S.TeaItemWrapper>
+                  <StyledTeaItemWrapper key={props.id}>
+                    <TeaItem {...props} width={165} height={210} />
+                  </StyledTeaItemWrapper>
                 ))}
-              </S.Container>
+              </StyledContainer>
             </>
           )}
         </CenteredContainer>
@@ -84,20 +84,18 @@ const SearchPage = () => {
 
 export default SearchPage;
 
-const S: any = {};
+const StyledWrapper = styled.section``;
 
-S.Wrapper = styled.section``;
-
-S.Title = styled.h2`
+const StyledTitle = styled.h2`
   font-size: 1.4rem;
   font-weight: 500;
   margin: 1.5rem 0;
 `;
 
-S.ItemContainer = styled.div`
+const StyledItemContainer = styled.div`
   display: flex;
 `;
-S.Item = styled.div`
+const StyledItem = styled.div`
   border-radius: 1.5rem;
   padding: 0.7rem;
   font-size: 1.2rem;
@@ -109,18 +107,18 @@ S.Item = styled.div`
   }
 `;
 
-S.OptionContainer = styled.div`
+const StyledOptionContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
 `;
 
-S.Count = styled.div`
+const StyledCount = styled.div`
   font-size: 1.2rem;
   color: #808080;
 `;
 
-S.Option = styled.div`
+const StyledOption = styled.div`
   font-size: 1.2rem;
   &:hover,
   &:hover * {
@@ -128,23 +126,23 @@ S.Option = styled.div`
   }
 `;
 
-S.OptionIcon = styled.button`
+const StyledOptionIcon = styled.button`
   width: 1.2rem;
   height: 1.2rem;
   border: 0px;
   margin-left: 0.5rem;
 `;
 
-S.SortIcon = styled(S.OptionIcon)`
+const StyledSortIcon = styled(StyledOptionIcon)`
   background: url("/image/icon_sort.svg") no-repeat center/contain;
 `;
 
-S.Container = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-S.TeaItemWrapper = styled.div`
+const StyledTeaItemWrapper = styled.div`
   width: 16.4rem;
   margin-bottom: 2.5rem;
   margin-right: 1rem;

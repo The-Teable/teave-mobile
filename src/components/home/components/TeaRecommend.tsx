@@ -13,13 +13,13 @@ type Props = {
 const TeaRecommend = ({ items }: Props) => {
   const [width, $container] = useElementCurWidth();
   return (
-    <S.Container ref={$container}>
-      <S.Title>추천티를 둘러보세요.</S.Title>
+    <StyledContainer ref={$container}>
+      <StyledTitle>추천티를 둘러보세요.</StyledTitle>
       <Margin size={3} />
       <Slider itemWidth={width}>
         {items.map(({ url, brand, name, features, describe }, i) => (
-          <S.Wrapper key={i}>
-            <S.TeaImg
+          <StyledWrapper key={i}>
+            <StyledTeaImg
               src={url}
               alt={name}
               width={80}
@@ -27,31 +27,30 @@ const TeaRecommend = ({ items }: Props) => {
               quality={100}
             />
             <Margin row size={2} />
-            <S.ContentWrapper>
-              <S.TeaTitle>{`[${brand}] ${name}`}</S.TeaTitle>
+            <StyledContentWrapper>
+              <StyledTeaTitle>{`[${brand}] ${name}`}</StyledTeaTitle>
               <Margin size={1} />
               {features.split(",").map((feature, i) => (
-                <S.Feature key={i}>{feature}</S.Feature>
+                <StyledFeature key={i}>{feature}</StyledFeature>
               ))}
               <Margin size={1} />
-              <S.Describe>{describe}</S.Describe>
-            </S.ContentWrapper>
-          </S.Wrapper>
+              <StyledDescribe>{describe}</StyledDescribe>
+            </StyledContentWrapper>
+          </StyledWrapper>
         ))}
       </Slider>
-    </S.Container>
+    </StyledContainer>
   );
 };
 
 export default TeaRecommend;
 
-const S: any = {};
-S.Title = styled.h1`
+const StyledTitle = styled.h1`
   font-size: 2rem;
 `;
-S.Container = styled.div``;
+const StyledContainer = styled.div``;
 
-S.Wrapper = styled.div`
+const StyledWrapper = styled.div`
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -62,19 +61,19 @@ S.Wrapper = styled.div`
   background-color: ${color.lightGray};
 `;
 
-S.ContentWrapper = styled.div`
+const StyledContentWrapper = styled.div`
   width: 55%;
 `;
 
-S.TeaImg = styled(Image)`
+const StyledTeaImg = styled(Image)`
   object-fit: contain;
 `;
 
-S.TeaTitle = styled.div`
+const StyledTeaTitle = styled.div`
   font-size: 1.3rem;
   font-weight: bold;
 `;
-S.Feature = styled.div`
+const StyledFeature = styled.div`
   display: inline-block;
   padding: 0.4rem 1rem;
   background-color: ${color.teaveGreen};
@@ -84,7 +83,7 @@ S.Feature = styled.div`
   font-size: 0.8rem;
 `;
 
-S.Describe = styled.p`
+const StyledDescribe = styled.p`
   color: ${color.gray500};
   font-size: 1.1rem;
   line-height: 1.5rem;

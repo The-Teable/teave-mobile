@@ -1,16 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { getMainProductsApi, teaApiUrls } from "../api/teaApi";
-import { MainFilteringResults } from "../model/teaSchema";
 
-const http = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_LS_URL,
-});
+export const RecommendProductsQueryKeys = {
+  GET_RECOMMEND_PRODUCT: "GET_RECOMMEND_PRODUCT",
+};
 
 const useRecommendProductsQuery = () => {
   const { data, ...results } = useQuery(
-    ["getResult"],
-    () => http.get<MainFilteringResults>(teaApiUrls.RECOMMEND_PRODUCTS),
+    [RecommendProductsQueryKeys.GET_RECOMMEND_PRODUCT],
+    getMainProductsApi,
     {
       select: ({ data: products }) =>
         products.map((product) => ({

@@ -37,7 +37,7 @@ const HeaderScroll = ({ headerNavLinks }: Props) => {
 
   return (
     <>
-      <S.NavWrapper>
+      <StyledNavWrapper>
         {headerNavLinks.map(({ title }, i) => (
           <div
             key={i}
@@ -45,26 +45,24 @@ const HeaderScroll = ({ headerNavLinks }: Props) => {
               window.scrollTo(0, scrollYs.current[i]);
             }}
           >
-            <S.NavItemContainer
+            <StyledNavItemContainer
               isSelected={
                 scrollYs.current[i] <= scrollY &&
                 scrollY < scrollYs.current[i + 1]
               }
             >
               <span>{title}</span>
-            </S.NavItemContainer>
+            </StyledNavItemContainer>
           </div>
         ))}
-      </S.NavWrapper>
+      </StyledNavWrapper>
     </>
   );
 };
 
 export default HeaderScroll;
 
-const S: any = {};
-
-S.NavWrapper = styled(CenteredContainer)`
+const StyledNavWrapper = styled(CenteredContainer)`
   position: fixed;
   right: 0;
   top: 5rem;
@@ -78,7 +76,7 @@ S.NavWrapper = styled(CenteredContainer)`
   background-color: white;
 `;
 
-S.NavItemContainer = styled.div<{ isSelected: boolean }>`
+const StyledNavItemContainer = styled.div<{ isSelected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;

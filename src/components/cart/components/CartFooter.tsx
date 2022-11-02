@@ -5,21 +5,19 @@ import Button from "../../common/Button";
 
 const CartFooter = ({ price }: { price: number }) => (
   <>
-    <S.Padding />
-    <S.Container>
-      <S.Price>총 {price.toLocaleString()}원</S.Price>
+    <StyledPadding />
+    <StyledContainer>
+      <StyledPrice>총 {price.toLocaleString()}원</StyledPrice>
       <Link href={"/order"} passHref>
         <Button>바로구매</Button>
       </Link>
-    </S.Container>
+    </StyledContainer>
   </>
 );
 
 export default CartFooter;
 
-const S: any = {};
-
-S.Container = styled(CenteredContainer).attrs({ as: "nav" })`
+const StyledContainer = styled(CenteredContainer).attrs({ as: "nav" })`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -33,12 +31,12 @@ S.Container = styled(CenteredContainer).attrs({ as: "nav" })`
   background-color: #ffffff;
 `;
 
-S.Price = styled.div`
+const StyledPrice = styled.div`
   font-size: 1.4rem;
   width: 15rem;
   font-weight: bold;
 `;
 
-S.Padding = styled.div`
+const StyledPadding = styled.div`
   height: 8rem;
 `;

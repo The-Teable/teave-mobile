@@ -12,14 +12,14 @@ const QuestionCard = ({
   title,
   choices,
   multiChoicable,
-  handleChoice
+  handleChoice,
 }: QuestionCardProps) => {
   const isInitailRendering = useRef(true);
   const [selectedChoiceList, setSelectedChoiceList] = useState<string[]>([]);
   const onClickChoice = (selectedChoice: string, wasSelected: boolean) => {
     if (wasSelected) {
       setSelectedChoiceList(() =>
-        selectedChoiceList.filter(e => e !== selectedChoice)
+        selectedChoiceList.filter((e) => e !== selectedChoice)
       );
     } else if (multiChoicable) {
       setSelectedChoiceList(() => selectedChoiceList.concat(selectedChoice));
@@ -34,31 +34,29 @@ const QuestionCard = ({
   }, [selectedChoiceList]);
 
   const checkSelected = (selectedChoice: string) =>
-    selectedChoiceList.some(choice => choice === selectedChoice);
+    selectedChoiceList.some((choice) => choice === selectedChoice);
 
   return (
-    <S.Container>
-      <S.Title>{title}</S.Title>
-      <S.ChoicesContainer>
+    <StyledContainer>
+      <StyledTitle>{title}</StyledTitle>
+      <StyledChoicesContainer>
         {choices.map((curChoice, i) => (
-          <S.Choice
+          <StyledChoice
             key={i}
             onClick={() => onClickChoice(curChoice, checkSelected(curChoice))}
             isSelected={checkSelected(curChoice)}
           >
             {curChoice}
-          </S.Choice>
+          </StyledChoice>
         ))}
-      </S.ChoicesContainer>
-    </S.Container>
+      </StyledChoicesContainer>
+    </StyledContainer>
   );
 };
 
-const S: any = {};
+const StyledContainer = styled.div``;
 
-S.Container = styled.div``;
-
-S.Title = styled.h2`
+const StyledTitle = styled.h2`
   width: 100%;
   text-align: center;
   font-size: 2rem;
@@ -66,14 +64,14 @@ S.Title = styled.h2`
   padding: 1rem 0;
 `;
 
-S.ChoicesContainer = styled.div`
+const StyledChoicesContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 `;
 
-S.Choice = styled.div<{ isSelected: boolean }>`
+const StyledChoice = styled.div<{ isSelected: boolean }>`
   user-select: none;
   width: 13rem;
   height: 13rem;

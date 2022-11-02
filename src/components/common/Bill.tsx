@@ -1,34 +1,35 @@
 import styled from "styled-components";
 
 const Bill = (props: {
-  productPrice: number;
-  deliveryCost: number;
-  discountPrice: number;
+  productPrice: number | undefined;
+  deliveryCost: number | undefined;
+  discountPrice: number | undefined;
 }) => {
   const { productPrice, deliveryCost, discountPrice } = props;
+  if (!productPrice || !deliveryCost || !discountPrice) return null;
   return (
     <>
-      <S.Container>
-        <S.Wrapper>
-          <S.ItemGray>총 상품 금액</S.ItemGray>
-          <S.Item>{productPrice.toLocaleString() + "원"}</S.Item>
-        </S.Wrapper>
-        <S.Wrapper>
-          <S.ItemGray>총 배송비</S.ItemGray>
-          <S.Item>{deliveryCost.toLocaleString() + "원"}</S.Item>
-        </S.Wrapper>
-        <S.Wrapper>
-          <S.ItemGray>총 할인 금액</S.ItemGray>
-          <S.Item>{discountPrice.toLocaleString() + "원"}</S.Item>
-        </S.Wrapper>
-        <S.Wrapper>
-          <S.Result>결제 금액</S.Result>
-          <S.Result>
+      <StyledContainer>
+        <StyledWrapper>
+          <StyledItemGray>총 상품 금액</StyledItemGray>
+          <StyledItem>{productPrice.toLocaleString() + "원"}</StyledItem>
+        </StyledWrapper>
+        <StyledWrapper>
+          <StyledItemGray>총 배송비</StyledItemGray>
+          <StyledItem>{deliveryCost.toLocaleString() + "원"}</StyledItem>
+        </StyledWrapper>
+        <StyledWrapper>
+          <StyledItemGray>총 할인 금액</StyledItemGray>
+          <StyledItem>{discountPrice.toLocaleString() + "원"}</StyledItem>
+        </StyledWrapper>
+        <StyledWrapper>
+          <StyledResult>결제 금액</StyledResult>
+          <StyledResult>
             {(productPrice + deliveryCost - discountPrice).toLocaleString() +
               "원"}
-          </S.Result>
-        </S.Wrapper>
-      </S.Container>
+          </StyledResult>
+        </StyledWrapper>
+      </StyledContainer>
     </>
   );
 };
@@ -37,13 +38,13 @@ export default Bill;
 
 const S: any = {};
 
-S.Container = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
   padding: 1rem 1rem;
 `;
-S.Wrapper = styled.div`
+const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
@@ -51,15 +52,15 @@ S.Wrapper = styled.div`
     border-top: 1px #f4f4f4 solid;
   }
 `;
-S.ItemGray = styled.div`
+const StyledItemGray = styled.div`
   color: #808080;
   font-size: 1.4rem;
 `;
-S.Item = styled.div`
+const StyledItem = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
 `;
-S.Result = styled.div`
+const StyledResult = styled.div`
   font-size: 1.6rem;
   font-weight: bold;
 `;

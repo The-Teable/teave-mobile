@@ -1,6 +1,10 @@
 import axios from "axios";
-import { ClickProductProps, MainFilteringResults } from "../model/teaSchema";
-import { getToken } from "./_handleToken";
+import {
+  ClickProductProps,
+  MainFilteringResults,
+  ThemeFiltering,
+} from "../model/teaSchema";
+// import { getToken } from "./_handleToken";
 
 export const teaApiUrls = {
   CLICK_PRODUCT: "/user-click-product/",
@@ -12,18 +16,21 @@ const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LS_URL,
 });
 
-http.interceptors.request.use(async (config) => {
-  const token = await getToken();
-  return { ...config, headers: { Authorization: `Bearer ${token}` } };
-});
+// http.interceptors.request.use(async (config) => {
+//   const token = await getToken();
+//   return { ...config, headers: { Authorization: `Bearer ${token}` } };
+// });
 
 const clickProductApi = (props: ClickProductProps) => {
   return http.post(teaApiUrls.CLICK_PRODUCT, props);
 };
 
-const getMainProductsApi = async () => {
-  return (await http.get<MainFilteringResults>(teaApiUrls.RECOMMEND_PRODUCTS))
-    .data;
+const getMainProductsApi = () => {
+  return http.get<MainFilteringResults>(teaApiUrls.RECOMMEND_PRODUCTS);
 };
 
-export { clickProductApi, getMainProductsApi };
+const getThemeProductsApi = () => {
+  return http.get<ThemeFiltering>(teaApiUrls.THEME_PRODUCTS);
+};
+
+export { clickProductApi, getMainProductsApi, getThemeProductsApi };
