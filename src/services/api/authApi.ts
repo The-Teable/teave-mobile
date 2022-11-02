@@ -20,9 +20,9 @@ const fetchSignup = (props: SignupProps) => {
   return http.post(URL.SIGNUP, props);
 };
 
-const fetchLogout = (props: LogoutProps) => {
+const fetchLogout = () => {
   storage.remove("ACCESS_TOKEN");
-  return http.post(URL.LOGOUT, props);
+  return http.post(URL.LOGOUT);
 };
 
 export { fetchLogin, fetchSignup, fetchLogout };
