@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import useElementCurWidth from "../../../hooks/useElementCurWidth";
@@ -14,7 +15,14 @@ const PromotionBanner = ({ banners }: Props) => {
       <Slider itemWidth={width}>
         {banners.map(({ url, href }, i) => (
           <Link key={i} href={href} passHref>
-            <StyledItem url={url} />
+            <StyledItem>
+              <Image
+                src={url}
+                layout="fill"
+                objectFit="cover"
+                alt="promotion banner"
+              />
+            </StyledItem>
           </Link>
         ))}
       </Slider>
@@ -22,14 +30,16 @@ const PromotionBanner = ({ banners }: Props) => {
   );
 };
 
-const StyledContainer = styled.section``;
+const StyledContainer = styled.section`
+  border-radius: 0.55rem;
+  overflow: hidden;
+`;
 
-const StyledItem = styled.div<{ url: string }>`
-  background: url(${({ url }: { url: string }) => url}) no-repeat center/cover;
+const StyledItem = styled.div`
+  position: relative;
   height: 18rem;
   flex-shrink: 0;
   width: 100%;
-  border-radius: 0.55rem;
   &:hover {
     cursor: pointer;
   }

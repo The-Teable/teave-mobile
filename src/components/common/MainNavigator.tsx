@@ -20,7 +20,12 @@ const MainNavigator = () => {
       <StyledContainer>
         <StyledTopWrapper>
           <Link href="/" passHref>
-            <StyledLogo src="/image/logo_text.png" width={63} height={17} />
+            <StyledLogo
+              src="/image/logo_text.png"
+              width={63}
+              height={17}
+              alt={"main logo"}
+            />
           </Link>
         </StyledTopWrapper>
         <StyledNavWrapper>
